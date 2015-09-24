@@ -215,6 +215,7 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
+
 ##Unity
 
 /Vuforia test/[Ll]ibrary/
@@ -238,3 +239,4 @@ pip-log.txt
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
+
