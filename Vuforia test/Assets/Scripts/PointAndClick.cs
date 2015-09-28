@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class PointAndClick : MonoBehaviour {
     public Vector3 hitPosition;
     public List<GameObject> wayPoints = new List<GameObject>();
+    public GameObject wayPointObject;
     public Material waypointMaterial;
     bool clickButton = false;
     NavMeshAgent navMeshAgent;
@@ -32,11 +33,10 @@ public class PointAndClick : MonoBehaviour {
                 {
                     hitPosition = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 
-                    GameObject newWaypoint = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    newWaypoint.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    GameObject newWaypoint = Instantiate(wayPointObject) as GameObject;
+                 //   newWaypoint.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                     newWaypoint.transform.position = hitPosition + transform.up/4;
                     newWaypoint.transform.parent = waypointParent.transform;
-                    newWaypoint.GetComponent<Renderer>().material = waypointMaterial;
 
                     int wayPointNumber = wayPoints.Count + 1;
                     newWaypoint.name = "Waypoint " +wayPointNumber;
@@ -52,10 +52,23 @@ public class PointAndClick : MonoBehaviour {
         {
             navMeshAgent.destination = wayPoints[0].transform.position;
 
+            //Draw path to next waypoint
+            this.transform.GetComponent<LineRenderer>().SetVertexCount(navMeshAgent.path.corners.Length);
+            this.transform.GetComponent<LineRenderer>().SetPosition(0, this.transform.position);
+            for (int i = 1; i < navMeshAgent.path.corners.Length; i++)
+            {
+                this.transform.GetComponent<LineRenderer>().SetPosition(i, navMeshAgent.path.corners[i] + transform.up/6);
+            }
+
             if (Vector3.Distance(this.transform.position, wayPoints[0].transform.position) < 0.5f)
             {
                 Destroy(wayPoints[0]);
                 wayPoints.RemoveAt(0);
+
+                if(wayPoints.Count == 0)
+                {
+                    this.transform.GetComponent<LineRenderer>().SetVertexCount(0);
+                }
             }
         }
     }
