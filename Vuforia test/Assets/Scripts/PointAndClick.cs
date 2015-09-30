@@ -12,6 +12,10 @@ public class PointAndClick : MonoBehaviour {
     NavMeshAgent navMeshAgent;
     GameObject waypointParent;
 
+    List<Vector3> origins = new List<Vector3>();
+    List<Vector3> directions = new List<Vector3>();
+
+
     // Use this for initialization
     void Start () {
         waypointParent = new GameObject();
@@ -22,33 +26,13 @@ public class PointAndClick : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        //Create waypoints
-        if (clickButton)
+        for(int i = 0; i < origins.Count; i++)
         {
-            var ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.nearClipPlane));
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                if(hit.collider.tag == "Ground")
-                {
-                    hitPosition = new Vector3(hit.point.x, hit.point.y, hit.point.z);
-
-                    GameObject newWaypoint = Instantiate(wayPointObject) as GameObject;
-                 //   newWaypoint.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-                    newWaypoint.transform.position = hitPosition + transform.up/4;
-                    newWaypoint.transform.parent = waypointParent.transform;
-
-                    int wayPointNumber = wayPoints.Count + 1;
-                    newWaypoint.name = "Waypoint " +wayPointNumber;
-                    wayPoints.Add(newWaypoint);
-                }
-            }
-
-            clickButton = false;
+            Debug.DrawLine(origins[i], directions[i], Color.red);
         }
 
         //Move player to waypoints
-        if(wayPoints.Count > 0)
+        if (wayPoints.Count > 0)
         {
             navMeshAgent.destination = wayPoints[0].transform.position;
 
@@ -70,6 +54,42 @@ public class PointAndClick : MonoBehaviour {
                     this.transform.GetComponent<LineRenderer>().SetVertexCount(0);
                 }
             }
+        }
+    }
+
+    //Apparently this code has to be in FixedUpdate instead of Update
+    void FixedUpdate()
+    {
+        //Create waypoints
+        if (clickButton)
+        {
+            var ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.nearClipPlane));
+
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                //For debug purposes
+                origins.Add(ray.origin);
+                directions.Add(hit.point);
+                //#######//
+
+
+                if (hit.collider.tag == "Ground")
+                {
+                    hitPosition = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+
+                    GameObject newWaypoint = Instantiate(wayPointObject) as GameObject;
+                    //   newWaypoint.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    newWaypoint.transform.position = hitPosition + transform.up / 4;
+                    newWaypoint.transform.parent = waypointParent.transform;
+
+                    int wayPointNumber = wayPoints.Count + 1;
+                    newWaypoint.name = "Waypoint " + wayPointNumber;
+                    wayPoints.Add(newWaypoint);
+                }
+            }
+
+            clickButton = false;
         }
     }
 
