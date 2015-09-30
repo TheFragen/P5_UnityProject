@@ -8,6 +8,7 @@ public class tileMovement : MonoBehaviour {
     bool goingDown = false;
     bool goingLeft = false;
     bool goingRight = false;
+    public GameObject camera;
 
     // Use this for initialization
     void Start () {
@@ -18,19 +19,19 @@ public class tileMovement : MonoBehaviour {
 	void Update () {
         if (goingUp)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, transform.position + (Vector3.forward), ref velocity, 1f);
+            camera.transform.position = Vector3.SmoothDamp(camera.transform.position, camera.transform.position + (Vector3.forward), ref velocity, 1f);
         }
         if (goingDown)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, transform.position + (-Vector3.forward), ref velocity, 1f);
+            camera.transform.position = Vector3.SmoothDamp(camera.transform.position, camera.transform.position + (-Vector3.forward), ref velocity, 1f);
         }
         if (goingLeft)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, transform.position + (-Vector3.right), ref velocity, 1f);
+            camera.transform.position = Vector3.SmoothDamp(camera.transform.position, camera.transform.position + (-Vector3.right), ref velocity, 1f);
         }
         if (goingRight)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, transform.position + (Vector3.right), ref velocity, 1f);
+            camera.transform.position = Vector3.SmoothDamp(camera.transform.position, camera.transform.position + (Vector3.right), ref velocity, 1f);
         }
     }
 
