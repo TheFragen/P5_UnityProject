@@ -37,7 +37,7 @@ public class tileMovement : MonoBehaviour {
     public void moveUp()
     {
         goingUp = true;
-        StartCoroutine(stopMovement(5F,1));
+        StartCoroutine(stopMovement(1F,1));
     }
 
     public void moveDown()
