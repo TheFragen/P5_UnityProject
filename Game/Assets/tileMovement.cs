@@ -8,31 +8,40 @@ public class tileMovement : MonoBehaviour {
     bool goingDown = false;
     bool goingLeft = false;
     bool goingRight = false;
+    CharacterController character;
   //  public GameObject camera;
 
     // Use this for initialization
     void Start () {
-	
-	}
+        velocity = this.transform.localPosition;
+        character = GetComponent<CharacterController>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        var movement = new Vector3();
+
         if (goingUp)
         {
-            this.transform.position = Vector3.SmoothDamp(this.transform.position, this.transform.position + (Vector3.forward), ref velocity, 1f);
+            //   this.transform.position = Vector3.SmoothDamp(this.transform.position, this.transform.position + (Vector3.forward), ref velocity, 1f);
+            movement = Vector3.forward * speed * Time.deltaTime;
         }
         if (goingDown)
         {
-            this.transform.position = Vector3.SmoothDamp(this.transform.position, this.transform.position + (-Vector3.forward), ref velocity, 1f);
+            //         this.transform.position = Vector3.SmoothDamp(this.transform.position, this.transform.position + (-Vector3.forward), ref velocity, 1f);
+            movement = -Vector3.forward * speed * Time.deltaTime;
         }
         if (goingLeft)
         {
-            this.transform.position = Vector3.SmoothDamp(this.transform.position, this.transform.position + (-Vector3.right), ref velocity, 1f);
+            //         this.transform.position = Vector3.SmoothDamp(this.transform.position, this.transform.position + (-Vector3.right) , ref velocity, 1f);
+            movement = -Vector3.right * speed * Time.deltaTime;
         }
         if (goingRight)
         {
-            this.transform.position = Vector3.SmoothDamp(this.transform.position, this.transform.position + (Vector3.right), ref velocity, 1f);
+            //       this.transform.position = Vector3.SmoothDamp(this.transform.position, this.transform.position + (Vector3.right), ref velocity, 1f);
+            movement = Vector3.right * speed * Time.deltaTime;
         }
+        character.Move(movement);
     }
 
     public void moveUp()
