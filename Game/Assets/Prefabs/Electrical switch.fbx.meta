@@ -1,22 +1,33 @@
 fileFormatVersion: 2
-guid: 823b789ffa225dc4cb9464ea114b68b5
-timeCreated: 1443169872
+guid: 74ea8960965eac544b9dd4f9f5ef2a5b
+timeCreated: 1444734871
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: barbell
-    100002: //RootNode
-    100004: rack
-    400000: barbell
-    400002: //RootNode
-    400004: rack
-    2300000: barbell
-    2300002: rack
-    3300000: barbell
-    3300002: rack
-    4300000: barbell
-    4300002: rack
+    100000: //RootNode
+    100002: pCube1
+    100004: pCube2
+    100006: pCube3
+    100008: pCylinder1
+    400000: //RootNode
+    400002: pCube1
+    400004: pCube2
+    400006: pCube3
+    400008: pCylinder1
+    2300000: pCube1
+    2300002: pCube2
+    2300004: pCube3
+    2300006: pCylinder1
+    3300000: pCube1
+    3300002: pCube2
+    3300004: pCube3
+    3300006: pCylinder1
+    4300000: pCube1
+    4300002: pCube2
+    4300004: pCube3
+    4300006: pCylinder1
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -75,7 +86,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
