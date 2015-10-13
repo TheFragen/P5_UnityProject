@@ -15,6 +15,7 @@ public class EnemyAlert : MonoBehaviour {
     public float angle = 0f;
     float angleFix = -18f;
     long lastsightingTime = 0;
+    public bool soundHeard = false;
 
     private Animator anim;
     private GameObject player;
@@ -89,5 +90,10 @@ public class EnemyAlert : MonoBehaviour {
         this.GetComponent<LineRenderer>().SetPosition(1, (left * -this.transform.right * 4) + transform.position);
         this.GetComponent<LineRenderer>().SetPosition(2, transform.position);
         this.GetComponent<LineRenderer>().SetPosition(3, (right * -this.transform.right * 4) + transform.position);
+
+        if (soundHeard)
+        {
+           
+        }
     }
 }

@@ -6,11 +6,12 @@ using System.Collections.Generic;
 public class Enemy_Patrol : MonoBehaviour {
 
     public GameObject[] waypoint;
-    public List<GameObject> initialSearch = new List<GameObject>();
+    private List<GameObject> initialSearch = new List<GameObject>();
+    private List<GameObject> sortedSearch = new List<GameObject>();
     public float speed = 3f;
     public float turnSpeed = 0f;
 
-    int currentWaypoint = 0;
+    public int currentWaypoint = 0;
     bool doOnce = true;
 
     // Use this for initialization
@@ -18,46 +19,42 @@ public class Enemy_Patrol : MonoBehaviour {
     {
         //Find all the waypoints and sort them by their index
         initialSearch = GameObject.FindGameObjectsWithTag("EnemyWaypoint").ToList();
-        foreach(GameObject elem in initialSearch)
+        foreach(GameObject elem in initialSearch.ToList())
         {
-            if(elem.transform.parent == null)
+            if(elem.transform.parent == this.transform)
             {
-                initialSearch.Remove(elem);
-            }
-
-            if(elem.transform.parent != this.transform)
-            {
-                initialSearch.Remove(elem);
+                sortedSearch.Add(elem);
             }
         }
-
-        waypoint = initialSearch.OrderBy(go => int.Parse(go.name.Substring(2))).ToArray();
+        waypoint = sortedSearch.OrderBy(go => int.Parse(go.name.Substring(2))).ToArray();
+        initialSearch = null;
+        sortedSearch = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentWaypoint < waypoint.Length - 1)
+        if (!this.GetComponent<EnemyAlert>().inSight)
         {
-       //     patrol();
+            if (currentWaypoint < waypoint.Length)
+            {
+                patrol();
+            }
+            else
+            {
+                currentWaypoint = 0;
+            }
         }
     }
 
     void patrol()
     {
-        transform.Translate(Vector3.down * Time.deltaTime * speed / 2);
+        this.GetComponent<NavMeshAgent>().destination = waypoint[currentWaypoint].transform.position;
 
-        if (Vector3.Distance(transform.position, waypoint[currentWaypoint].transform.position) < 0.10)
+    //    Debug.Log(Vector3.Distance(transform.position, waypoint[currentWaypoint].transform.position));
+        if (Vector3.Distance(transform.position, waypoint[currentWaypoint].transform.position) < 0.75f)
         {
             currentWaypoint++;
-            var newRotation = Quaternion.LookRotation(transform.position - waypoint[currentWaypoint].transform.position, Vector3.back);
-            newRotation.x = 0;
-            newRotation.y = 0;
-            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * turnSpeed);
-            foreach (Transform child in transform)
-            {
-                child.transform.Rotate(0, 0, -90);
-            }
         }
     }
 }
