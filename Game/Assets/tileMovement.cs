@@ -1,75 +1,160 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class tileMovement : MonoBehaviour {
+public class tileMovement : MonoBehaviour
+{
     public float speed = 5f;
-    private Vector3 velocity = Vector3.zero;
+    public float distance = 1f;
+    public bool isMoving = false;
     bool goingUp = false;
     bool goingDown = false;
     bool goingLeft = false;
     bool goingRight = false;
-    CharacterController character;
-  //  public GameObject camera;
+    bool goingNorthWest = false;
+    bool goingNorthEast = false;
+    bool goingSouthWest = false;
+    bool goingSouthEast = false;
+
+    NavMeshAgent navMeshAgent;
 
     // Use this for initialization
-    void Start () {
-        velocity = this.transform.localPosition;
-        character = GetComponent<CharacterController>();
+    void Start()
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>();
     }
-	
-	// Update is called once per frame
-	void Update () {
-        var movement = new Vector3();
 
-        if (goingUp)
+    // Update is called once per frame
+    void Update()
+    {
+        if (isMoving)
         {
-            //   this.transform.position = Vector3.SmoothDamp(this.transform.position, this.transform.position + (Vector3.forward), ref velocity, 1f);
-            movement = Vector3.forward * speed * Time.deltaTime;
+            /*    var movement = new Vector3();
+                if (goingUp)
+                {
+                    movement = new Vector3(0, 0, 1);
+                }
+                if (goingDown)
+                {
+                    movement = new Vector3(0, 0, -1);
+                }
+                if (goingLeft)
+                {
+                    movement = new Vector3(-1, 0, 0);
+                }
+                if (goingRight)
+                {
+                    movement = new Vector3(1, 0, 0);
+                }
+
+                movement = transform.TransformDirection(movement);
+                movement *= speed;
+
+                character.Move(movement * Time.deltaTime);*/
+            Vector3 movement = new Vector3();
+            if (goingUp)
+            {
+                movement = new Vector3(0, 0, 1);
+            }
+            if (goingDown)
+            {
+                movement = new Vector3(0, 0, -1);
+            }
+            if (goingLeft)
+            {
+                movement = new Vector3(-1, 0, 0);
+            }
+            if (goingRight)
+            {
+                movement = new Vector3(1, 0, 0);
+            }
+            if (goingNorthWest)
+            {
+                movement = new Vector3(-0.5f, 0, 0.5f);
+            }
+            if (goingNorthEast)
+            {
+                movement = new Vector3(0.5f, 0, 0.5f);
+            }
+            if (goingSouthWest)
+            {
+                movement = new Vector3(-0.5f, 0, -0.5f);
+            }
+            if (goingSouthEast)
+            {
+                movement = new Vector3(0.5f, 0, -0.5f);
+            }
+            movement *= speed;
+            navMeshAgent.destination = this.transform.position + movement * Time.deltaTime;
+            if(navMeshAgent.path.corners.Length > 2)
+            {
+                completeReset();
+            }
         }
-        if (goingDown)
-        {
-            //         this.transform.position = Vector3.SmoothDamp(this.transform.position, this.transform.position + (-Vector3.forward), ref velocity, 1f);
-            movement = -Vector3.forward * speed * Time.deltaTime;
-        }
-        if (goingLeft)
-        {
-            //         this.transform.position = Vector3.SmoothDamp(this.transform.position, this.transform.position + (-Vector3.right) , ref velocity, 1f);
-            movement = -Vector3.right * speed * Time.deltaTime;
-        }
-        if (goingRight)
-        {
-            //       this.transform.position = Vector3.SmoothDamp(this.transform.position, this.transform.position + (Vector3.right), ref velocity, 1f);
-            movement = Vector3.right * speed * Time.deltaTime;
-        }
-        character.Move(movement);
+        
+
+        
     }
 
     public void moveUp()
     {
+        completeReset();
         goingUp = true;
-        StartCoroutine(stopMovement(1F,1));
+        StartCoroutine(stopMovement(distance, 1));
+      
     }
 
     public void moveDown()
     {
+        completeReset();
         goingDown = true;
-        StartCoroutine(stopMovement(1F, 2));
+        StartCoroutine(stopMovement(distance, 2));
     }
 
     public void moveLeft()
     {
+        completeReset();
         goingLeft = true;
-        StartCoroutine(stopMovement(1F, 3));
+        StartCoroutine(stopMovement(distance, 3));
     }
 
     public void moveRight()
     {
+        completeReset();
         goingRight = true;
-        StartCoroutine(stopMovement(1F, 4));
+        StartCoroutine(stopMovement(distance, 4));
+    }
+
+    public void moveNorthWest()
+    {
+        completeReset();
+        goingNorthWest = true;
+        StartCoroutine(stopMovement(distance, 5));
+    }
+
+    public void moveNorthEast()
+    {
+        completeReset();
+        goingNorthEast = true;
+        StartCoroutine(stopMovement(distance, 6));
+    }
+
+    public void moveSouthWest()
+    {
+        completeReset();
+        goingSouthWest = true;
+        StartCoroutine(stopMovement(distance, 7));
+    }
+
+    public void moveSouthEast()
+    {
+        completeReset();
+        goingSouthEast = true;
+        StartCoroutine(stopMovement(distance, 8));
     }
 
     IEnumerator stopMovement(float waitTime, int direction)
     {
+        isMoving = true;
         yield return new WaitForSeconds(waitTime);
         switch (direction)
         {
@@ -85,9 +170,37 @@ public class tileMovement : MonoBehaviour {
             case 4:
                 goingRight = false;
                 break;
+            case 5:
+                goingNorthWest = false;
+                break;
+            case 6:
+                goingNorthEast = false;
+                break;
+            case 7:
+                goingSouthWest = false;
+                break;
+            case 8:
+                goingSouthEast = false;
+                break;
         }
-        velocity = Vector3.zero;
+        isMoving = false;
 
+
+    }
+
+    public void completeReset()
+    {
+        goingUp = false;
+        goingDown = false;
+        goingLeft = false;
+        goingRight = false;
+        goingNorthWest = false;
+        goingNorthEast = false;
+        goingSouthWest = false;
+        goingSouthEast = false;
+
+        navMeshAgent.ResetPath();
+        isMoving = false;
     }
 
 

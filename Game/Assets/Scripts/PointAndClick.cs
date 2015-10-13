@@ -34,7 +34,6 @@ public class PointAndClick : MonoBehaviour {
         //Move player to waypoints
         if (wayPoints.Count > 0)
         {
-
             navMeshAgent.destination = wayPoints[0].transform.position;
 
             //Draw path to next waypoint
