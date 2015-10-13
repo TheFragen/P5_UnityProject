@@ -60,7 +60,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 
         private void Update()
         {
-            //CheckEnableControlRig();
+            CheckEnableControlRig();
         }
 #endif
 
