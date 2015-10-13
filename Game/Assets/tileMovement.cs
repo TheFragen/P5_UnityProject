@@ -16,6 +16,7 @@ public class tileMovement : MonoBehaviour
     bool goingSouthEast = false;
 
     NavMeshAgent navMeshAgent;
+    private IEnumerator coroutine;
 
     // Use this for initialization
     void Start()
@@ -99,7 +100,8 @@ public class tileMovement : MonoBehaviour
     {
         completeReset();
         goingUp = true;
-        StartCoroutine(stopMovement(distance, 1));
+        coroutine = stopMovement(distance, 1);
+        StartCoroutine(coroutine);
       
     }
 
@@ -107,55 +109,63 @@ public class tileMovement : MonoBehaviour
     {
         completeReset();
         goingDown = true;
-        StartCoroutine(stopMovement(distance, 2));
+        coroutine = stopMovement(distance, 2);
+        StartCoroutine(coroutine);
     }
 
     public void moveLeft()
     {
         completeReset();
         goingLeft = true;
-        StartCoroutine(stopMovement(distance, 3));
+        coroutine = stopMovement(distance, 3);
+        StartCoroutine(coroutine);
     }
 
     public void moveRight()
     {
         completeReset();
         goingRight = true;
-        StartCoroutine(stopMovement(distance, 4));
+        coroutine = stopMovement(distance, 4);
+        StartCoroutine(coroutine);
     }
 
     public void moveNorthWest()
     {
         completeReset();
         goingNorthWest = true;
-        StartCoroutine(stopMovement(distance, 5));
+        coroutine = stopMovement(distance, 5);
+        StartCoroutine(coroutine);
     }
 
     public void moveNorthEast()
     {
         completeReset();
         goingNorthEast = true;
-        StartCoroutine(stopMovement(distance, 6));
+        coroutine = stopMovement(distance, 6);
+        StartCoroutine(coroutine);
     }
 
     public void moveSouthWest()
     {
         completeReset();
         goingSouthWest = true;
-        StartCoroutine(stopMovement(distance, 7));
+        coroutine = stopMovement(distance, 7);
+        StartCoroutine(coroutine);
     }
 
     public void moveSouthEast()
     {
         completeReset();
         goingSouthEast = true;
-        StartCoroutine(stopMovement(distance, 8));
+        coroutine = stopMovement(distance, 8);
+        StartCoroutine(coroutine);
     }
 
     IEnumerator stopMovement(float waitTime, int direction)
     {
         isMoving = true;
         yield return new WaitForSeconds(waitTime);
+        Debug.Log("Stopping");
         switch (direction)
         {
             case 1:
@@ -183,13 +193,17 @@ public class tileMovement : MonoBehaviour
                 goingSouthEast = false;
                 break;
         }
-        isMoving = false;
 
 
     }
 
     public void completeReset()
     {
+        if(coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+
         goingUp = false;
         goingDown = false;
         goingLeft = false;
@@ -200,6 +214,7 @@ public class tileMovement : MonoBehaviour
         goingSouthEast = false;
 
         navMeshAgent.ResetPath();
+        navMeshAgent.SetDestination(this.transform.position);
         isMoving = false;
     }
 
