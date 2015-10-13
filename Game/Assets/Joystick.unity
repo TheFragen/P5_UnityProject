@@ -243,7 +243,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22486464, guid: 9027e237d8891214e83641071a6f23ff, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 354.549988
       objectReference: {fileID: 0}
     - target: {fileID: 22486464, guid: 9027e237d8891214e83641071a6f23ff, type: 2}
       propertyPath: m_SizeDelta.x
@@ -259,7 +259,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22486464, guid: 9027e237d8891214e83641071a6f23ff, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 9.52000046
       objectReference: {fileID: 0}
     - target: {fileID: 22486464, guid: 9027e237d8891214e83641071a6f23ff, type: 2}
       propertyPath: m_SizeDelta.y
@@ -287,7 +287,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22456812, guid: 9027e237d8891214e83641071a6f23ff, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 9.52000046
       objectReference: {fileID: 0}
     - target: {fileID: 22456812, guid: 9027e237d8891214e83641071a6f23ff, type: 2}
       propertyPath: m_AnchorMin.x
@@ -295,7 +295,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22456812, guid: 9027e237d8891214e83641071a6f23ff, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 354.549988
       objectReference: {fileID: 0}
     - target: {fileID: 22456812, guid: 9027e237d8891214e83641071a6f23ff, type: 2}
       propertyPath: m_SizeDelta.x
@@ -316,6 +316,14 @@ Prefab:
     - target: {fileID: 22456812, guid: 9027e237d8891214e83641071a6f23ff, type: 2}
       propertyPath: m_AnchorMax.y
       value: .25
+      objectReference: {fileID: 0}
+    - target: {fileID: 11450040, guid: 9027e237d8891214e83641071a6f23ff, type: 2}
+      propertyPath: verticalAxisName
+      value: Vertical
+      objectReference: {fileID: 0}
+    - target: {fileID: 11450040, guid: 9027e237d8891214e83641071a6f23ff, type: 2}
+      propertyPath: horizontalAxisName
+      value: Horizontal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9027e237d8891214e83641071a6f23ff, type: 2}
