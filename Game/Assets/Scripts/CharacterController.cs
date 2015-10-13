@@ -47,8 +47,13 @@ public class CharacterController : MonoBehaviour {
         {
 
             //calculate the direction vector for global coordinates
-            direction = (transform.TransformDirection(-transform.forward) * moveVec.y * forwardVel) + (transform.TransformDirection (transform.right) * moveVec.x * forwardVel);
+            // direction = (transform.TransformDirection(-transform.forward) * moveVec.y * forwardVel) + (transform.TransformDirection (transform.right) * moveVec.x * forwardVel);
 
+            //calculate the direction vector based on the camera position
+            Vector3 ydirection = Camera.main.transform.forward * moveVec.y * forwardVel;
+            Vector3 Xdirection = Camera.main.transform.right * moveVec.x * forwardVel;
+
+            direction = ydirection + Xdirection;
             rBody.velocity = direction;
 
             Debug.Log("direction" + direction);
@@ -75,7 +80,7 @@ public class CharacterController : MonoBehaviour {
           float turnSmoothing = 15f;
 
         // Create a new vector of the horizontal and vertical inputs.
-          Vector3 targetDirection = new Vector3(-moveVec.x, 0f, -moveVec.y);
+          Vector3 targetDirection = new Vector3(direction.x, 0f, direction.z);
 
         // Create a rotation based on this new vector assuming that up is the global y axis.
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
