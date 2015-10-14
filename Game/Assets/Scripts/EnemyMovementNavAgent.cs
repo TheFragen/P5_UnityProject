@@ -41,12 +41,12 @@ public class EnemyMovementNavAgent : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 			
-		if (enemySight.personalLastSighting != enemySight.resetSight) {
-			chase();
+		if (enemySight.personalLastSighting != enemySight.resestSight) {
+			chase ();
+		} else {
+			patrol ();
+
 		}
-
-		patrol();
-
 		// When enemy at a point change destination to other point (kinda shit)
 		/*if (agent.destination == pathPoint02.position && agent.remainingDistance <= agent.stoppingDistance){
 			//agent.SetDestination (pathPoint01.position);
@@ -73,7 +73,7 @@ public class EnemyMovementNavAgent : MonoBehaviour {
 			{
 				// ... reset last global sighting, the last personal sighting and the timer.
 				//lastPlayerSighting.position = lastPlayerSighting.resetPosition;
-				enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
+				enemySight.personalLastSighting = enemySight.resestSight;
 				chaseTimer = 0f;
 			}
 		}
