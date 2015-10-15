@@ -11,26 +11,26 @@ public class PointAndClick : MonoBehaviour {
     bool clickButton = false;
     NavMeshAgent navMeshAgent;
     GameObject waypointParent;
-
     List<Vector3> origins = new List<Vector3>();
     List<Vector3> directions = new List<Vector3>();
+    float lastTime;
 
 
     // Use this for initialization
     void Start () {
+
         waypointParent = new GameObject();
         waypointParent.name = "Waypoints";
+        if(GameObject.FindGameObjectWithTag("ImageTarget") != null)
+        {
+            waypointParent.transform.parent = GameObject.FindGameObjectWithTag("ImageTarget").transform;
+        }
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        for(int i = 0; i < origins.Count; i++)
-        {
-            Debug.DrawLine(origins[i], directions[i], Color.red);
-        }
-
         //Move player to waypoints
         if (wayPoints.Count > 0)
         {
@@ -44,7 +44,7 @@ public class PointAndClick : MonoBehaviour {
                 this.transform.GetComponent<LineRenderer>().SetPosition(i, navMeshAgent.path.corners[i] + transform.up/6);
             }
 
-            if (Vector3.Distance(this.transform.position, wayPoints[0].transform.position) < 0.5f)
+            if (Vector3.Distance(this.transform.position,wayPoints[0].transform.position) < 0.5f)
             {
                 Destroy(wayPoints[0]);
                 wayPoints.RemoveAt(0);
@@ -65,21 +65,22 @@ public class PointAndClick : MonoBehaviour {
         {
             var ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.nearClipPlane));
 
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            RaycastHit rayHit;
+            if (Physics.Raycast(ray, out rayHit))
             {
                 //For debug purposes
                 origins.Add(ray.origin);
-                directions.Add(hit.point);
+                directions.Add(rayHit.point);
                 //#######//
 
-
-                if (hit.collider.tag == "Ground")
+                //Check that raycast point is on ground, and on the navmesh
+                NavMeshHit navmeshHit;
+                int walkable = 1 << NavMesh.GetAreaFromName("Walkable");
+                if (rayHit.collider.tag == "Ground" && NavMesh.SamplePosition(rayHit.point, out navmeshHit, 1.0f, walkable))
                 {
-                    hitPosition = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+                    hitPosition = new Vector3(navmeshHit.position.x, navmeshHit.position.y, navmeshHit.position.z);
 
                     GameObject newWaypoint = Instantiate(wayPointObject) as GameObject;
-                    //   newWaypoint.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                     newWaypoint.transform.position = hitPosition + transform.up / 4;
                     newWaypoint.transform.parent = waypointParent.transform;
 
@@ -91,6 +92,7 @@ public class PointAndClick : MonoBehaviour {
 
             clickButton = false;
         }
+
     }
 
     public void setClickButton(bool clickButton)
