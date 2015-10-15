@@ -165,7 +165,6 @@ public class tileMovement : MonoBehaviour
     {
         isMoving = true;
         yield return new WaitForSeconds(waitTime);
-        Debug.Log("Stopping");
         switch (direction)
         {
             case 1:
@@ -193,7 +192,7 @@ public class tileMovement : MonoBehaviour
                 goingSouthEast = false;
                 break;
         }
-
+        isMoving = false;
 
     }
 
@@ -214,7 +213,7 @@ public class tileMovement : MonoBehaviour
         goingSouthEast = false;
 
         navMeshAgent.ResetPath();
-        navMeshAgent.SetDestination(this.transform.position);
+     //   navMeshAgent.SetDestination(this.transform.position);
         isMoving = false;
     }
 

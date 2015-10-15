@@ -45,8 +45,6 @@ public class CCTV : MonoBehaviour {
 				}
 			}
 		}
-
-
 	}
 
 	void OnTriggerExit (Collider other)

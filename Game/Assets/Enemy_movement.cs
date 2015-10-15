@@ -18,7 +18,7 @@ public class Enemy_movement : MonoBehaviour {
         t += velocity * Time.deltaTime;
         if (t > 1.0) {
             velocity = -velocity;
-
+            
         }
         if (t < 0.0) { velocity = -velocity; }
     }

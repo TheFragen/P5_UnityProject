@@ -14,13 +14,18 @@ public class CharacterController : MonoBehaviour {
     public float rotateVel = 100;
     Quaternion rotation;
     Vector3 direction;
-  
+   // NavMeshAgent navMeshAgent;
+
 
     // Use this for initialization
     void Start()
     {
+
         Quaternion rotation = transform.rotation;
         rBody = GetComponent<Rigidbody>();
+      //  navMeshAgent = this.GetComponent<NavMeshAgent>();
+
+      
     }
     void Getinput()
     {
@@ -52,8 +57,9 @@ public class CharacterController : MonoBehaviour {
             //calculate the direction vector based on the camera position
             Vector3 ydirection = Camera.main.transform.forward * moveVec.y * forwardVel;
             Vector3 Xdirection = Camera.main.transform.right * moveVec.x * forwardVel;
-
+            
             direction = ydirection + Xdirection;
+            //navMeshAgent.destination = direction * 10 + this.transform.position;
             rBody.velocity = direction;
 
             Debug.Log("direction" + direction);
@@ -72,7 +78,7 @@ public class CharacterController : MonoBehaviour {
         {
             yield return new WaitForSeconds(0.1f);
         }
-        rBody.velocity = Vector3.zero;
+         rBody.velocity = Vector3.zero;
     }
 
     void Rotating()
