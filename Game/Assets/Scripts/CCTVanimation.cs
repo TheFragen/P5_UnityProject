@@ -13,7 +13,7 @@ public class CCTVanimation : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("reverse" + reverse);
+       // Debug.Log("reverse" + reverse);
         //if(this.transform.rotation.x < 10 & this.transform.eulerAngles.y < 10 & this.transform.rotation.z < 319) { 
         if (reverse==true)
         {
