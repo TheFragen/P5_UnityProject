@@ -47,14 +47,10 @@ public class EnemySight : MonoBehaviour {
             Vector3 direction = other.transform.position - transform.position;
             float angle = Vector3.Angle(direction, transform.forward);
 
-			//Debug.Log("player in sphere collider");
-
             if (angle < fovAngle * 0.5f)
             {
                 RaycastHit hit;
-
-				//Debug.Log("player in field of view");
-
+                
                 if (Physics.Raycast(transform.position, direction.normalized, out hit, col.radius*2))
                 {
                     Debug.DrawLine(transform.position, hit.point, Color.red);
