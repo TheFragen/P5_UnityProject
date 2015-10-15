@@ -5,7 +5,7 @@ using UnityStandardAssets.CrossPlatformInput;
 public class CharacterController : MonoBehaviour {
     //input
     public Vector2 moveVec;
-    //Rigidbody rBody;
+    Rigidbody rBody;
     //a little delay on the input
     public float inputDelay = 0.1f;
 
@@ -14,7 +14,7 @@ public class CharacterController : MonoBehaviour {
     public float rotateVel = 100;
     Quaternion rotation;
     Vector3 direction;
-    NavMeshAgent navMeshAgent;
+   // NavMeshAgent navMeshAgent;
 
 
     // Use this for initialization
@@ -22,8 +22,8 @@ public class CharacterController : MonoBehaviour {
     {
 
         Quaternion rotation = transform.rotation;
-        //rBody = GetComponent<Rigidbody>();
-        navMeshAgent = this.GetComponent<NavMeshAgent>();
+        rBody = GetComponent<Rigidbody>();
+      //  navMeshAgent = this.GetComponent<NavMeshAgent>();
 
       
     }
@@ -41,7 +41,7 @@ public class CharacterController : MonoBehaviour {
     void FixedUpdate()
     {
         Run();
-        //Rotating();
+        Rotating();
         
     }
     void Run()
@@ -59,15 +59,15 @@ public class CharacterController : MonoBehaviour {
             Vector3 Xdirection = Camera.main.transform.right * moveVec.x * forwardVel;
             
             direction = ydirection + Xdirection;
-            navMeshAgent.destination = direction * 10 + this.transform.position;
-            //rBody.velocity = direction;
+            //navMeshAgent.destination = direction * 10 + this.transform.position;
+            rBody.velocity = direction;
 
             Debug.Log("direction" + direction);
 
         }
         else
         { 
-           // StartCoroutine(Delay());
+            StartCoroutine(Delay());
         }
     }
 
@@ -78,7 +78,7 @@ public class CharacterController : MonoBehaviour {
         {
             yield return new WaitForSeconds(0.1f);
         }
-        //rBody.velocity = Vector3.zero;
+         rBody.velocity = Vector3.zero;
     }
 
     void Rotating()
@@ -92,9 +92,9 @@ public class CharacterController : MonoBehaviour {
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
 
         // Create a rotation that is an increment closer to the target rotation from the player's rotation.
-       // Quaternion newRotation = Quaternion.Lerp(rBody.rotation, targetRotation, turnSmoothing * Time.deltaTime);
+        Quaternion newRotation = Quaternion.Lerp(rBody.rotation, targetRotation, turnSmoothing * Time.deltaTime);
 
         // Change the players rotation to this new rotation.
-       // rBody.MoveRotation(newRotation);
+        rBody.MoveRotation(newRotation);
     }
 }
