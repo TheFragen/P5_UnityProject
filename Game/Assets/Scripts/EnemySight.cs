@@ -35,7 +35,6 @@ public class EnemySight : MonoBehaviour {
         if (other.gameObject == player)
         {
             playerInSight = false;
-
             Vector3 direction = other.transform.position - transform.position;
             float angle = Vector3.Angle(direction, transform.forward);
 
