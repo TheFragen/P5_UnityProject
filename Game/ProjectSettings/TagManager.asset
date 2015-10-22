@@ -7,6 +7,9 @@ TagManager:
   - Ground
   - ImageTarget
   - EnemyWaypoint
+  - SoundEmitter
+  - Enemy
+  - Gate
   layers:
   - Default
   - TransparentFX

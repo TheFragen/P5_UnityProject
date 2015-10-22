@@ -13,6 +13,7 @@ public class EnemyMovementNavAgent : MonoBehaviour
     public float chaseSpeed = 5f;                           // The nav mesh agent's speed when chasing.
     public float chaseWaitTime = 5f;                        // The amount of time to wait when the last sighting is reached.
     public float patrolWaitTime = 1f;                       // The amount of time to wait when the patrol way point is reached.
+    public bool soundAlerted = false;
 
     private NavMeshAgent agent;
     private EnemySight enemySight;
@@ -46,7 +47,9 @@ public class EnemyMovementNavAgent : MonoBehaviour
         sortedSearch = null;
         target = Quaternion.Euler(0, 180, 0);
 
-        agent.destination = waypoint[0].transform.position;
+        if(waypoint.Length > 0) {
+            agent.destination = waypoint[0].transform.position;
+        }
     }
 
     // Update is called once per frame
@@ -54,7 +57,9 @@ public class EnemyMovementNavAgent : MonoBehaviour
 
         if (enemySight.personalLastSighting != enemySight.resetSight) {
             chase();
-        } else {
+        } else if(soundAlerted){
+            sound();
+        } else if(waypoint.Length > 0){
             patrol();
         }
 
@@ -62,6 +67,38 @@ public class EnemyMovementNavAgent : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 1.5f);
         }
 
+    }
+
+    public void setSoundAlerted(Vector3 sourcePosition) {
+        soundAlerted = true;
+        agent.destination = sourcePosition;
+        agent.speed = chaseSpeed;
+    }
+
+    void sound() {
+        if (Vector3.Distance(this.transform.position, agent.destination) < 1.1f) {
+            // Incerement timer
+            chaseTimer += Time.deltaTime;
+
+            // If the timer exceeds the wait time...
+            if (chaseTimer >= chaseWaitTime) {
+                recheck = true;
+
+                //Wait a bit before resetting
+                if (chaseTimer >= chaseWaitTime + 3f) {
+                    Debug.Log("Resetting");
+                    soundAlerted = false;
+                    chaseTimer = 0f;
+                    recheck = false;
+                    if(waypoint.Length > 0) {
+                        agent.destination = waypoint[pathPointIndex].transform.position;
+                    }
+                }
+            }
+        } else {
+            // If not near the last sighting personal sighting of the player, reset the timer.
+            chaseTimer = 0f;
+        }
     }
 
     void chase() {
