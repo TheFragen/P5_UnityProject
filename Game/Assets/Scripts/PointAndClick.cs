@@ -16,6 +16,7 @@ public class PointAndClick : MonoBehaviour {
     float lastTime;
     float distance = 0;
     bool obstaclePoint = false;
+    private bool first;
 
     // Use this for initialization
     void Start () {
@@ -27,6 +28,7 @@ public class PointAndClick : MonoBehaviour {
             waypointParent.transform.parent = GameObject.FindGameObjectWithTag("ImageTarget").transform;
         }
         navMeshAgent = GetComponent<NavMeshAgent>();
+
     }
 
     // Update is called once per frame
@@ -36,7 +38,6 @@ public class PointAndClick : MonoBehaviour {
         //Move player to waypoints
         if (wayPoints.Count > 0)
         {
-
             navMeshAgent.destination = wayPoints[0].transform.position;
 
    /*         //Draw path to next waypoint
@@ -59,22 +60,14 @@ public class PointAndClick : MonoBehaviour {
                 if (Physics.Linecast(pathPoint, nextPoint, out hit)) {
                     if(hit.transform.gameObject.tag == "Gate" && wayPoints[0].transform.position != hit.transform.position) {
                         Debug.DrawLine(pathPoint, hit.point, Color.green);
-
-
-                        wayPoints[0].transform.position = hit.transform.position - hit.transform.localScale * 8;
-                        navMeshAgent.destination = hit.transform.position - hit.transform.localScale * 7;
-                        distance = 3f;
+                        wayPoints[0].transform.position = hit.point;
+                        distance = 4.5f;
                         obstaclePoint = true;
                     }
                 }
             }
 
             if (distance == 0) distance = 0.5f;
-
-            if (obstaclePoint && Vector3.Distance(this.transform.position, wayPoints[0].transform.position) < distance + 3)
-            {
-                navMeshAgent.speed = 30;
-            }
 
             if (Vector3.Distance(this.transform.position,wayPoints[0].transform.position) < distance)
             {
