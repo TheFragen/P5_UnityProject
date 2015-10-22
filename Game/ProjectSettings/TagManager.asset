@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - ImageTarget
   - EnemyWaypoint
+  - Laser
   layers:
   - Default
   - TransparentFX
