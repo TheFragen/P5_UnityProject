@@ -9,6 +9,7 @@ TagManager:
   - EnemyWaypoint
   - SoundEmitter
   - Enemy
+  - Gate
   layers:
   - Default
   - TransparentFX

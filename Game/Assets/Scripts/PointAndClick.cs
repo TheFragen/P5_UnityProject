@@ -14,7 +14,8 @@ public class PointAndClick : MonoBehaviour {
     List<Vector3> origins = new List<Vector3>();
     List<Vector3> directions = new List<Vector3>();
     float lastTime;
-
+    float distance = 0;
+    bool obstaclePoint = false;
 
     // Use this for initialization
     void Start () {
@@ -31,26 +32,61 @@ public class PointAndClick : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+
         //Move player to waypoints
         if (wayPoints.Count > 0)
         {
+
             navMeshAgent.destination = wayPoints[0].transform.position;
 
-            //Draw path to next waypoint
+   /*         //Draw path to next waypoint
             this.transform.GetComponent<LineRenderer>().SetVertexCount(navMeshAgent.path.corners.Length);
             this.transform.GetComponent<LineRenderer>().SetPosition(0, this.transform.position);
             for (int i = 1; i < navMeshAgent.path.corners.Length; i++)
             {
                 this.transform.GetComponent<LineRenderer>().SetPosition(i, navMeshAgent.path.corners[i] + transform.up/6);
+            }*/
+
+
+            //Detect if NavMeshAgent is hitting an obstacle
+            for(int i = 1; i < navMeshAgent.path.corners.Length; i++) {
+                Vector3 pathPoint = navMeshAgent.path.corners[i-1];
+                Vector3 nextPoint = navMeshAgent.path.corners[i];
+                RaycastHit hit;
+
+            //    Debug.DrawLine(pathPoint, nextPoint, Color.red);
+
+                if (Physics.Linecast(pathPoint, nextPoint, out hit)) {
+                    if(hit.transform.gameObject.tag == "Gate" && wayPoints[0].transform.position != hit.transform.position) {
+                        Debug.DrawLine(pathPoint, hit.point, Color.green);
+
+
+                        wayPoints[0].transform.position = hit.transform.position - hit.transform.localScale * 8;
+                        navMeshAgent.destination = hit.transform.position - hit.transform.localScale * 7;
+                        distance = 3f;
+                        obstaclePoint = true;
+                    }
+                }
             }
 
-            if (Vector3.Distance(this.transform.position,wayPoints[0].transform.position) < 0.5f)
+            if (distance == 0) distance = 0.5f;
+
+            if (obstaclePoint && Vector3.Distance(this.transform.position, wayPoints[0].transform.position) < distance + 3)
+            {
+                navMeshAgent.speed = 30;
+            }
+
+            if (Vector3.Distance(this.transform.position,wayPoints[0].transform.position) < distance)
             {
                 Destroy(wayPoints[0]);
                 wayPoints.RemoveAt(0);
+                distance = 0;
+                navMeshAgent.speed = 15;
+                obstaclePoint = false;
 
-                if(wayPoints.Count == 0)
+                if (wayPoints.Count == 0)
                 {
+                    navMeshAgent.ResetPath();
                     this.transform.GetComponent<LineRenderer>().SetVertexCount(0);
                 }
             }
