@@ -15,7 +15,7 @@ public class gate : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        obstacle = GetComponent<NavMeshObstacle>();
+      //  obstacle = GetComponent<NavMeshObstacle>();
         initialLocation = this.transform.localPosition;
         initialRotation = this.transform.localEulerAngles;
     }
@@ -25,7 +25,7 @@ public class gate : MonoBehaviour {
         if (isActivated) {
             if(activationLocation == Vector3.zero && activationRotation == Vector3.zero)
             {
-                this.gameObject.GetComponent<NavMeshObstacle>().enabled = false;
+      //          this.gameObject.GetComponent<NavMeshObstacle>().enabled = false;
                 this.gameObject.GetComponent<Renderer>().enabled = false;
                 this.gameObject.GetComponent<BoxCollider>().enabled = false;
             }
@@ -49,7 +49,7 @@ public class gate : MonoBehaviour {
                     Mathf.LerpAngle(currentAngle.z, initialRotation.z, Time.deltaTime * 2)
                 );
             transform.eulerAngles = currentAngle;
-            this.gameObject.GetComponent<NavMeshObstacle>().enabled = true;
+      //      this.gameObject.GetComponent<NavMeshObstacle>().enabled = true;
             this.gameObject.GetComponent<Renderer>().enabled = true;
             this.gameObject.GetComponent<BoxCollider>().enabled = true;
         }
