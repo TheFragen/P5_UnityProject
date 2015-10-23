@@ -30,9 +30,6 @@ public class CharacterControllerJoystick : MonoBehaviour {
 
         Quaternion rotation = transform.rotation;
         rBody = GetComponent<Rigidbody>();
-      //  navMeshAgent = this.GetComponent<NavMeshAgent>();
-
-      
     }
     void Getinput()
     {
