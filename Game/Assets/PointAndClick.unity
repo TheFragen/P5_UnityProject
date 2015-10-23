@@ -1028,15 +1028,15 @@ NavMeshObstacle:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 369197469}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: .5, y: .5, z: .5}
-  m_MoveThreshold: .100000001
+  m_Extents: {x: .5, y: .5, z: 4}
+  m_MoveThreshold: 0
   m_Carve: 0
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: .5
+  m_TimeToStationary: 0
 --- !u!33 &369197473
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1063,7 +1063,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 369197469}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -3670,6 +3670,8 @@ GameObject:
   - 120: {fileID: 1788729461}
   - 212: {fileID: 1788729462}
   - 114: {fileID: 1788729463}
+  - 82: {fileID: 1788729464}
+  - 114: {fileID: 1788729465}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3719,16 +3721,16 @@ NavMeshAgent:
   m_Radius: .5
   m_Speed: 15
   m_Acceleration: 100
-  avoidancePriority: 50
+  avoidancePriority: 0
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 0
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1
 --- !u!120 &1788729461
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -3804,6 +3806,120 @@ MonoBehaviour:
   speed: 86
   isMoving: 0
   useLocalOrientation: 1
+--- !u!82 &1788729464
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1788729457}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300001, guid: af6fb62b120d00547b4c69a8038032a5,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 1bd794e2b85599b469a19cf6d3baceeb, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: .5
+  MinDistance: 1
+  MaxDistance: 114.830002
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: .965490401
+      inSlope: -4.50894785
+      outSlope: -4.50894785
+      tangentMode: 0
+    - time: .027063353
+      value: .841379285
+      inSlope: -5.37445498
+      outSlope: -5.37445498
+      tangentMode: 0
+    - time: .0734193102
+      value: .690948248
+      inSlope: -7.1797452
+      outSlope: -7.1797452
+      tangentMode: 0
+    - time: .098607108
+      value: .594396591
+      inSlope: -1.7949363
+      outSlope: -1.7949363
+      tangentMode: 0
+    - time: .161844447
+      value: .52241379
+      inSlope: -.448734075
+      outSlope: -.448734075
+      tangentMode: 0
+    - time: .346196949
+      value: .429525852
+      inSlope: -.851189315
+      outSlope: -.851189315
+      tangentMode: 0
+    - time: .464098036
+      value: .0189655181
+      inSlope: -.0280458797
+      outSlope: -.0280458797
+      tangentMode: 0
+    - time: .887459815
+      value: 0
+      inSlope: -.00871201046
+      outSlope: -.00871201046
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!114 &1788729465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1788729457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1746535dd016644489b84b57bd4cdebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  play: 0
+  replayWaitTime: 3
 --- !u!1 &1827783812
 GameObject:
   m_ObjectHideFlags: 0
