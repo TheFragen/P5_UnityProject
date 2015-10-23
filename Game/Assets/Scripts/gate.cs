@@ -12,9 +12,10 @@ public class gate : MonoBehaviour {
     Vector3 currentAngle;
     bool on = false;
     NavMeshObstacle obstacle;
-
+   
     // Use this for initialization
     void Start () {
+        
         obstacle = GetComponent<NavMeshObstacle>();
         initialLocation = this.transform.localPosition;
         initialRotation = this.transform.localEulerAngles;
@@ -31,12 +32,12 @@ public class gate : MonoBehaviour {
             }
             else if (activationLocation == Vector3.zero)
             {
-                currentAngle = new Vector3(
-                    Mathf.LerpAngle(currentAngle.x, activationRotation.x, Time.deltaTime * 2),
-                    Mathf.LerpAngle(currentAngle.y, activationRotation.y, Time.deltaTime * 2),
-                    Mathf.LerpAngle(currentAngle.z, activationRotation.z, Time.deltaTime * 2)
-                );
-                transform.eulerAngles = currentAngle;
+                    currentAngle = new Vector3(
+                        Mathf.LerpAngle(currentAngle.x, activationRotation.x, Time.deltaTime * 2),
+                        Mathf.LerpAngle(currentAngle.y, activationRotation.y, Time.deltaTime * 2),
+                        Mathf.LerpAngle(currentAngle.z, activationRotation.z, Time.deltaTime * 2)
+                    );
+                    transform.eulerAngles = currentAngle;
             } else if (activationRotation == Vector3.zero)
             {
                 this.transform.localPosition = Vector3.Lerp(this.transform.localPosition, activationLocation, 0.1f);
