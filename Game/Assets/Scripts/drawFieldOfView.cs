@@ -17,7 +17,7 @@ public class drawFieldOfView : MonoBehaviour {
 	
 	void Start()
 	{
-		vertices = new Vector3[4 * quality];
+        vertices = new Vector3[4 * quality];
 		triangles = new int[3 * 2 * quality];
 
 		mesh = new Mesh();
