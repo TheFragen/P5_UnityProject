@@ -211,5 +211,14 @@ public class tileMovement : MonoBehaviour
         isMoving = false;
     }
 
-
+    public void setLocalOrientation()
+    {
+        if (useLocalOrientation == true)
+        {
+            useLocalOrientation = false;
+        } else
+        {
+            useLocalOrientation = true;
+        }
+    }
 }

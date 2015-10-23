@@ -40,4 +40,15 @@ public class audioReplay : MonoBehaviour {
         yield return new WaitForSeconds(waitTime);
         play = true;
     } 
+
+    public void setPlay()
+    {
+        if (play == true)
+        {
+            play = false;
+        } else
+        {
+            play = true;
+        }
+    }
 }
