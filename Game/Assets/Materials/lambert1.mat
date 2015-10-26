@@ -7,10 +7,10 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: lambert1
-  m_Shader: {fileID: 4800000, guid: 02c7b840f8cb3db4e82c4694be4e0750, type: 3}
+  m_Shader: {fileID: 4800000, guid: aba527156802de849ac0b82ecd6f67f0, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -93,16 +93,20 @@ Material:
         second: .5
       data:
         first:
+          name: _Glossiness
+        second: .5
+      data:
+        first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
           name: _Parallax
         second: .0199999996
       data:
         first:
           name: _ZWrite
         second: 1
-      data:
-        first:
-          name: _Glossiness
-        second: .5
       data:
         first:
           name: _BumpScale
@@ -125,16 +129,20 @@ Material:
         second: 0
       data:
         first:
-          name: _Metallic
-        second: 0
-      data:
-        first:
           name: _FogRadius
         second: 1
       data:
         first:
           name: _FogMaxRadius
         second: .5
+      data:
+        first:
+          name: _DistanceNear
+        second: 5
+      data:
+        first:
+          name: _DistancePlayer
+        second: 5
     m_Colors:
       data:
         first:
@@ -155,4 +163,12 @@ Material:
       data:
         first:
           name: _Player3_Pos
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _Point
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _PlayerPoint
         second: {r: 0, g: 0, b: 0, a: 1}

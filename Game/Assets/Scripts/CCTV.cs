@@ -66,8 +66,8 @@ public class CCTV : MonoBehaviour {
 		Quaternion right = Quaternion.AngleAxis (fovAngle - angleFix, transform.up);
 
 		this.GetComponent<LineRenderer>().SetPosition(0,transform.position);
-		this.GetComponent<LineRenderer>().SetPosition(1,(left * this.transform.forward * 4)+transform.position);
+		this.GetComponent<LineRenderer>().SetPosition(1,(left * this.transform.forward * 8)+transform.position);
 		this.GetComponent<LineRenderer>().SetPosition(2,transform.position);
-		this.GetComponent<LineRenderer>().SetPosition(3,(right * this.transform.forward * 4)+transform.position);
+		this.GetComponent<LineRenderer>().SetPosition(3,(right * this.transform.forward * 8)+transform.position);
 	}
 }
