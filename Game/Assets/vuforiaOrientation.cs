@@ -14,6 +14,6 @@ public class vuforiaOrientation : MonoBehaviour {
         Vector3 _tmp = referenceCube.localEulerAngles;
         _tmp.y = this.transform.localEulerAngles.y;
         referenceCube.localEulerAngles = _tmp;
-        Debug.Log("Set Reference Cube to: " + _tmp);
+      //  Debug.Log("Set Reference Cube to: " + _tmp);
     }
 }

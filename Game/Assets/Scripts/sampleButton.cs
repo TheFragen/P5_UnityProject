@@ -5,7 +5,7 @@ public class sampleButton : MonoBehaviour
 {
     GameObject player;
     public GameObject objectToAffect;
-    private bool open = false;
+    private bool open = true;
     // Use this for initialization
     void Start() {
         player = GameObject.Find("Player");
@@ -16,10 +16,10 @@ public class sampleButton : MonoBehaviour
       
     }
 
-    void OnTriggerStay(Collider other) {
+    void OnTriggerEnter(Collider other) {
       
-        if(other.gameObject.tag == "Player" && Input.GetKeyDown("e")) {
-           open = !open;
+        if(other.gameObject.tag == "Player") {
+        //   open = !open;
            objectToAffect.GetComponent<gate>().setIsActivated(open);
         }
     }

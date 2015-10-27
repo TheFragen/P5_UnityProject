@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
 
@@ -50,7 +51,18 @@ public class CharacterControllerJoystick : MonoBehaviour {
         {
             if(GameObject.Find("CustomJoystick(Clone)") == null)
             {
-                Instantiate(CustomJoystick, new Vector3(0, 0, 0), Quaternion.identity);
+                GameObject goJoystick = Instantiate(CustomJoystick, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+                goJoystick.transform.parent = GameObject.Find("Canvas").transform;
+                goJoystick.GetComponent<RectTransform>().position = new Vector3(70,70,0);
+                foreach (Transform child in goJoystick.transform)
+                {
+                /*    float _width = child.GetComponent<RectTransform>().rect.width;
+                    float _height = child.GetComponent<RectTransform>().rect.height;
+                    child.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width/4, Screen.width/4);*/
+                 //   child.parent = GameObject.FindGameObjectWithTag("Joystick").transform;
+                }
+          //      goJoystick.transform.localScale = new Vector3(Screen.width/12, Screen.width / 12, 0);
+
             }
             joystick.enabled = false;
         }

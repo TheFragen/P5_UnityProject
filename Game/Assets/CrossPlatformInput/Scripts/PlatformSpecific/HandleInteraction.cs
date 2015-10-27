@@ -26,7 +26,7 @@ public class HandleInteraction : MonoBehaviour {
     void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player") {
-            if (Input.GetKeyDown("e")) {
+            if (true) {
                 handleTurn = true;
                 reverse = !reverse;
             }

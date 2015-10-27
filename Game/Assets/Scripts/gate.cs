@@ -10,7 +10,6 @@ public class gate : MonoBehaviour {
     Vector3 initialLocation;
     Vector3 initialRotation;
     Vector3 currentAngle;
-    bool on = false;
     NavMeshObstacle obstacle;
 
     // Use this for initialization

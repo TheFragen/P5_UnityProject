@@ -107,14 +107,15 @@ public class PointAndClick : MonoBehaviour {
                 int walkable = 1 << NavMesh.GetAreaFromName("Walkable");
                 if (rayHit.collider.tag == "Ground" && NavMesh.SamplePosition(rayHit.point, out navmeshHit, 1.0f, walkable))
                 {
+                    if (GameObject.Find("Waypoint") != null) Destroy(GameObject.Find("Waypoint"));
                     hitPosition = new Vector3(navmeshHit.position.x, navmeshHit.position.y, navmeshHit.position.z);
 
                     GameObject newWaypoint = Instantiate(wayPointObject) as GameObject;
                     newWaypoint.transform.position = hitPosition + transform.up / 4;
                     newWaypoint.transform.parent = waypointParent.transform;
+                    newWaypoint.name = "Waypoint";
 
-                    int wayPointNumber = wayPoints.Count + 1;
-                    newWaypoint.name = "Waypoint " + wayPointNumber;
+                    if(wayPoints.Count > 0) wayPoints.RemoveAt(0);
                     wayPoints.Add(newWaypoint);
                 }
             }

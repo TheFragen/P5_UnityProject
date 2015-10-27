@@ -24,7 +24,6 @@ public class cameraMove : MonoBehaviour
     long debounceDelay = 150;
 
     public float fixedRotation = 0;
-    float lastRotation = 0;
 
     // Use this for initialization
     void Start()
@@ -64,6 +63,7 @@ public class cameraMove : MonoBehaviour
         {
             if (((DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond) - lastDebounceTime) > debounceDelay)
             {
+                Debug.Log("Nigger");
                 lastDebounceTime = (DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond);
                 GameObject.Find("Player").GetComponent<PointAndClick>().setClickButton(true);
             }

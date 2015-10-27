@@ -26,11 +26,7 @@ public class tileMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        Vector3 reference;
-
-        
-
+    {   
         if (isMoving) {
             Vector3 movement = new Vector3();
 
