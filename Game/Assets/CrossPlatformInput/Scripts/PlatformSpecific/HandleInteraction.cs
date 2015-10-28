@@ -23,7 +23,7 @@ public class HandleInteraction : MonoBehaviour {
         stop.SetEulerAngles(0.0f, 0.0f, 3.14f);
     }
 	
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player") {
             if (true) {

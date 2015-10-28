@@ -40,7 +40,13 @@ public class drawFieldOfView : MonoBehaviour {
 	
 	void Update()
 	{
-        if (imageTarget.GetComponent<Vuforia.DefaultTrackableEventHandler>().trackerFound)
+        bool check = true;
+        if(imageTarget != null)
+        {
+            check = imageTarget.GetComponent<Vuforia.DefaultTrackableEventHandler>().trackerFound;
+        }
+
+        if (check)
         {
             float angle_lookat = GetEnemyAngle();
 

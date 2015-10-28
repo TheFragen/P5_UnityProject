@@ -18,15 +18,20 @@ namespace Vuforia
         #region PRIVATE_MEMBER_VARIABLES
  
         private TrackableBehaviour mTrackableBehaviour;
-    
+        private GameObject controlCycler;
+        private GameObject orientation;
+
         #endregion // PRIVATE_MEMBER_VARIABLES
 
 
 
         #region UNTIY_MONOBEHAVIOUR_METHODS
-    
+
         void Start()
         {
+            controlCycler = GameObject.Find("controlCycler");
+            orientation = GameObject.Find("orientation");
+
             mTrackableBehaviour = GetComponent<TrackableBehaviour>();
             if (mTrackableBehaviour)
             {
@@ -85,7 +90,11 @@ namespace Vuforia
             }
 
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
+
             trackerFound = true;
+            controlCycler.SetActive(true);
+            orientation.SetActive(true);
+            GameObject.Find("Control Cycler").GetComponent<cycleControls>().resetAll();
         }
 
 
@@ -107,7 +116,13 @@ namespace Vuforia
             }
 
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
+
             trackerFound = false;
+
+            GameObject.Find("Control Cycler").GetComponent<cycleControls>().resetAll();
+            controlCycler.SetActive(false);
+            orientation.SetActive(false);
+            
         }
 
         #endregion // PRIVATE_METHODS

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class tileMovement : MonoBehaviour
 {
@@ -103,7 +104,29 @@ public class tileMovement : MonoBehaviour
 
             movement *= speed;
             navMeshAgent.destination = this.transform.position + movement * Time.deltaTime;
-        }        
+        }
+
+        if (useLocalOrientation)
+        {
+            Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
+
+            // Disable rendering:
+            foreach (Renderer component in rendererComponents)
+            {
+                if (component.gameObject.name == "Capsule") continue;
+                component.enabled = true;
+            }
+        }  else
+        {
+            Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
+
+            // Disable rendering:
+            foreach (Renderer component in rendererComponents)
+            {
+                if (component.gameObject.name == "Capsule") continue;
+                component.enabled = false;
+            }
+        }
     }
 
     void movePlayer(Vector3 movement) {
@@ -212,9 +235,11 @@ public class tileMovement : MonoBehaviour
         if (useLocalOrientation == true)
         {
             useLocalOrientation = false;
+            GameObject.Find("Canvas/orientation/Text").GetComponent<Text>().text = "Local Orientation";
         } else
         {
             useLocalOrientation = true;
+            GameObject.Find("Canvas/orientation/Text").GetComponent<Text>().text = "Camera Orientation";
         }
     }
 }

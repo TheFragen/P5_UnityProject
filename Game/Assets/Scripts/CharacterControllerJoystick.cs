@@ -16,14 +16,16 @@ public class CharacterControllerJoystick : MonoBehaviour {
     Quaternion rotation;
     Vector3 direction;
     Vector3 targetDirection = Vector3.zero;
-    public bool CameraOrientation = true;
+    public bool CameraOrientation = false;
     public bool locked = true;
     VirtualJoystick2 joystick;
     public GameObject CustomJoystick;
-    GameObject goJoystick;
+    public GameObject goJoystick;
+    public Sprite colorCodedJoystick;
+    public Sprite blackJoystick;
+    bool setImageOnce = false;
 
    // NavMeshAgent navMeshAgent;
-
 
     // Use this for initialization
     void Start()
@@ -43,12 +45,13 @@ public class CharacterControllerJoystick : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-       /* if(goJoystick != null)
-        {
-            goJoystick.GetComponent<RectTransform>().position = new Vector3(70, 70, 0);
-        }
-        */
-        if(locked == false)
+        Debug.DrawLine(this.transform.position, this.transform.position + this.transform.forward, Color.blue);
+        /* if(goJoystick != null)
+         {
+             goJoystick.GetComponent<RectTransform>().position = new Vector3(70, 70, 0);
+         }
+         */
+        if (locked == false)
         {
             joystick.enabled = true;
             Destroy(GameObject.Find("CustomJoystick(Clone)"));
@@ -57,20 +60,59 @@ public class CharacterControllerJoystick : MonoBehaviour {
         {
             if(GameObject.Find("CustomJoystick(Clone)") == null)
             {
-                goJoystick = Instantiate(CustomJoystick, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-            //    goJoystick.transform.parent = GameObject.Find("Canvas").transform;
-                foreach (Transform child in goJoystick.transform)
-                {
+            //    goJoystick = Instantiate(CustomJoystick, CustomJoystick.GetComponent<RectTransform>().position, Quaternion.identity) as GameObject;
+                
+            //    goJoystick.GetComponent<RectTransform>().position = new Vector3(70, 70, 1);
+            //    goJoystick.GetComponent<RectTransform>().localScale = new Vector3(.8f, .8f, .8f);
+             //   goJoystick.transform.parent = GameObject.Find("Canvas").transform;
+
+
+                //foreach (Transform child in goJoystick.transform)
+             //   {
                 /*    float _width = child.GetComponent<RectTransform>().rect.width;
                     float _height = child.GetComponent<RectTransform>().rect.height;
                     child.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width/4, Screen.width/4);*/
                  //   child.parent = GameObject.FindGameObjectWithTag("Joystick").transform;
-                }
+             //   }
           //      goJoystick.transform.localScale = new Vector3(Screen.width/12, Screen.width / 12, 0);
 
             }
             joystick.enabled = false;
         }
+
+        if (CameraOrientation)
+        {
+            Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
+
+            // Disable rendering:
+            foreach (Renderer component in rendererComponents)
+            {
+                if (component.gameObject.name == "Capsule") continue;
+                component.enabled = false;
+            }
+           // if (!setImageOnce)
+          //  {
+                setImageOnce = true;
+                goJoystick.GetComponentsInChildren<Transform>()[1].GetComponent<Image>().sprite = blackJoystick;
+         //   }
+
+        } else
+        {
+            Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
+
+            // Disable rendering:
+            foreach (Renderer component in rendererComponents)
+            {
+                if (component.gameObject.name == "Capsule") continue;
+                component.enabled = true;
+            }
+        //    if (setImageOnce)
+       //     {
+                setImageOnce = false;
+                goJoystick.GetComponentsInChildren<Transform>()[1].GetComponent<Image>().sprite = colorCodedJoystick;
+         //   }
+        }
+
         Getinput();
         //print("moveVec is: " + moveVec);
     }
@@ -89,12 +131,18 @@ public class CharacterControllerJoystick : MonoBehaviour {
             if(CameraOrientation == false)
             {
                 //calculate the direction vector for global coordinates
-                direction = (transform.TransformDirection(-transform.forward) * moveVec.y * forwardVel) +
+             /*   direction = (transform.TransformDirection(-transform.forward) * moveVec.y * forwardVel) +
                 (transform.TransformDirection(transform.right) * moveVec.x * forwardVel);
-
+*/
                 //calculate the local 
                 //direction = (-transform.forward * moveVec.y) * forwardVel +
                 //(transform.right * moveVec.x) * forwardVel;
+
+                Vector3 ydirection = GameObject.Find("Grass").transform.forward * moveVec.y * forwardVel;
+
+
+                Vector3 Xdirection = GameObject.Find("Grass").transform.right * moveVec.x * forwardVel;
+                direction = ydirection + Xdirection;
 
             }
             if (CameraOrientation == true) { 
@@ -142,5 +190,10 @@ public class CharacterControllerJoystick : MonoBehaviour {
 
         // Change the players rotation to this new rotation.
         rBody.MoveRotation(newRotation);
+    }
+
+    public void setCameraOrientation()
+    {
+        CameraOrientation = !CameraOrientation;
     }
 }

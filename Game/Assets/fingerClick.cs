@@ -110,7 +110,7 @@ public class fingerClick : MonoBehaviour
     public void setNewPosition(Vector3 inputPosition)
     {
         //Create waypoints
-        var ray = Camera.main.ScreenPointToRay(new Vector3(inputPosition.x, inputPosition.y, Camera.main.nearClipPlane));
+        var ray = Camera.main.ScreenPointToRay(new Vector3(inputPosition.x, inputPosition.y, 0));
 
         RaycastHit rayHit;
         if (Physics.Raycast(ray, out rayHit))
