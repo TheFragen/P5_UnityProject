@@ -20,6 +20,7 @@ public class CharacterControllerJoystick : MonoBehaviour {
     public bool locked = true;
     VirtualJoystick2 joystick;
     public GameObject CustomJoystick;
+    GameObject goJoystick;
 
    // NavMeshAgent navMeshAgent;
 
@@ -42,6 +43,11 @@ public class CharacterControllerJoystick : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+       /* if(goJoystick != null)
+        {
+            goJoystick.GetComponent<RectTransform>().position = new Vector3(70, 70, 0);
+        }
+        */
         if(locked == false)
         {
             joystick.enabled = true;
@@ -51,9 +57,8 @@ public class CharacterControllerJoystick : MonoBehaviour {
         {
             if(GameObject.Find("CustomJoystick(Clone)") == null)
             {
-                GameObject goJoystick = Instantiate(CustomJoystick, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-                goJoystick.transform.parent = GameObject.Find("Canvas").transform;
-                goJoystick.GetComponent<RectTransform>().position = new Vector3(70,70,0);
+                goJoystick = Instantiate(CustomJoystick, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+            //    goJoystick.transform.parent = GameObject.Find("Canvas").transform;
                 foreach (Transform child in goJoystick.transform)
                 {
                 /*    float _width = child.GetComponent<RectTransform>().rect.width;
