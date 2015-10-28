@@ -8,6 +8,8 @@ TagManager:
   - ImageTarget
   - EnemyWaypoint
   - Laser
+  - Gate
+  - Joystick
   layers:
   - Default
   - TransparentFX

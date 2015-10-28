@@ -5,7 +5,7 @@ public class sampleButton : MonoBehaviour
 {
     GameObject player;
     public GameObject objectToAffect;
-
+    private bool open = true;
     // Use this for initialization
     void Start() {
         player = GameObject.Find("Player");
@@ -13,12 +13,14 @@ public class sampleButton : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-
+      
     }
 
     void OnTriggerEnter(Collider other) {
+      
         if(other.gameObject.tag == "Player") {
-            objectToAffect.GetComponent<gate>().setIsActivated(true);
+        //   open = !open;
+           objectToAffect.GetComponent<gate>().setIsActivated(open);
         }
     }
 }

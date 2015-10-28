@@ -26,6 +26,8 @@ public class EnemyMovementNavAgent : MonoBehaviour
 
     private bool recheck = false;
     private Quaternion target;
+    public bool obstaclePoint;
+    private float distance = 1.1f;
 
     // Use this for initialization
     void Start() {
@@ -133,17 +135,32 @@ public class EnemyMovementNavAgent : MonoBehaviour
         // Set an appropriate speed for the NavMeshAgent.
         agent.speed = patrolSpeed;
 
-        //Draw path to next waypoint
-        this.transform.GetComponent<LineRenderer>().SetVertexCount(agent.path.corners.Length);
-        this.transform.GetComponent<LineRenderer>().SetPosition(0, this.transform.position);
-        for (int i = 1; i < agent.path.corners.Length; i++) {
-            this.transform.GetComponent<LineRenderer>().SetPosition(i, agent.path.corners[i] + transform.up / 6);
+        //Detect if NavMeshAgent is hitting an obstacle
+        for (int i = 1; i < agent.path.corners.Length; i++)
+        {
+            Vector3 pathPoint = agent.path.corners[i - 1];
+            Vector3 nextPoint = agent.path.corners[i];
+            RaycastHit hit;
+
+            if (Physics.Linecast(pathPoint, nextPoint, out hit))
+            {
+                if (hit.transform.gameObject.tag == "Gate")
+                {
+                    Debug.DrawLine(pathPoint, hit.point, Color.green);
+                    agent.destination = hit.point;
+                    obstaclePoint = true;
+                    distance = 2 + this.transform.localScale.x;
+                }
+
+            }
         }
 
         // If near the next waypoint or there is no destination...
-        if (Vector3.Distance(this.transform.position, waypoint[pathPointIndex].transform.position) < 1.1f) {
+        if (Vector3.Distance(this.transform.position, agent.destination) <= distance) {
             // ... increment the timer.
             patrolTimer += Time.deltaTime;
+            obstaclePoint = false;
+            distance = 1.1f;
 
             // If the timer exceeds the wait time...
             if (patrolTimer >= patrolWaitTime) {

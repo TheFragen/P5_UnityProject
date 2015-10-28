@@ -64,6 +64,11 @@ public class EnemySight : MonoBehaviour {
                     Debug.DrawLine(transform.position, hit.point, Color.red);
                     if (hit.collider.gameObject == player)
                     {
+                        if (Physics.Linecast(this.transform.position, hit.point, out hit))
+                        {
+
+                        }
+
                         playerInSight = true;   
                         personalLastSighting = player.transform.position;
 					

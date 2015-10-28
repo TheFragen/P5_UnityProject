@@ -11,7 +11,7 @@ public class tilePlacement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = startPosition/0.30f + this.transform.parent.position;
+        transform.position = startPosition/0.45f + this.transform.parent.position;
         transform.rotation = Quaternion.identity;
 	}
 }
