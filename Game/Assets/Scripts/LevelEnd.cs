@@ -7,7 +7,7 @@ public class LevelEnd : MonoBehaviour {
 	public bool end = false;
 	float playedTime = 0.0f;
 
-	public bool restart = false;
+	private bool restart = false;
 	private bool vicoryScreen = false;
 
 	private GameObject canvas;
@@ -27,7 +27,6 @@ public class LevelEnd : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-
 		if (end == false) 
 		{
 			playedTime += Time.deltaTime;
@@ -38,12 +37,9 @@ public class LevelEnd : MonoBehaviour {
 			Debug.Log ("We must go back");
 			Application.LoadLevel (Application.loadedLevel);
 			restart = false;
-
 		}
 	
 	}
-
-
 
 	void OnTriggerEnter (Collider other) 
 	{
@@ -52,7 +48,7 @@ public class LevelEnd : MonoBehaviour {
 			end = true;
 			if (vicoryScreen == false)
 			{
-				victoryWindow = Instantiate(Resources.Load("VictoryScreenPanel")) as GameObject;
+				victoryWindow = Instantiate(Resources.Load("WindowPanel")) as GameObject;
 				victoryWindow.transform.SetParent(canvas.transform, false);
 				
 				victoryScreenText = Instantiate(Resources.Load("VictoryText")) as GameObject;

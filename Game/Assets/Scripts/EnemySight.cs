@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class EnemySight : MonoBehaviour {
 
@@ -12,6 +13,15 @@ public class EnemySight : MonoBehaviour {
     private GameObject player;
     private Vector3 previousSighting;
 
+	private GameObject canvas;
+	
+	private GameObject restartButton;
+	private GameObject text;
+	private GameObject window;
+
+	private bool restart = false;
+	private bool caught = false;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -21,11 +31,19 @@ public class EnemySight : MonoBehaviour {
     {
         col = GetComponent<SphereCollider>();
         player = GameObject.FindWithTag("Player");
+		canvas = GameObject.Find ("Canvas");
 
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (restart) 
+		{
+			Debug.Log ("We must go back");
+			Application.LoadLevel (Application.loadedLevel);
+			restart = false;
+		}
 
 	}
 	
@@ -48,19 +66,51 @@ public class EnemySight : MonoBehaviour {
                     {
                         playerInSight = true;   
                         personalLastSighting = player.transform.position;
-                        Debug.Log("player sighted");
+					
+						if (hit.distance < 1.0f)
+						{
+							playerCaught();
+						}
                     }
 
                 //Check if player is really close to enemy, and mark that as sight
-                } else if (hit.distance < 1.5f && hit.collider.gameObject == player) {
+                } else if (hit.distance < 1.5f && hit.collider.gameObject == player) 
+				{
                     playerInSight = true;
                     personalLastSighting = player.transform.position;
-                    Debug.Log("player sighted");
                 }
 
             } 
         }
     }
+
+	void playerCaught ()
+	{
+		if (caught == false) {
+			caught = true;
+			Debug.Log ("Så fik jeg dig");
+
+			window = Instantiate (Resources.Load ("WindowPanel")) as GameObject;
+			window.transform.SetParent (canvas.transform, false);
+		
+			text = Instantiate (Resources.Load ("VictoryText")) as GameObject;
+			text.transform.SetParent (canvas.transform, false);
+			text.GetComponent<Text>().text = "LOL noob";
+		
+			restartButton = Instantiate (Resources.Load ("RestartButton")) as GameObject;
+			restartButton.transform.SetParent (canvas.transform, false);
+			restartButton.GetComponent<Button> ().onClick.AddListener (() => {
+			setRestart (true);});
+		}
+
+
+	}
+
+	public void setRestart (bool restart)
+	{
+		this.restart = restart;
+	}
+
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject == player)
