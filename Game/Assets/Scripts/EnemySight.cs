@@ -88,14 +88,14 @@ public class EnemySight : MonoBehaviour {
 	{
 		if (caught == false) {
 			caught = true;
-			Debug.Log ("Så fik jeg dig");
+			//Debug.Log ("Så fik jeg dig");
 
 			window = Instantiate (Resources.Load ("WindowPanel")) as GameObject;
 			window.transform.SetParent (canvas.transform, false);
 		
 			text = Instantiate (Resources.Load ("VictoryText")) as GameObject;
 			text.transform.SetParent (canvas.transform, false);
-			text.GetComponent<Text>().text = "LOL noob";
+			text.GetComponent<Text>().text = "You got caught";
 		
 			restartButton = Instantiate (Resources.Load ("RestartButton")) as GameObject;
 			restartButton.transform.SetParent (canvas.transform, false);
