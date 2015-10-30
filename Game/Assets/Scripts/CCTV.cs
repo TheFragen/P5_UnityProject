@@ -43,7 +43,6 @@ public class CCTV : MonoBehaviour {
 					lastSighting = player.transform.position;
 					Debug.Log ("In sight");
                     this.transform.parent.GetChild(0).GetComponent<soundSystem>().setSound();
-               //     GameObject.Find("LevelEnd").GetComponent<LevelEnd>().setEndCondition("You've been spotted by a CCTV Camera");
                 }
 			}
 		}
