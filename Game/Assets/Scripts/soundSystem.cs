@@ -15,6 +15,7 @@ public class soundSystem : MonoBehaviour {
     private long currentTime;
     private float loudnessScalar = 0.1f;
     private float sphereRadiusScalar;
+    private bool reasonToPlay = false;
     public Vector3 positionToSend;
 
     [Tooltip("Defines how far away the enemy can be to be alerted by sound. Distance = loundness * 10.")]
@@ -45,28 +46,23 @@ public class soundSystem : MonoBehaviour {
             }
         } else {
             soundWave.radius = sphereRadiusScalar;
-            if (audioSource.clip != null) audioSource.Stop();
             fireOnce = true;
         }
 
-        if(timeSincePlay + (1000 * loudness) < currentTime) {
+        if(timeSincePlay + (1000 * loudness) < currentTime && !reasonToPlay) {
+            if (audioSource.clip != null) audioSource.Stop();
             createSound = false;
             soundHasPlayed = false;
         }
     }
 
     void OnTriggerExit(Collider other) {
-  /*      if (other.gameObject.tag == "Enemy") {
-            fireOnce = true;
-        }*/
+            
     }
 
     void OnTriggerStay(Collider other) {
         if (other.gameObject.tag == "Enemy") {
             Vector3 direction = other.transform.position - transform.position;
-      //      Debug.Log("Hit enemy");
-      //      Debug.Log("Distance to Enemy: " + Vector3.Distance(this.transform.position, other.transform.position));
-      //      Debug.Log("Soundwave radius: " + soundWave.radius * 100);
 
             RaycastHit hit;
             if (Physics.Raycast(transform.position, direction.normalized, out hit, soundWave.radius * 100 * 2)) {
@@ -87,6 +83,13 @@ public class soundSystem : MonoBehaviour {
         if(!createSound)
         {
             createSound = true;
+            reasonToPlay = true;
         }
+    }
+
+    public void setReasonToPlay()
+    {
+        reasonToPlay = false;
+        timeSincePlay = currentTime + 1000;
     }
 }

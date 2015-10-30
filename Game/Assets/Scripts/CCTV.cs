@@ -52,7 +52,11 @@ public class CCTV : MonoBehaviour {
 	void OnTriggerExit (Collider other)
 	{
 		if(other.gameObject == player)
-			inSight = false;
+        {
+            inSight = false;
+            this.transform.parent.GetChild(0).GetComponent<soundSystem>().setReasonToPlay();
+        }
+			
 		angle = 0f;
 		Debug.Log ("Cleared");
 	}
