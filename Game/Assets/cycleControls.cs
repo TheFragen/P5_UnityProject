@@ -7,6 +7,10 @@ public class cycleControls : MonoBehaviour {
     public List<Transform> tileBased;
     public List<Transform> joystick;
     public List<Transform> pointAndClick;
+    public GameObject pointAndClickButton;
+    public GameObject tilebasedButton;
+    public GameObject fingerClickButton;
+    public GameObject joystickButton;
 
     public bool enableTilebasedMovement { get; set; }
     public bool enableJoystick { get; set; }
@@ -36,13 +40,7 @@ public class cycleControls : MonoBehaviour {
             player.GetComponent<NavMeshAgent>().enabled = true;
             player.GetComponent<tileMovement>().enabled = true;
             player.GetComponent<Rigidbody>().isKinematic = true;
-
-            
-            
-
-            GameObject.Find("TileBased").GetComponent<Image>().color = enabledColor;
-
-
+            tilebasedButton.GetComponent<Image>().color = enabledColor;
         } else if (enableJoystick) {
             enablePointAndClick = false;
             enableTilebasedMovement = false;
@@ -56,7 +54,7 @@ public class cycleControls : MonoBehaviour {
 
             player.GetComponent<CharacterControllerJoystick>().enabled = true;
             player.GetComponent<Rigidbody>().isKinematic = false;
-            GameObject.Find("controlCycler/Joystick").GetComponent<Image>().color = enabledColor;
+            joystickButton.GetComponent<Image>().color = enabledColor;
 
         } else if (enablePointAndClick) {
             enableJoystick = false;
@@ -66,7 +64,7 @@ public class cycleControls : MonoBehaviour {
             player.GetComponent<PointAndClick>().enabled = true;
             player.GetComponent<Rigidbody>().isKinematic = true;
             GameObject.Find("Canvas/redicule").GetComponent<Image>().enabled = true;
-            GameObject.Find("PointAndClick").GetComponent<Image>().color = enabledColor;
+            pointAndClickButton.GetComponent<Image>().color = enabledColor;
 
             foreach (Transform child in pointAndClick)
             {
@@ -79,16 +77,17 @@ public class cycleControls : MonoBehaviour {
             player.GetComponent<NavMeshAgent>().enabled = true;
             player.GetComponent<Rigidbody>().isKinematic = true;
             player.GetComponent<fingerClick>().enabled = true;
-            GameObject.Find("FingerClick").GetComponent<Image>().color = enabledColor;
+            fingerClickButton.GetComponent<Image>().color = enabledColor;
 
         }
         else {
-            resetAll();
+        //    resetAll();
         }
     }
 
     public void resetAll()
     {
+        Debug.Log("Reset");
         enableFingerClick = false;
         enableJoystick = false;
         enableTilebasedMovement = false;
@@ -131,12 +130,12 @@ public class cycleControls : MonoBehaviour {
                 if (component.gameObject.name == "Capsule") continue;
                 component.enabled = false;
             }
-        
 
-        GameObject.Find("PointAndClick").GetComponent<Image>().color = disableColor;
-        GameObject.Find("FingerClick").GetComponent<Image>().color = disableColor;
-        GameObject.Find("TileBased").GetComponent<Image>().color = disableColor;
-        GameObject.Find("controlCycler/Joystick").GetComponent<Image>().color = disableColor;
+
+        pointAndClickButton.GetComponent<Image>().color = disableColor;
+        fingerClickButton.GetComponent<Image>().color = disableColor;
+        tilebasedButton.GetComponent<Image>().color = disableColor;
+        joystickButton.GetComponent<Image>().color = disableColor;
 
     }
 }
