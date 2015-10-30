@@ -13,16 +13,20 @@ public class soundSystem : MonoBehaviour {
     private bool soundHasPlayed = false;
     private long timeSincePlay;
     private long currentTime;
+    private float loudnessScalar = 0.1f;
+    private float sphereRadiusScalar;
+    public Vector3 positionToSend;
 
     [Tooltip("Defines how far away the enemy can be to be alerted by sound. Distance = loundness * 10.")]
-    public int loudness = 1;
+    public float loudness = 1;
 
 	// Use this for initialization
 	void Awake () {
         soundWave = GetComponent<SphereCollider>();
         audioSource = GetComponent<AudioSource>();
         audioSource.playOnAwake = false;
-        soundWave.radius = 0.1f;
+        //soundWave.radius = 0.01f;
+        sphereRadiusScalar = soundWave.radius;
         this.gameObject.tag = "SoundEmitter";
     }
 	
@@ -36,11 +40,12 @@ public class soundSystem : MonoBehaviour {
                 soundHasPlayed = true;
                 timeSincePlay = currentTime;
             }
-            if(soundWave.radius < 10 * loudness) {
-                soundWave.radius += 0.5f;
+            if(soundWave.radius < loudnessScalar * loudness) {
+                soundWave.radius += sphereRadiusScalar;
             }
         } else {
-            soundWave.radius = 0.5f;
+            soundWave.radius = sphereRadiusScalar;
+            if (audioSource.clip != null) audioSource.Stop();
             fireOnce = true;
         }
 
@@ -59,17 +64,29 @@ public class soundSystem : MonoBehaviour {
     void OnTriggerStay(Collider other) {
         if (other.gameObject.tag == "Enemy") {
             Vector3 direction = other.transform.position - transform.position;
+      //      Debug.Log("Hit enemy");
+      //      Debug.Log("Distance to Enemy: " + Vector3.Distance(this.transform.position, other.transform.position));
+      //      Debug.Log("Soundwave radius: " + soundWave.radius * 100);
 
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, direction.normalized, out hit, soundWave.radius * 2)) {
-                if(Vector3.Distance(this.transform.position, hit.transform.position) < 10 * loudness && createSound) {
+            if (Physics.Raycast(transform.position, direction.normalized, out hit, soundWave.radius * 100 * 2)) {
+
+                //      if(Vector3.Distance(this.transform.position, hit.transform.position) < loudnessScalar * loudness && createSound) {
                     Debug.DrawLine(this.transform.position, hit.point, Color.red);
                     if (fireOnce) {
                         fireOnce = false;
-                        other.GetComponent<EnemyMovementNavAgent>().setSoundAlerted(this.transform.position);
+                        other.GetComponent<EnemyMovementNavAgent>().setSoundAlerted(positionToSend);
                     }
-                }
+          //      }
             }
+        }
+    }
+
+    public void setSound()
+    {
+        if(!createSound)
+        {
+            createSound = true;
         }
     }
 }

@@ -76,6 +76,30 @@ public class LevelEnd : MonoBehaviour {
 	{
 		this.restart = restart;
 	}
+
+    public void setEndCondition(string endText)
+    {
+        end = true;
+        if (vicoryScreen == false)
+        {
+            victoryWindow = Instantiate(Resources.Load("VictoryScreenPanel")) as GameObject;
+            victoryWindow.transform.SetParent(canvas.transform, false);
+
+            victoryScreenText = Instantiate(Resources.Load("VictoryText")) as GameObject;
+            victoryScreenText.GetComponent<Text>().text = endText;
+            victoryScreenText.transform.SetParent(canvas.transform, false);
+
+            yourTimeText = Instantiate(Resources.Load("YourTimeText")) as GameObject;
+            yourTimeText.transform.SetParent(canvas.transform, false);
+            yourTimeText.GetComponent<Text>().text = "Your Time: " + Mathf.RoundToInt(playedTime);
+
+            restartButton = Instantiate(Resources.Load("RestartButton")) as GameObject;
+            restartButton.transform.SetParent(canvas.transform, false);
+            restartButton.GetComponent<Button>().onClick.AddListener(() => { setRestart(true); });
+
+            vicoryScreen = true;
+        }
+    }
 }
 
 
