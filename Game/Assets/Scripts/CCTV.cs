@@ -13,13 +13,13 @@ public class CCTV : MonoBehaviour {
     float angleFix = -18f;
 
 	private Animator anim;
-	private GameObject player;
+    private GameObject player;
 	private Vector3 previousSighting;
 
 
 
 	void Awake(){
-		player = GameObject.FindGameObjectWithTag("Player");
+		player = GameObject.Find("Player/Capsule");
 
 		this.GetComponent<LineRenderer>().SetColors(Color.red,Color.red);
 		this.GetComponent<LineRenderer>().SetVertexCount(4);
@@ -42,7 +42,8 @@ public class CCTV : MonoBehaviour {
 					inSight = true;
 					lastSighting = player.transform.position;
 					Debug.Log ("In sight");
-				}
+                    this.transform.parent.GetChild(0).GetComponent<soundSystem>().setSound();
+                }
 			}
 		}
 	}
@@ -50,7 +51,11 @@ public class CCTV : MonoBehaviour {
 	void OnTriggerExit (Collider other)
 	{
 		if(other.gameObject == player)
-			inSight = false;
+        {
+            inSight = false;
+            this.transform.parent.GetChild(0).GetComponent<soundSystem>().setReasonToPlay();
+        }
+			
 		angle = 0f;
 		Debug.Log ("Cleared");
 	}

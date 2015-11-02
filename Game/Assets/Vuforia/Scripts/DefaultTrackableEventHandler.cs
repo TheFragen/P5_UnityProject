@@ -18,8 +18,7 @@ namespace Vuforia
         #region PRIVATE_MEMBER_VARIABLES
  
         private TrackableBehaviour mTrackableBehaviour;
-        private GameObject controlCycler;
-        private GameObject orientation;
+        private GameObject settingsButton;
 
         #endregion // PRIVATE_MEMBER_VARIABLES
 
@@ -29,8 +28,7 @@ namespace Vuforia
 
         void Start()
         {
-            controlCycler = GameObject.Find("controlCycler");
-            orientation = GameObject.Find("orientation");
+            settingsButton = GameObject.Find("Canvas/Settings");
 
             mTrackableBehaviour = GetComponent<TrackableBehaviour>();
             if (mTrackableBehaviour)
@@ -38,6 +36,20 @@ namespace Vuforia
                 mTrackableBehaviour.RegisterTrackableEventHandler(this);
             }
         }
+
+      /*  void Update()
+        {
+            if (trackerFound)
+            {
+                settingsButton.GetComponent<UnityEngine.UI.Image>().enabled = true;
+                settingsButton.GetComponentInChildren<UnityEngine.UI.Text>().enabled = true;
+            }
+            else
+            {
+                settingsButton.GetComponent<UnityEngine.UI.Image>().enabled = false;
+                settingsButton.GetComponentInChildren<UnityEngine.UI.Text>().enabled = false;
+            }
+        }*/
 
         #endregion // UNTIY_MONOBEHAVIOUR_METHODS
 
@@ -92,9 +104,8 @@ namespace Vuforia
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
 
             trackerFound = true;
-            controlCycler.SetActive(true);
-            orientation.SetActive(true);
-            GameObject.Find("Control Cycler").GetComponent<cycleControls>().resetAll();
+            settingsButton.GetComponent<UnityEngine.UI.Image>().enabled = true;
+            settingsButton.GetComponentInChildren<UnityEngine.UI.Text>().enabled = true;
         }
 
 
@@ -118,11 +129,9 @@ namespace Vuforia
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
 
             trackerFound = false;
+            settingsButton.GetComponent<UnityEngine.UI.Image>().enabled = false;
+            settingsButton.GetComponentInChildren<UnityEngine.UI.Text>().enabled = false;
 
-            GameObject.Find("Control Cycler").GetComponent<cycleControls>().resetAll();
-            controlCycler.SetActive(false);
-            orientation.SetActive(false);
-            
         }
 
         #endregion // PRIVATE_METHODS

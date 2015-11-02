@@ -421,6 +421,7 @@ MonoBehaviour:
   chaseWaitTime: 3
   patrolWaitTime: 1
   soundAlerted: 0
+  obstaclePoint: 0
 --- !u!195 &1163362068
 NavMeshAgent:
   m_ObjectHideFlags: 0

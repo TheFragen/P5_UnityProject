@@ -10,6 +10,8 @@ TagManager:
   - Laser
   - Gate
   - Joystick
+  - Enemy
+  - SoundEmitter
   layers:
   - Default
   - TransparentFX

@@ -35,7 +35,7 @@ public class EnemyMovementNavAgent : MonoBehaviour
         agent.stoppingDistance = 1.0f;
 
         enemySight = GetComponent<EnemySight>();
-        //	player = GameObject.FindWithTag("Player").transform;
+        player = GameObject.Find("Player/Capsule").transform;
 
         //Find all the waypoints and sort them by their index
         initialSearch = GameObject.FindGameObjectsWithTag("EnemyWaypoint").ToList();
@@ -69,6 +69,13 @@ public class EnemyMovementNavAgent : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 1.5f);
         }
 
+        //Enemy has found the enemy
+        if (Vector3.Distance(this.transform.position, player.transform.position) < 2.5f)
+        {
+            GameObject.Find("LevelEnd").GetComponent<LevelEnd>().setEndCondition("The vicious enemies has cought you.");
+        }
+
+
     }
 
     public void setSoundAlerted(Vector3 sourcePosition) {
@@ -92,9 +99,9 @@ public class EnemyMovementNavAgent : MonoBehaviour
                     soundAlerted = false;
                     chaseTimer = 0f;
                     recheck = false;
-                    if(waypoint.Length > 0) {
+                   /* if(waypoint.Length > 0) {
                         agent.destination = waypoint[pathPointIndex].transform.position;
-                    }
+                    }*/
                 }
             }
         } else {

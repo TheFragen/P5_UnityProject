@@ -48,7 +48,7 @@ public class PointAndClick : MonoBehaviour {
                 this.transform.GetComponent<LineRenderer>().SetPosition(i, navMeshAgent.path.corners[i] + transform.up/6);
             }*/
 
-
+/*
             //Detect if NavMeshAgent is hitting an obstacle
             for(int i = 1; i < navMeshAgent.path.corners.Length; i++) {
                 Vector3 pathPoint = navMeshAgent.path.corners[i-1];
@@ -66,7 +66,7 @@ public class PointAndClick : MonoBehaviour {
                     }
                 }
             }
-
+            */
             if (distance == 0) distance = 0.5f;
 
             if (Vector3.Distance(this.transform.position,wayPoints[0].transform.position) < distance)

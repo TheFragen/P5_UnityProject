@@ -3,42 +3,44 @@ using System.Collections;
 using Vuforia;
 using System.Collections.Generic;
 
-public class vuforiaCapHeight : MonoBehaviour {
-    private CameraDevice.FocusMode autoFocus = CameraDevice.FocusMode.FOCUS_MODE_NORMAL;
+public class vuforiaCapHeight : MonoBehaviour
+{
+    public float capHeight = 40;
+    public float capAngle = 75;
+    private CameraDevice.FocusMode autoFocus = CameraDevice.FocusMode.FOCUS_MODE_CONTINUOUSAUTO;
     private CameraDevice.FocusMode nearFocus = CameraDevice.FocusMode.FOCUS_MODE_MACRO;
 
     private bool isNear = false;
+    GameObject ARCamera;
+    GameObject imageTarget;
+    GameObject capWarning;
 
     // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        StateManager stateManager = TrackerManager.Instance.GetStateManager();
-        IEnumerable<TrackableBehaviour> activeTrackables = stateManager.GetActiveTrackableBehaviours();
-     //   Debug.Log(Input.acceleration.y);
+    void Start()
+    {
+        ARCamera = GameObject.Find("ARCamera");
+        imageTarget = GameObject.Find("ImageTarget");
+        capWarning = GameObject.Find("capWarning");
+    }
 
-        if (false)
+    // Update is called once per frame
+    void Update()
+    {
+        if (ARCamera.transform.position.y > capHeight && imageTarget.GetComponent<Vuforia.DefaultTrackableEventHandler>().trackerFound && ARCamera.transform.localEulerAngles.x > capAngle)
         {
             if (!isNear)
             {
-                CameraDevice.Instance.SetFocusMode(nearFocus);
                 isNear = true;
-                Debug.Log("Above");
+                CameraDevice.Instance.SetFocusMode(nearFocus);
+                capWarning.SetActive(true);
             }
-            
         } else
         {
-            if (isNear)
-            {
-                CameraDevice.Instance.SetFocusMode(autoFocus);
-                isNear = false;
-                Debug.Log("Lower");
-            }
+            if(isNear) CameraDevice.Instance.SetFocusMode(autoFocus);
+            isNear = false;
+            capWarning.SetActive(false);
         }
-        
+
     }
 
     void OnTrackingFound()
