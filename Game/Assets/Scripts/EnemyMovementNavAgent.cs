@@ -149,11 +149,11 @@ public class EnemyMovementNavAgent : MonoBehaviour
             Vector3 nextPoint = agent.path.corners[i];
             RaycastHit hit;
 
-            if (Physics.Linecast(pathPoint, nextPoint, out hit))
+            if (Physics.Linecast(this.transform.position, nextPoint, out hit))
             {
                 if (hit.transform.gameObject.tag == "Gate")
                 {
-                    Debug.DrawLine(pathPoint, hit.point, Color.green);
+                    Debug.DrawLine(this.transform.position, hit.point, Color.blue);
                     agent.destination = hit.point;
                     obstaclePoint = true;
                     distance = 2 + this.transform.localScale.x;

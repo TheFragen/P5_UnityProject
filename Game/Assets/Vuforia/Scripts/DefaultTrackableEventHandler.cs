@@ -131,7 +131,7 @@ namespace Vuforia
             trackerFound = false;
             settingsButton.GetComponent<UnityEngine.UI.Image>().enabled = false;
             settingsButton.GetComponentInChildren<UnityEngine.UI.Text>().enabled = false;
-
+            GameObject.Find("Control Cycler").GetComponent<cycleControls>().resetAll();
         }
 
         #endregion // PRIVATE_METHODS

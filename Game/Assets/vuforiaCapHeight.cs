@@ -18,25 +18,26 @@ public class vuforiaCapHeight : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        ARCamera = GameObject.Find("ARCamera");
-        imageTarget = GameObject.Find("ImageTarget");
+        ARCamera = GameObject.Find("Camera");
+        imageTarget = GameObject.Find("Debug World");
         capWarning = GameObject.Find("capWarning");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ARCamera.transform.position.y > capHeight && imageTarget.GetComponent<Vuforia.DefaultTrackableEventHandler>().trackerFound && ARCamera.transform.localEulerAngles.x > capAngle)
+   //     if (ARCamera.transform.position.y > capHeight && imageTarget.GetComponent<Vuforia.DefaultTrackableEventHandler>().trackerFound && ARCamera.transform.localEulerAngles.x > capAngle)
+        if (ARCamera.transform.position.y >= capHeight && ARCamera.transform.localEulerAngles.x >= capAngle)
         {
             if (!isNear)
             {
                 isNear = true;
-                CameraDevice.Instance.SetFocusMode(nearFocus);
+          //      CameraDevice.Instance.SetFocusMode(nearFocus);
                 capWarning.SetActive(true);
             }
         } else
         {
-            if(isNear) CameraDevice.Instance.SetFocusMode(autoFocus);
+         //   if(isNear) CameraDevice.Instance.SetFocusMode(autoFocus);
             isNear = false;
             capWarning.SetActive(false);
         }

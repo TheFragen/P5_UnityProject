@@ -70,7 +70,7 @@ public class cameraMove : MonoBehaviour
         }
 
 
-        if (false)
+        if (Input.GetMouseButton(0))
         {
             if (axes == RotationAxes.MouseXAndY)
             {
