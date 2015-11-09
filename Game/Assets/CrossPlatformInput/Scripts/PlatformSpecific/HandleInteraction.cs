@@ -5,6 +5,7 @@ public class HandleInteraction : MonoBehaviour {
     private GameObject Switch;
     private GameObject Laser;
     private bool handleTurn = false;
+    public bool debugSwitch;
     private bool reverse = true;
     private bool going = false;
     private Quaternion start;
@@ -36,6 +37,14 @@ public class HandleInteraction : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+
+        if (debugSwitch)
+        {
+            debugSwitch = !debugSwitch;
+            handleTurn = true;
+            reverse = !reverse;
+        }
+
         if (handleTurn && reverse == false ) {
             if (Switch.transform.rotation == stop)
             {

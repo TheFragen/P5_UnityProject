@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class LevelEnd : MonoBehaviour {
 
 	public bool end = false;
-	float playedTime = 0.0f;
+    System.Diagnostics.Stopwatch playedTime;
 
 	public bool restart = false;
 	private bool vicoryScreen = false;
@@ -21,18 +21,14 @@ public class LevelEnd : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		canvas = GameObject.Find ("Canvas");
+        playedTime = new System.Diagnostics.Stopwatch();
+        playedTime.Start();
+        canvas = GameObject.Find ("Canvas");
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-
-		if (end == false) 
-		{
-			playedTime += Time.deltaTime;
-		}
-
 		if (restart) 
 		{
 			Debug.Log ("We must go back");
@@ -52,7 +48,11 @@ public class LevelEnd : MonoBehaviour {
 			end = true;
 			if (vicoryScreen == false)
 			{
-				victoryWindow = Instantiate(Resources.Load("VictoryScreenPanel")) as GameObject;
+                playedTime.Stop();
+                System.TimeSpan ts = playedTime.Elapsed;
+                int endTime = (int) ts.TotalSeconds;
+
+                victoryWindow = Instantiate(Resources.Load("VictoryScreenPanel")) as GameObject;
 				victoryWindow.transform.SetParent(canvas.transform, false);
 				
 				victoryScreenText = Instantiate(Resources.Load("VictoryText")) as GameObject;
@@ -60,7 +60,9 @@ public class LevelEnd : MonoBehaviour {
 				
 				yourTimeText = Instantiate(Resources.Load("YourTimeText")) as GameObject;
 				yourTimeText.transform.SetParent(canvas.transform, false);
-				yourTimeText.GetComponent<Text>().text = "Your Time: " + Mathf.RoundToInt(playedTime);
+
+                
+				yourTimeText.GetComponent<Text>().text = "Your Time: " + endTime;
 				
 				restartButton = Instantiate(Resources.Load("RestartButton")) as GameObject;
 				restartButton.transform.SetParent(canvas.transform, false);
@@ -82,6 +84,10 @@ public class LevelEnd : MonoBehaviour {
         end = true;
         if (vicoryScreen == false)
         {
+            playedTime.Stop();
+            System.TimeSpan ts = playedTime.Elapsed;
+            int endTime = (int)ts.TotalSeconds;
+
             victoryWindow = Instantiate(Resources.Load("VictoryScreenPanel")) as GameObject;
             victoryWindow.transform.SetParent(canvas.transform, false);
 
@@ -91,7 +97,7 @@ public class LevelEnd : MonoBehaviour {
 
             yourTimeText = Instantiate(Resources.Load("YourTimeText")) as GameObject;
             yourTimeText.transform.SetParent(canvas.transform, false);
-            yourTimeText.GetComponent<Text>().text = "Your Time: " + Mathf.RoundToInt(playedTime);
+            yourTimeText.GetComponent<Text>().text = "Your Time: " + endTime;
 
             restartButton = Instantiate(Resources.Load("RestartButton")) as GameObject;
             restartButton.transform.SetParent(canvas.transform, false);
