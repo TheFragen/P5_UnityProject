@@ -56,7 +56,7 @@ public class VirtualJoystick2 : MonoBehaviour
                 //    Debug.Log("touch-input.y:" + touch.position.y + "backgroundposition: " + padBackgroundPosition.y);
                 //    Debug.Log("min: " + (padBackgroundPosition.y - padRadius) + " max: " + (padBackgroundPosition.y + padRadius));
 
-                    float padsDistance = Vector2.Distance(this.padBackgroundPosition, this.padControllerPosition);
+ //                   float padsDistance = Vector2.Distance(this.padBackgroundPosition, this.padControllerPosition);
                     
                     /*
                     if (padsDistance > VirtualJoystick2.padRadius)

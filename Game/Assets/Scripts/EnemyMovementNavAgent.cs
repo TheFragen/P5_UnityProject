@@ -145,7 +145,7 @@ public class EnemyMovementNavAgent : MonoBehaviour
         //Detect if NavMeshAgent is hitting an obstacle
         for (int i = 1; i < agent.path.corners.Length; i++)
         {
-            Vector3 pathPoint = agent.path.corners[i - 1];
+         //   Vector3 pathPoint = agent.path.corners[i - 1];
             Vector3 nextPoint = agent.path.corners[i];
             RaycastHit hit;
 

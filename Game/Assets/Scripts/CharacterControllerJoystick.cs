@@ -31,8 +31,6 @@ public class CharacterControllerJoystick : MonoBehaviour {
     void Start()
     {
         joystick = gameObject.GetComponent<VirtualJoystick2>();
-
-        Quaternion rotation = transform.rotation;
         rBody = GetComponent<Rigidbody>();
     }
     void Getinput()

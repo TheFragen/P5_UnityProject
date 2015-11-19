@@ -138,4 +138,13 @@ public class cycleControls : MonoBehaviour {
         joystickButton.GetComponent<Image>().color = disableColor;
 
     }
+
+    public string getCurrentControlScheme()
+    {
+        if (enableTilebasedMovement) return "Tile Based";
+        if (enableJoystick) return "Joystick";
+        if (enablePointAndClick) return "Point and Click";
+        if (enableFingerClick) return "Finger Click";
+        return "None";
+    }
 }

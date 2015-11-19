@@ -5,11 +5,11 @@ public class audioReplay : MonoBehaviour {
     public bool play;
     private bool isPlaying;
     public float replayWaitTime = 0f;
-    AudioSource audio;
+    AudioSource audioSource;
 
 	// Use this for initialization
 	void Start () {
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         
 	}
 	
@@ -19,15 +19,15 @@ public class audioReplay : MonoBehaviour {
         {
             if (!isPlaying)
             {
-                audio.Play();
+                audioSource.Play();
                 isPlaying = true;
             }
         } else {
-            audio.Stop();
+            audioSource.Stop();
             StopCoroutine("replaySound");
         }
 
-        if (!audio.isPlaying && play)
+        if (!audioSource.isPlaying && play)
         {
             play = false;
             isPlaying = false;

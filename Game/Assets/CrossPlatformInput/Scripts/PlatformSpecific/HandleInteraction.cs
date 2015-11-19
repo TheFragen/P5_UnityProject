@@ -7,19 +7,18 @@ public class HandleInteraction : MonoBehaviour {
     private bool handleTurn = false;
     public bool debugSwitch;
     private bool reverse = true;
-    private bool going = false;
     private Quaternion start;
     private Quaternion stop;
     private float time = 0.0f;
     private Renderer visible;
-    private Quaternion lastKnown;
+//    private Quaternion lastKnown;
     // Use this for initialization
     void Start () {
 	Switch = GameObject.Find("HandlePivot");
         Laser = GameObject.Find("Lasers");
         start = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
         stop = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
-        lastKnown = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
+    //    lastKnown = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
         start.SetEulerAngles(0.0f, 0.0f, 0.0f);
         stop.SetEulerAngles(0.0f, 0.0f, 3.14f);
     }
@@ -27,6 +26,7 @@ public class HandleInteraction : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player") {
+            Debug.Log("Test");
             if (true) {
                 handleTurn = true;
                 reverse = !reverse;
