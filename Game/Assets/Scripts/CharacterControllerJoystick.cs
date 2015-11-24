@@ -136,10 +136,10 @@ public class CharacterControllerJoystick : MonoBehaviour {
                 //direction = (-transform.forward * moveVec.y) * forwardVel +
                 //(transform.right * moveVec.x) * forwardVel;
 
-                Vector3 ydirection = GameObject.Find("Grass").transform.forward * moveVec.y * forwardVel;
+                Vector3 ydirection = GameObject.FindGameObjectWithTag("Ground").transform.forward * moveVec.y * forwardVel;
 
 
-                Vector3 Xdirection = GameObject.Find("Grass").transform.right * moveVec.x * forwardVel;
+                Vector3 Xdirection = GameObject.FindGameObjectWithTag("Ground").transform.right * moveVec.x * forwardVel;
                 direction = ydirection + Xdirection;
 
             }
