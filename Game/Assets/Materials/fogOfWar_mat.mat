@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: fogOfWar_mat
-  m_Shader: {fileID: 4800000, guid: 58139a96fa7f22340a8ab2743d2de9d9, type: 3}
+  m_Shader: {fileID: 4800000, guid: 02c7b840f8cb3db4e82c4694be4e0750, type: 3}
   m_ShaderKeywords: _ALPHAPREMULTIPLY_ON
   m_LightmapFlags: 5
   m_CustomRenderQueue: 3000
