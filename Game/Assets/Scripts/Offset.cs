@@ -18,7 +18,7 @@ public class Offset : MonoBehaviour {
             if (matt.name == "UVMapTanktracks (Instance)")
             {
                 matt.SetTextureOffset("_MainTex", new Vector2(offset, 0));
-                Debug.Log("Inside");
+
             }
         }
       
