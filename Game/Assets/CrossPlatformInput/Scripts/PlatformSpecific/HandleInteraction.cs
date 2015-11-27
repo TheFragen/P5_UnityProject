@@ -2,26 +2,29 @@
 using System.Collections;
 
 public class HandleInteraction : MonoBehaviour {
-    private GameObject Switch;
-    private GameObject Laser;
+#pragma warning disable CS0618 // Type or member is obsolete
+
+    private GameObject thisHandlePivot;
+    public GameObject objectToAffect;
     private bool handleTurn = false;
     public bool debugSwitch;
     private bool reverse = true;
-    private bool going = false;
     private Quaternion start;
     private Quaternion stop;
     private float time = 0.0f;
     private Renderer visible;
-    private Quaternion lastKnown;
-    // Use this for initialization
+    public bool negative;
+    private float eulerEnd;
+
+
     void Start () {
-	Switch = GameObject.Find("HandlePivot");
-        Laser = GameObject.Find("Lasers");
+        thisHandlePivot = this.transform.parent.gameObject;
+        eulerEnd = (negative) ? -3.14f : 3.14f;
         start = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
         stop = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
-        lastKnown = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
+    //    lastKnown = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
         start.SetEulerAngles(0.0f, 0.0f, 0.0f);
-        stop.SetEulerAngles(0.0f, 0.0f, 3.14f);
+        stop.SetEulerAngles(0.0f, 0.0f, eulerEnd);
     }
 	
     void OnTriggerEnter(Collider other)
@@ -46,24 +49,25 @@ public class HandleInteraction : MonoBehaviour {
         }
 
         if (handleTurn && reverse == false ) {
-            if (Switch.transform.rotation == stop)
+            if (thisHandlePivot.transform.rotation == stop)
             {
                 start.SetEulerAngles(0.0f, 0.0f, 0.0f);
-                stop.SetEulerAngles(0.0f, 0.0f, 3.14f);
+                stop.SetEulerAngles(0.0f, 0.0f, eulerEnd);
             }
             else
             {
-                start=Switch.transform.rotation;
-                stop.SetEulerAngles(0.0f, 0.0f, 3.14f);
+                start= thisHandlePivot.transform.rotation;
+                stop.SetEulerAngles(0.0f, 0.0f, eulerEnd);
             }
 
-            Switch.transform.rotation = Quaternion.Lerp(start, stop, time);
+            thisHandlePivot.transform.rotation = Quaternion.Lerp(start, stop, time);
             time += 0.01f;
-            if (Switch.transform.rotation == stop)
+            if (thisHandlePivot.transform.rotation == stop)
             {
                 time = 0;
                 handleTurn = false;
-                foreach(Transform child in Laser.transform)
+                objectToAffect.gameObject.SetActive(false);
+                foreach (Transform child in objectToAffect.transform)
                 {
                     child.gameObject.SetActive(false);
                 }
@@ -72,23 +76,24 @@ public class HandleInteraction : MonoBehaviour {
         }
         else if (handleTurn && reverse == true)
        {
-            if (Switch.transform.rotation == stop)
+            if (thisHandlePivot.transform.rotation == stop)
             {
-                start.SetEulerAngles(0.0f, 0.0f, 3.14f);
+                start.SetEulerAngles(0.0f, 0.0f, eulerEnd);
                 stop.SetEulerAngles(0.0f, 0.0f, 0f);
             }
             else
             {
-                start = Switch.transform.rotation;  
+                start = thisHandlePivot.transform.rotation;  
                 stop.SetEulerAngles(0.0f, 0.0f, 0.0f);
             }
-            Switch.transform.rotation = Quaternion.Lerp(start, stop, time);
+            thisHandlePivot.transform.rotation = Quaternion.Lerp(start, stop, time);
             time += 0.01f;
-            if(Switch.transform.rotation == stop)
+            if(thisHandlePivot.transform.rotation == stop)
             {
                 time = 0;
                 handleTurn = false;
-                foreach (Transform child in Laser.transform)
+                objectToAffect.gameObject.SetActive(true);
+                foreach (Transform child in objectToAffect.transform)
                 {
                     child.gameObject.SetActive(true);
                 }

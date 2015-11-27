@@ -1,0 +1,400 @@
+fileFormatVersion: 2
+guid: 8e4d6250c00ade340a553a1acd5c5850
+timeCreated: 1448624993
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Body
+    100002: Body_Joint
+    100004: Head
+    100006: Head_Joint
+    100008: Hip_Joint
+    100010: Left_Ankle_Joint
+    100012: Left_Arm_Joint
+    100014: Left_Elbow_Joint
+    100016: Left_Foot
+    100018: Left_Hand_Joint
+    100020: Left_Hip_Joint
+    100022: Left_Knee_Joint
+    100024: Left_Shin
+    100026: Left_Shoulder_Joint
+    100028: Left_Thigh
+    100030: Left_Thigh_Joint
+    100032: Left_Toe_Joint
+    100034: Left_UnderArm
+    100036: Left_UpperArm
+    100038: Left_UpperArm1
+    100040: pCube13
+    100042: pCube17
+    100044: pCube3
+    100046: pCube4
+    100048: pCube7
+    100050: pCube8
+    100052: Right_Ankle_Joint
+    100054: Right_Foot
+    100056: Right_Hip_Joint
+    100058: Right_Knee_Joint
+    100060: Right_Shin
+    100062: Right_Thigh
+    100064: Right_Thigh_Joint
+    100066: Right_Toe_Joint
+    100068: //RootNode
+    100070: Spine_Joint
+    100072: transform1
+    100074: transform2
+    100076: transform3
+    100078: transform4
+    100080: transform5
+    100082: transform6
+    400000: Body
+    400002: Body_Joint
+    400004: Head
+    400006: Head_Joint
+    400008: Hip_Joint
+    400010: Left_Ankle_Joint
+    400012: Left_Arm_Joint
+    400014: Left_Elbow_Joint
+    400016: Left_Foot
+    400018: Left_Hand_Joint
+    400020: Left_Hip_Joint
+    400022: Left_Knee_Joint
+    400024: Left_Shin
+    400026: Left_Shoulder_Joint
+    400028: Left_Thigh
+    400030: Left_Thigh_Joint
+    400032: Left_Toe_Joint
+    400034: Left_UnderArm
+    400036: Left_UpperArm
+    400038: Left_UpperArm1
+    400040: pCube13
+    400042: pCube17
+    400044: pCube3
+    400046: pCube4
+    400048: pCube7
+    400050: pCube8
+    400052: Right_Ankle_Joint
+    400054: Right_Foot
+    400056: Right_Hip_Joint
+    400058: Right_Knee_Joint
+    400060: Right_Shin
+    400062: Right_Thigh
+    400064: Right_Thigh_Joint
+    400066: Right_Toe_Joint
+    400068: //RootNode
+    400070: Spine_Joint
+    400072: transform1
+    400074: transform2
+    400076: transform3
+    400078: transform4
+    400080: transform5
+    400082: transform6
+    4300000: Body
+    4300002: Head
+    4300004: Left_UpperArm
+    4300006: Left_UnderArm
+    4300008: Left_UpperArm1
+    4300010: Right_Thigh
+    4300012: Right_Shin
+    4300014: Right_Foot
+    4300016: Left_Thigh
+    4300018: Left_Shin
+    4300020: Left_Foot
+    7400000: Idle
+    7400002: Walking
+    9500000: //RootNode
+    13700000: Body
+    13700002: Head
+    13700004: Left_Foot
+    13700006: Left_Shin
+    13700008: Left_Thigh
+    13700010: Left_UnderArm
+    13700012: Left_UpperArm
+    13700014: Left_UpperArm1
+    13700016: Right_Foot
+    13700018: Right_Shin
+    13700020: Right_Thigh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 12
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Body/Head
+        weight: 1
+      - path: Body/Left_Thigh
+        weight: 1
+      - path: Body/Left_Thigh/Left_Shin
+        weight: 1
+      - path: Body/Left_Thigh/Left_Shin/Left_Foot
+        weight: 1
+      - path: Body/Left_UpperArm
+        weight: 1
+      - path: Body/Left_UpperArm/Left_UnderArm
+        weight: 1
+      - path: Body/Left_UpperArm1
+        weight: 1
+      - path: Body/Right_Thigh
+        weight: 1
+      - path: Body/Right_Thigh/Right_Shin
+        weight: 1
+      - path: Body/Right_Thigh/Right_Shin/Right_Foot
+        weight: 1
+      - path: Hip_Joint
+        weight: 1
+      - path: Hip_Joint/Left_Hip_Joint
+        weight: 1
+      - path: Hip_Joint/Left_Hip_Joint/Left_Thigh_Joint
+        weight: 1
+      - path: Hip_Joint/Left_Hip_Joint/Left_Thigh_Joint/Left_Knee_Joint
+        weight: 1
+      - path: Hip_Joint/Left_Hip_Joint/Left_Thigh_Joint/Left_Knee_Joint/Left_Ankle_Joint
+        weight: 1
+      - path: Hip_Joint/Left_Hip_Joint/Left_Thigh_Joint/Left_Knee_Joint/Left_Ankle_Joint/Left_Toe_Joint
+        weight: 1
+      - path: Hip_Joint/Right_Hip_Joint
+        weight: 1
+      - path: Hip_Joint/Right_Hip_Joint/Right_Thigh_Joint
+        weight: 1
+      - path: Hip_Joint/Right_Hip_Joint/Right_Thigh_Joint/Right_Knee_Joint
+        weight: 1
+      - path: Hip_Joint/Right_Hip_Joint/Right_Thigh_Joint/Right_Knee_Joint/Right_Ankle_Joint
+        weight: 1
+      - path: Hip_Joint/Right_Hip_Joint/Right_Thigh_Joint/Right_Knee_Joint/Right_Ankle_Joint/Right_Toe_Joint
+        weight: 1
+      - path: Hip_Joint/Spine_Joint
+        weight: 1
+      - path: Hip_Joint/Spine_Joint/Body_Joint
+        weight: 1
+      - path: Hip_Joint/Spine_Joint/Body_Joint/Left_Arm_Joint
+        weight: 1
+      - path: Hip_Joint/Spine_Joint/Body_Joint/Left_Arm_Joint/Left_Shoulder_Joint
+        weight: 1
+      - path: Hip_Joint/Spine_Joint/Body_Joint/Left_Arm_Joint/Left_Shoulder_Joint/Left_Elbow_Joint
+        weight: 1
+      - path: Hip_Joint/Spine_Joint/Body_Joint/Left_Arm_Joint/Left_Shoulder_Joint/Left_Elbow_Joint/Left_Hand_Joint
+        weight: 1
+      - path: Hip_Joint/Spine_Joint/Head_Joint
+        weight: 1
+      - path: pCube3
+        weight: 1
+      - path: pCube3/transform1
+        weight: 1
+      - path: pCube4
+        weight: 1
+      - path: pCube4/transform2
+        weight: 1
+      - path: pCube7
+        weight: 1
+      - path: pCube7/transform4
+        weight: 1
+      - path: pCube8
+        weight: 1
+      - path: pCube8/transform3
+        weight: 1
+      - path: pCube13
+        weight: 1
+      - path: pCube13/transform5
+        weight: 1
+      - path: pCube17
+        weight: 1
+      - path: pCube17/transform6
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Walking
+      takeName: Take 001
+      firstFrame: 13
+      lastFrame: 61
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Body/Head
+        weight: 1
+      - path: Body/Left_Thigh
+        weight: 1
+      - path: Body/Left_Thigh/Left_Shin
+        weight: 1
+      - path: Body/Left_Thigh/Left_Shin/Left_Foot
+        weight: 1
+      - path: Body/Left_UpperArm
+        weight: 1
+      - path: Body/Left_UpperArm/Left_UnderArm
+        weight: 1
+      - path: Body/Left_UpperArm1
+        weight: 1
+      - path: Body/Right_Thigh
+        weight: 1
+      - path: Body/Right_Thigh/Right_Shin
+        weight: 1
+      - path: Body/Right_Thigh/Right_Shin/Right_Foot
+        weight: 1
+      - path: Hip_Joint
+        weight: 1
+      - path: Hip_Joint/Left_Hip_Joint
+        weight: 1
+      - path: Hip_Joint/Left_Hip_Joint/Left_Thigh_Joint
+        weight: 1
+      - path: Hip_Joint/Left_Hip_Joint/Left_Thigh_Joint/Left_Knee_Joint
+        weight: 1
+      - path: Hip_Joint/Left_Hip_Joint/Left_Thigh_Joint/Left_Knee_Joint/Left_Ankle_Joint
+        weight: 1
+      - path: Hip_Joint/Left_Hip_Joint/Left_Thigh_Joint/Left_Knee_Joint/Left_Ankle_Joint/Left_Toe_Joint
+        weight: 1
+      - path: Hip_Joint/Right_Hip_Joint
+        weight: 1
+      - path: Hip_Joint/Right_Hip_Joint/Right_Thigh_Joint
+        weight: 1
+      - path: Hip_Joint/Right_Hip_Joint/Right_Thigh_Joint/Right_Knee_Joint
+        weight: 1
+      - path: Hip_Joint/Right_Hip_Joint/Right_Thigh_Joint/Right_Knee_Joint/Right_Ankle_Joint
+        weight: 1
+      - path: Hip_Joint/Right_Hip_Joint/Right_Thigh_Joint/Right_Knee_Joint/Right_Ankle_Joint/Right_Toe_Joint
+        weight: 1
+      - path: Hip_Joint/Spine_Joint
+        weight: 1
+      - path: Hip_Joint/Spine_Joint/Body_Joint
+        weight: 1
+      - path: Hip_Joint/Spine_Joint/Body_Joint/Left_Arm_Joint
+        weight: 1
+      - path: Hip_Joint/Spine_Joint/Body_Joint/Left_Arm_Joint/Left_Shoulder_Joint
+        weight: 1
+      - path: Hip_Joint/Spine_Joint/Body_Joint/Left_Arm_Joint/Left_Shoulder_Joint/Left_Elbow_Joint
+        weight: 1
+      - path: Hip_Joint/Spine_Joint/Body_Joint/Left_Arm_Joint/Left_Shoulder_Joint/Left_Elbow_Joint/Left_Hand_Joint
+        weight: 1
+      - path: Hip_Joint/Spine_Joint/Head_Joint
+        weight: 1
+      - path: pCube3
+        weight: 1
+      - path: pCube3/transform1
+        weight: 1
+      - path: pCube4
+        weight: 1
+      - path: pCube4/transform2
+        weight: 1
+      - path: pCube7
+        weight: 1
+      - path: pCube7/transform4
+        weight: 1
+      - path: pCube8
+        weight: 1
+      - path: pCube8/transform3
+        weight: 1
+      - path: pCube13
+        weight: 1
+      - path: pCube13/transform5
+        weight: 1
+      - path: pCube17
+        weight: 1
+      - path: pCube17/transform6
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

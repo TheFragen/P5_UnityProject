@@ -36,7 +36,7 @@ namespace UnityStandardAssets.CrossPlatformInput
            
             m_StartPos = transform.position;
 
-            Debug.Log("Joystick Startpos" + m_StartPos); //simonfp
+ //           Debug.Log("Joystick Startpos" + m_StartPos); //simonfp
         }
 
         //use this update function for press anywhere

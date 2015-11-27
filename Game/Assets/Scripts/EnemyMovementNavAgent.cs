@@ -35,7 +35,7 @@ public class EnemyMovementNavAgent : MonoBehaviour
         agent.stoppingDistance = 1.0f;
 
         enemySight = GetComponent<EnemySight>();
-        player = GameObject.Find("Player/Capsule").transform;
+        player = GameObject.Find("Player/Robart").transform;
 
         //Find all the waypoints and sort them by their index
         initialSearch = GameObject.FindGameObjectsWithTag("EnemyWaypoint").ToList();
@@ -57,7 +57,7 @@ public class EnemyMovementNavAgent : MonoBehaviour
     // Update is called once per frame
     void Update() {
 
-        if (enemySight.personalLastSighting != enemySight.resetSight) {
+        if (enemySight.lastSighting != enemySight.resetSight) {
             chase();
         } else if(soundAlerted){
             sound();
@@ -85,6 +85,8 @@ public class EnemyMovementNavAgent : MonoBehaviour
     }
 
     void sound() {
+
+
         if (Vector3.Distance(this.transform.position, agent.destination) < 1.1f) {
             // Incerement timer
             chaseTimer += Time.deltaTime;
@@ -111,8 +113,9 @@ public class EnemyMovementNavAgent : MonoBehaviour
     }
 
     void chase() {
+        if (!GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Play();
         agent.speed = chaseSpeed;
-        agent.destination = enemySight.personalLastSighting;
+        agent.destination = enemySight.lastSighting;
 
         // If near the last personal sighting...
         if (Vector3.Distance(this.transform.position, agent.destination) < 1.1f) {
@@ -126,10 +129,11 @@ public class EnemyMovementNavAgent : MonoBehaviour
                 //Wait a bit before resetting
                 if (chaseTimer >= chaseWaitTime + 3f) {
                     Debug.Log("Resetting");
-                    enemySight.personalLastSighting = enemySight.resetSight;
+                    enemySight.lastSighting = enemySight.resetSight;
                     agent.destination = waypoint[pathPointIndex].transform.position;
                     chaseTimer = 0f;
                     recheck = false;
+                    if (GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Stop();
                 }
             }
         } else {
@@ -145,7 +149,7 @@ public class EnemyMovementNavAgent : MonoBehaviour
         //Detect if NavMeshAgent is hitting an obstacle
         for (int i = 1; i < agent.path.corners.Length; i++)
         {
-            Vector3 pathPoint = agent.path.corners[i - 1];
+         //   Vector3 pathPoint = agent.path.corners[i - 1];
             Vector3 nextPoint = agent.path.corners[i];
             RaycastHit hit;
 

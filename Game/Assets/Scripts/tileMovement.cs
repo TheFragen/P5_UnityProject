@@ -110,11 +110,13 @@ public class tileMovement : MonoBehaviour
         {
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
 
-            // Disable rendering:
+            // Enable rendering:
             foreach (Renderer component in rendererComponents)
             {
-                if (component.gameObject.name == "Capsule") continue;
-                component.enabled = true;
+                if (component.gameObject.name.Contains("Tile"))
+                {
+                    component.enabled = true;
+                }
             }
         }  else
         {
@@ -123,8 +125,10 @@ public class tileMovement : MonoBehaviour
             // Disable rendering:
             foreach (Renderer component in rendererComponents)
             {
-                if (component.gameObject.name == "Capsule") continue;
-                component.enabled = false;
+                if (component.gameObject.name.Contains("Tile"))
+                {
+                    component.enabled = false;
+                }
             }
         }
     }

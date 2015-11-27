@@ -23,7 +23,6 @@ public class cameraMove : MonoBehaviour
     long lastDebounceTime = 0;
     long debounceDelay = 150;
 
-    public float fixedRotation = 0;
 
     // Use this for initialization
     void Start()
@@ -57,6 +56,17 @@ public class cameraMove : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             transform.position += referenceCube.transform.forward * Time.deltaTime * speed;
+        }
+
+        //Up
+        if (Input.GetKey(KeyCode.Q))
+        {
+            transform.position += new Vector3(0,1,0) * Time.deltaTime * speed;
+        }
+        //Down
+        if (Input.GetKey(KeyCode.E))
+        {
+            transform.position += new Vector3(0, -1, 0) * Time.deltaTime * speed;
         }
 
         if (Input.GetKey(KeyCode.Space))

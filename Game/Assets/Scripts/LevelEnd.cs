@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class LevelEnd : MonoBehaviour {
 
@@ -16,15 +17,19 @@ public class LevelEnd : MonoBehaviour {
 	private GameObject victoryScreenText;
 	private GameObject yourTimeText;
 	private GameObject victoryWindow;
+    private UnityAnalytics analytics;
 
+    void Awake()
+    {
+        analytics = GameObject.FindGameObjectWithTag("Analytics").transform.GetComponent<UnityAnalytics>();
+    }
 
 	// Use this for initialization
 	void Start () 
 	{
         playedTime = new System.Diagnostics.Stopwatch();
-        playedTime.Start();
         canvas = GameObject.Find ("Canvas");
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () 
@@ -32,7 +37,7 @@ public class LevelEnd : MonoBehaviour {
 		if (restart) 
 		{
 			Debug.Log ("We must go back");
-			Application.LoadLevel ("Vuforia test_V2");
+			Application.LoadLevel(Application.loadedLevel);
 			restart = false;
 
 		}
@@ -69,6 +74,7 @@ public class LevelEnd : MonoBehaviour {
 				restartButton.GetComponent<Button>().onClick.AddListener(() => { setRestart (true);});
 
 				vicoryScreen = true;
+                analytics.createAnalyticsEntry(endTime, "Victory");
 			}
 
 		}
@@ -104,8 +110,16 @@ public class LevelEnd : MonoBehaviour {
             restartButton.GetComponent<Button>().onClick.AddListener(() => { setRestart(true); });
 
             vicoryScreen = true;
+            analytics.createAnalyticsEntry(endTime, "Enemy");
         }
     }
+
+    public void startTimer()
+    {
+        if(!playedTime.IsRunning) playedTime.Start();
+    }
+
+
 }
 
 

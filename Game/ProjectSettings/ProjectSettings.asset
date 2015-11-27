@@ -23,7 +23,7 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   m_ActiveColorSpace: 0
   m_MTRendering: 1
-  m_MobileMTRendering: 0
+  m_MobileMTRendering: 1
   m_Stereoscopic3D: 0
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: 2
@@ -108,7 +108,7 @@ PlayerSettings:
   CreateWallpaper: 0
   APKExpansionFiles: 0
   preloadShaders: 1
-  StripUnusedMeshComponents: 0
+  StripUnusedMeshComponents: 1
   VertexChannelCompressionMask:
     serializedVersion: 2
     m_Bits: 238
@@ -488,14 +488,18 @@ PlayerSettings:
   WebGL::useEmbeddedResources: 0
   XboxOne::enus: 1
   stringPropertyNames:
+  - Build_ServiceEnabled::Build_ServiceEnabled
+  - UNet_ServiceEnabled::UNet_ServiceEnabled
   - WebGL::emscriptenArgs
   - WebGL::template
   - additionalIl2CppArgs::additionalIl2CppArgs
+  Build_ServiceEnabled::Build_ServiceEnabled: True
+  UNet_ServiceEnabled::UNet_ServiceEnabled: True
   WebGL::emscriptenArgs: 
   WebGL::template: APPLICATION:Default
   additionalIl2CppArgs::additionalIl2CppArgs: 
   firstStreamedSceneWithResources: 0
-  cloudProjectId: 
-  projectName: 
-  organizationId: 
+  cloudProjectId: 0b697642-44fe-4a09-be47-91de52f6f5c3
+  projectName: Dude Wheres My Arm?
+  organizationId: christian-faester
   cloudEnabled: 0

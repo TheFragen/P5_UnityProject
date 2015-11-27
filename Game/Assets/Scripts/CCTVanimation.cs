@@ -1,53 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class CCTVanimation : MonoBehaviour {
 
-    // Use this for initialization
-
     public float speed = 0.0f;
-    bool reverse = true;
-    //float x = 0.0f;
-    //float y = 0.0f;
-    //float z = 0.0f;
-    // Update is called once per frame
+    public bool reverse;
+    public int minRotation;
+    public int maxRotation;
+    int rotation;
+
     void Update()
     {
-       // Debug.Log("reverse" + reverse);
-        //if(this.transform.rotation.x < 10 & this.transform.eulerAngles.y < 10 & this.transform.rotation.z < 319) { 
-        if (reverse==true)
+        /*   if(Enumerable.Range((int)this.transform.eulerAngles.y - 5, (int)this.transform.eulerAngles.y + 5).Contains(minRotation-2))
+           {
+               rotation = maxRotation;
+               reverse = true;
+           }else if (Enumerable.Range((int) this.transform.eulerAngles.y - 5, (int) this.transform.eulerAngles.y + 5).Contains(maxRotation))
+           {
+               reverse = false;
+               rotation = minRotation;
+           }*/
+
+        if (this.transform.eulerAngles.y > 20)
         {
-            if (this.transform.eulerAngles.x > 328)
-            {
-                transform.Rotate(Vector3.up, speed * Time.deltaTime);
-            }
-            else if (this.transform.eulerAngles.x >= 0 & this.transform.eulerAngles.x < 31)
-            {
-                transform.Rotate(Vector3.up, speed * Time.deltaTime);
-            }
-            else
-            {
-                reverse = false;
-            }
-            }
-        else
+            transform.Rotate(Vector3.up * Time.deltaTime * speed);
+        } else if (this.transform.eulerAngles.y < 220)
         {
-            if (this.transform.eulerAngles.x >= 0 & this.transform.eulerAngles.x < 32)
-            {
-                transform.Rotate(-Vector3.up, speed * Time.deltaTime);
-            }
-            else if (this.transform.eulerAngles.x > 330)
-            {
-                transform.Rotate(-Vector3.up, speed * Time.deltaTime);
-            }
-            else
-            {
-                reverse = true;
-            }
+            transform.Rotate(-Vector3.up * Time.deltaTime * speed);
         }
 
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.eulerAngles.x, rotation, transform.eulerAngles.z), Time.deltaTime);
+
     }
-       // else
-        //    transform.Rotate(-Vector3.up, speed * Time.deltaTime);
-   // }
 }
