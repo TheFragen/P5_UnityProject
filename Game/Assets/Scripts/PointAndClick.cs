@@ -93,7 +93,6 @@ public class PointAndClick : MonoBehaviour {
         if (clickButton)
         {
             var ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.nearClipPlane));
-            Debug.Log("Part 1");
             RaycastHit rayHit;
             if (Physics.Raycast(ray, out rayHit))
             {
@@ -107,7 +106,6 @@ public class PointAndClick : MonoBehaviour {
                 int walkable = 1 << NavMesh.GetAreaFromName("Walkable");
                 if (rayHit.collider.tag == "Ground" && NavMesh.SamplePosition(rayHit.point, out navmeshHit, 1.0f, walkable))
                 {
-                    Debug.Log("Part 2");
                     if (GameObject.Find("Waypoint") != null) Destroy(GameObject.Find("Waypoint"));
                     hitPosition = new Vector3(navmeshHit.position.x, navmeshHit.position.y, navmeshHit.position.z);
 

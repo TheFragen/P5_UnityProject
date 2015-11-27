@@ -30,6 +30,7 @@ public class vuforiaCapHeight : MonoBehaviour
         }
 
         capWarning = GameObject.Find("capWarning");
+        if (capWarning == null) this.GetComponent<vuforiaCapHeight>().enabled = false;
     }
 
     // Update is called once per frame

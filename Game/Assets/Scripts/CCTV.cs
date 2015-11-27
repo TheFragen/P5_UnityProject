@@ -19,7 +19,7 @@ public class CCTV : MonoBehaviour {
 
 
 	void Awake(){
-		player = GameObject.Find("Player/Capsule");
+		player = GameObject.Find("Player/Robart");
 
 		this.GetComponent<LineRenderer>().SetColors(Color.red,Color.red);
 		this.GetComponent<LineRenderer>().SetVertexCount(4);

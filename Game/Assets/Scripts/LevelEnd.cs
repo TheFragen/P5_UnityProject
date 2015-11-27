@@ -37,7 +37,7 @@ public class LevelEnd : MonoBehaviour {
 		if (restart) 
 		{
 			Debug.Log ("We must go back");
-			Application.LoadLevel ("Vuforia test_V2");
+			Application.LoadLevel(Application.loadedLevel);
 			restart = false;
 
 		}

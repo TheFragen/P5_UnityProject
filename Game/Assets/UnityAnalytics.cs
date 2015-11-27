@@ -93,7 +93,7 @@ public class UnityAnalytics : MonoBehaviour {
     public void OpenDB()
     {
         string connectionURI;
-        if (isDebug)
+        if (Application.platform == RuntimePlatform.WindowsEditor)
         {
             connectionURI = "URI=file:" + Application.dataPath + "/testingData.s3db";
         }
