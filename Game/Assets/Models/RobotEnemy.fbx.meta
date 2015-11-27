@@ -1,0 +1,148 @@
+fileFormatVersion: 2
+guid: a3add05ba29e26d41b2624c8171029e3
+timeCreated: 1448616196
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Arm1
+    100002: Arm2
+    100004: Body
+    100006: Head
+    100008: NEck
+    100010: nurbsSphere1
+    100012: nurbsSphere2
+    100014: pCube12
+    100016: pCube13
+    100018: pCube6
+    100020: pCube6 1
+    100022: pCube7
+    100024: pCube8
+    100026: pCube8 1
+    100028: pCube9
+    100030: pCylinder1
+    100032: robot_Feet1
+    100034: //RootNode
+    400000: Arm1
+    400002: Arm2
+    400004: Body
+    400006: Head
+    400008: NEck
+    400010: nurbsSphere1
+    400012: nurbsSphere2
+    400014: pCube12
+    400016: pCube13
+    400018: pCube6
+    400020: pCube6 1
+    400022: pCube7
+    400024: pCube8
+    400026: pCube8 1
+    400028: pCube9
+    400030: pCylinder1
+    400032: robot_Feet1
+    400034: //RootNode
+    2300000: Body
+    2300002: Head
+    2300004: NEck
+    2300006: pCube12
+    2300008: pCube13
+    2300010: pCube6
+    2300012: pCube6 1
+    2300014: pCube7
+    2300016: pCube8
+    2300018: pCube8 1
+    2300020: pCube9
+    2300022: pCylinder1
+    2300024: robot_Feet1
+    3300000: Body
+    3300002: Head
+    3300004: NEck
+    3300006: pCube12
+    3300008: pCube13
+    3300010: pCube6
+    3300012: pCube6 1
+    3300014: pCube7
+    3300016: pCube8
+    3300018: pCube8 1
+    3300020: pCube9
+    3300022: pCylinder1
+    3300024: robot_Feet1
+    4300000: pCube6
+    4300002: pCube8
+    4300004: Head
+    4300006: NEck
+    4300008: pCube7
+    4300010: pCube9
+    4300012: Body
+    4300014: pCylinder1
+    4300016: pCube6
+    4300018: pCube8
+    4300020: robot_Feet1
+    4300022: pCube13
+    4300024: pCube12
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
