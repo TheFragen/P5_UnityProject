@@ -6,7 +6,8 @@ using UnityStandardAssets.CrossPlatformInput;
 public class CharacterControllerJoystick : MonoBehaviour {
     //input
     public Vector2 moveVec;
-    Rigidbody rBody;
+    //    Rigidbody rBody;
+    NavMeshAgent agent;
     //a little delay on the input
     public float inputDelay = 0.1f;
 
@@ -31,9 +32,8 @@ public class CharacterControllerJoystick : MonoBehaviour {
     void Start()
     {
         joystick = gameObject.GetComponent<VirtualJoystick2>();
-
-        Quaternion rotation = transform.rotation;
-        rBody = GetComponent<Rigidbody>();
+        //     rBody = GetComponent<Rigidbody>();
+        agent = GetComponent<NavMeshAgent>();
     }
     void Getinput()
     {
@@ -87,12 +87,15 @@ public class CharacterControllerJoystick : MonoBehaviour {
             // Disable rendering:
             foreach (Renderer component in rendererComponents)
             {
-                if (component.gameObject.name == "Capsule") continue;
-                component.enabled = false;
+                if (component.gameObject.name.Contains("Tile"))
+                {
+                    component.enabled = false;
+                }
             }
-           // if (!setImageOnce)
-          //  {
-                setImageOnce = true;
+
+            // if (!setImageOnce)
+            //  {
+            setImageOnce = true;
                 goJoystick.GetComponentsInChildren<Transform>()[1].GetComponent<Image>().sprite = blackJoystick;
          //   }
 
@@ -100,26 +103,29 @@ public class CharacterControllerJoystick : MonoBehaviour {
         {
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
 
-            // Disable rendering:
+            // Enable rendering:
             foreach (Renderer component in rendererComponents)
             {
-                if (component.gameObject.name == "Capsule") continue;
-                component.enabled = true;
+                if (component.gameObject.name.Contains("Tile"))
+                {
+                    component.enabled = true;
+                }
             }
-        //    if (setImageOnce)
-       //     {
-                setImageOnce = false;
+            //    if (setImageOnce)
+            //     {
+            setImageOnce = false;
                 goJoystick.GetComponentsInChildren<Transform>()[1].GetComponent<Image>().sprite = colorCodedJoystick;
          //   }
         }
 
+        Run();
         Getinput();
         //print("moveVec is: " + moveVec);
     }
     void FixedUpdate()
     {
-        Run();
-        Rotating();
+       
+   //     Rotating();
         
     }
     void Run()
@@ -138,24 +144,25 @@ public class CharacterControllerJoystick : MonoBehaviour {
                 //direction = (-transform.forward * moveVec.y) * forwardVel +
                 //(transform.right * moveVec.x) * forwardVel;
 
-                Vector3 ydirection = GameObject.Find("Grass").transform.forward * moveVec.y * forwardVel;
+                Vector3 ydirection = GameObject.FindGameObjectWithTag("Ground").transform.forward * moveVec.y * forwardVel;
 
 
-                Vector3 Xdirection = GameObject.Find("Grass").transform.right * moveVec.x * forwardVel;
+                Vector3 Xdirection = GameObject.FindGameObjectWithTag("Ground").transform.right * moveVec.x * forwardVel;
                 direction = ydirection + Xdirection;
 
             }
             if (CameraOrientation == true) { 
             //calculate the direction vector based on the camera position
-            Vector3 ydirection = Camera.main.transform.forward * moveVec.y * forwardVel;
-            Vector3 Xdirection = Camera.main.transform.right * moveVec.x * forwardVel;
+                Vector3 ydirection = GameObject.Find("Reference Cube").transform.forward * moveVec.y * forwardVel;
+                Vector3 Xdirection = GameObject.Find("Reference Cube").transform.right * moveVec.x * forwardVel;
                 direction = ydirection + Xdirection;
             }
-            
-            //navMeshAgent.destination = direction * 10 + this.transform.position;
-            rBody.velocity = direction;
+            Vector3 movement = direction.normalized;
+            movement *= 86;
+            agent.destination = this.transform.position + movement * Time.deltaTime;
+        //    rBody.velocity = direction;
 
-            //Debug.Log("direction" + direction);
+      //      Debug.Log("direction" + direction.normalized);
 
         }
         else
@@ -171,7 +178,7 @@ public class CharacterControllerJoystick : MonoBehaviour {
         {
             yield return new WaitForSeconds(0.1f);
         }
-         rBody.velocity = Vector3.zero;
+        agent.destination = this.transform.position + Vector3.zero;
     }
 
     void Rotating()
@@ -186,10 +193,10 @@ public class CharacterControllerJoystick : MonoBehaviour {
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
 
         // Create a rotation that is an increment closer to the target rotation from the player's rotation.
-        Quaternion newRotation = Quaternion.Lerp(rBody.rotation, targetRotation, turnSmoothing * Time.deltaTime);
+   //     Quaternion newRotation = Quaternion.Lerp(rBody.rotation, targetRotation, turnSmoothing * Time.deltaTime);
 
         // Change the players rotation to this new rotation.
-        rBody.MoveRotation(newRotation);
+  //      rBody.MoveRotation(newRotation);
     }
 
     public void setCameraOrientation()

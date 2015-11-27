@@ -1,0 +1,171 @@
+fileFormatVersion: 2
+guid: 464b4c6a4b2664f41a70071a2c003214
+timeCreated: 1448361812
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: package
+    100002: //RootNode
+    100004: palletKlods
+    100006: palletKlods1
+    100008: palletKlods10
+    100010: palletKlods11
+    100012: palletKlods2
+    100014: palletKlods3
+    100016: palletKlods4
+    100018: palletKlods5
+    100020: palletKlods6
+    100022: palletKlods7
+    100024: palletKlods8
+    100026: palletKlods9
+    100028: palletLegLeft
+    100030: palletLegLeft1
+    100032: palletLegLeft2
+    100034: palletLegMid
+    100036: palletLegMid1
+    100038: palletLegRight
+    100040: palletLegRight1
+    100042: palletLegRight2
+    100044: palletLegRight3
+    400000: package
+    400002: //RootNode
+    400004: palletKlods
+    400006: palletKlods1
+    400008: palletKlods10
+    400010: palletKlods11
+    400012: palletKlods2
+    400014: palletKlods3
+    400016: palletKlods4
+    400018: palletKlods5
+    400020: palletKlods6
+    400022: palletKlods7
+    400024: palletKlods8
+    400026: palletKlods9
+    400028: palletLegLeft
+    400030: palletLegLeft1
+    400032: palletLegLeft2
+    400034: palletLegMid
+    400036: palletLegMid1
+    400038: palletLegRight
+    400040: palletLegRight1
+    400042: palletLegRight2
+    400044: palletLegRight3
+    2300000: package
+    2300002: palletKlods
+    2300004: palletKlods1
+    2300006: palletKlods2
+    2300008: palletKlods3
+    2300010: palletKlods4
+    2300012: palletKlods5
+    2300014: palletKlods6
+    2300016: palletKlods7
+    2300018: palletKlods8
+    2300020: palletLegLeft
+    2300022: palletLegLeft2
+    2300024: palletLegMid
+    2300026: palletLegMid1
+    2300028: palletLegRight
+    2300030: palletLegRight1
+    2300032: palletLegRight2
+    2300034: palletLegRight3
+    3300000: package
+    3300002: palletKlods
+    3300004: palletKlods1
+    3300006: palletKlods2
+    3300008: palletKlods3
+    3300010: palletKlods4
+    3300012: palletKlods5
+    3300014: palletKlods6
+    3300016: palletKlods7
+    3300018: palletKlods8
+    3300020: palletLegLeft
+    3300022: palletLegLeft2
+    3300024: palletLegMid
+    3300026: palletLegMid1
+    3300028: palletLegRight
+    3300030: palletLegRight1
+    3300032: palletLegRight2
+    3300034: palletLegRight3
+    4300000: palletLegRight
+    4300002: palletLegLeft
+    4300004: palletLegMid
+    4300006: palletKlods
+    4300008: palletKlods1
+    4300010: palletKlods2
+    4300012: palletKlods3
+    4300014: palletKlods4
+    4300016: palletKlods5
+    4300018: palletKlods6
+    4300020: palletKlods7
+    4300022: palletKlods8
+    4300024: palletLegMid1
+    4300026: palletLegRight1
+    4300028: palletLegRight2
+    4300030: palletLegRight3
+    4300032: palletLegLeft2
+    4300034: package
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

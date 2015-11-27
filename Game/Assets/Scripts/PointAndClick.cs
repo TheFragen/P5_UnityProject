@@ -15,7 +15,7 @@ public class PointAndClick : MonoBehaviour {
     List<Vector3> directions = new List<Vector3>();
     float lastTime;
     float distance = 0;
-    bool obstaclePoint = false;
+ //   bool obstaclePoint = false;
     private bool first;
 
     // Use this for initialization
@@ -75,7 +75,7 @@ public class PointAndClick : MonoBehaviour {
                 wayPoints.RemoveAt(0);
                 distance = 0;
                 navMeshAgent.speed = 15;
-                obstaclePoint = false;
+        //        obstaclePoint = false;
 
                 if (wayPoints.Count == 0)
                 {
@@ -93,7 +93,6 @@ public class PointAndClick : MonoBehaviour {
         if (clickButton)
         {
             var ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, Camera.main.nearClipPlane));
-
             RaycastHit rayHit;
             if (Physics.Raycast(ray, out rayHit))
             {

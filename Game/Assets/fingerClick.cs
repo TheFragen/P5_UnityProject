@@ -14,7 +14,7 @@ public class fingerClick : MonoBehaviour
     List<Vector3> directions = new List<Vector3>();
     float lastTime;
     float distance = 0;
-    bool obstaclePoint = false;
+ //   bool obstaclePoint = false;
     private bool first;
     public bool debug = false;
 
@@ -82,7 +82,7 @@ public class fingerClick : MonoBehaviour
                         Debug.DrawLine(pathPoint, hit.point, Color.green);
                         wayPoints[0].transform.position = hit.point;
                         distance = 4.5f;
-                        obstaclePoint = true;
+          //              obstaclePoint = true;
                     }
                 }
             }
@@ -95,7 +95,7 @@ public class fingerClick : MonoBehaviour
                 wayPoints.RemoveAt(0);
                 distance = 0;
                 navMeshAgent.speed = 15;
-                obstaclePoint = false;
+       //         obstaclePoint = false;
 
                 if (wayPoints.Count == 0)
                 {
