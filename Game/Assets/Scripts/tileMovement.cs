@@ -133,10 +133,10 @@ public class tileMovement : MonoBehaviour
         }
     }
 
-    void movePlayer(Vector3 movement) {
+   /* void movePlayer(Vector3 movement) {
         movement *= speed;
         navMeshAgent.destination = this.transform.position + movement * Time.deltaTime;
-    }
+    }*/
 
     public void moveUp(int val)
     {

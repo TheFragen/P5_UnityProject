@@ -18,14 +18,28 @@ public class UnityAnalytics : MonoBehaviour {
     private IDataReader reader;
     private StringBuilder builder;
     public bool isDebug;
+    public static UnityAnalytics instance = null;
+
+    void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(transform.gameObject);
+            control = GameObject.Find("Control Cycler").GetComponent<cycleControls>();
+            player = GameObject.Find("Player").transform;
+            playerPositions.Add(player.localPosition);
+        } else
+        {
+            GameObject.Find("UserID").GetComponent<UnityEngine.UI.Text>().text = userID;
+            GameObject.Find("InputField").SetActive(false);
+            Destroy(this.gameObject);
+        }
+        
+    }
 
     // Use this for initialization
-    void Start () {
-        control = GameObject.Find("Control Cycler").GetComponent<cycleControls>();
-        player = GameObject.Find("Player").transform;
-        playerPositions.Add(player.localPosition);
-
-       
+    void Start () {       
             OpenDB();
 
             string[] col = { "id", "userID", "endTime", "source", "controlScheme", "level" };

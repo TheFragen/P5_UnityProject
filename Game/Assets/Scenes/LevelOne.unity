@@ -74,15 +74,15 @@ NavMeshSettings:
   m_ObjectHideFlags: 0
   m_BuildSettings:
     serializedVersion: 2
-    agentRadius: 1.04999995
+    agentRadius: .639999986
     agentHeight: 3.07999992
-    agentSlope: 11.3999996
+    agentSlope: 9
     agentClimb: 1.00999999
     ledgeDropHeight: 1.15999997
     maxJumpAcrossDistance: 0
     accuratePlacement: 0
     minRegionArea: 2
-    cellSize: .349999994
+    cellSize: .213333324
     manualCellSize: 0
   m_NavMeshData: {fileID: 23800000, guid: 4dfcb6ad1cfbc284fbb545ff0e6c0195, type: 2}
 --- !u!1 &9250608
@@ -8888,6 +8888,34 @@ Prefab:
       propertyPath: m_Center.y
       value: .833503723
       objectReference: {fileID: 0}
+    - target: {fileID: 409132, guid: 10be6431ce2c59b48a4b0b3c41a6d4e3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .494520009
+      objectReference: {fileID: 0}
+    - target: {fileID: 409132, guid: 10be6431ce2c59b48a4b0b3c41a6d4e3, type: 2}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 409132, guid: 10be6431ce2c59b48a4b0b3c41a6d4e3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -7.40999985
+      objectReference: {fileID: 0}
+    - target: {fileID: 409132, guid: 10be6431ce2c59b48a4b0b3c41a6d4e3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.96000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 409132, guid: 10be6431ce2c59b48a4b0b3c41a6d4e3, type: 2}
+      propertyPath: m_LocalScale.x
+      value: .957491219
+      objectReference: {fileID: 0}
+    - target: {fileID: 409132, guid: 10be6431ce2c59b48a4b0b3c41a6d4e3, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2.3547132
+      objectReference: {fileID: 0}
+    - target: {fileID: 409132, guid: 10be6431ce2c59b48a4b0b3c41a6d4e3, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.29520035
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2330140, guid: 10be6431ce2c59b48a4b0b3c41a6d4e3, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 10be6431ce2c59b48a4b0b3c41a6d4e3, type: 2}
@@ -10436,7 +10464,19 @@ Prefab:
       objectReference: {fileID: 881110144}
     - target: {fileID: 19565890, guid: 880df42dc39fb504492e74ffc3d5232e, type: 2}
       propertyPath: m_AutoBraking
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21272394, guid: 880df42dc39fb504492e74ffc3d5232e, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19565890, guid: 880df42dc39fb504492e74ffc3d5232e, type: 2}
+      propertyPath: m_StoppingDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19565890, guid: 880df42dc39fb504492e74ffc3d5232e, type: 2}
+      propertyPath: m_AutoRepath
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 880df42dc39fb504492e74ffc3d5232e, type: 2}
