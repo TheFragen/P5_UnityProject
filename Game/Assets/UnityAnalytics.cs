@@ -18,25 +18,37 @@ public class UnityAnalytics : MonoBehaviour {
     private IDataReader reader;
     private StringBuilder builder;
     public bool isDebug;
+    public static UnityAnalytics instance = null;
+
+    void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(transform.gameObject);
+            control = GameObject.Find("Control Cycler").GetComponent<cycleControls>();
+            player = GameObject.Find("Player").transform;
+            playerPositions.Add(player.localPosition);
+        } else
+        {
+            GameObject.Find("UserID").GetComponent<UnityEngine.UI.Text>().text = userID;
+            GameObject.Find("InputField").SetActive(false);
+            Destroy(this.gameObject);
+        }
+        
+    }
 
     // Use this for initialization
-    void Start () {
-      //  Analytics.SetUserId(userID);
-        control = GameObject.Find("Control Cycler").GetComponent<cycleControls>();
-        player = GameObject.Find("Player").transform;
-        playerPositions.Add(player.localPosition);
-
-        if(!File.Exists(Application.dataPath + "/testingData.s3db"))
-        {
+    void Start () {       
             OpenDB();
 
-            string[] col = { "id", "userID", "endTime", "source", "controlScheme" };
-            string[] colType = { "integer primary key autoincrement", "text", "integer", "text", "text" };
+            string[] col = { "id", "userID", "endTime", "source", "controlScheme", "level" };
+            string[] colType = { "integer primary key autoincrement", "text", "integer", "text", "text", "text" };
 
             if (!CreateTable("testing", col, colType))
                 Debug.Log("Error creating table");
             CloseDB();
-        }
+        
     }
 	
 	// Update is called once per frame
@@ -63,7 +75,7 @@ public class UnityAnalytics : MonoBehaviour {
             {"playerPositions", playerPositions.ToArray() }
         });*/
 
-        string query = string.Format("INSERT INTO testing (userID,endTime,source,controlScheme) VALUES('{0}',{1},'{2}','{3}')", userID, endTime, sourceOfEnd, control.getCurrentControlScheme());
+        string query = string.Format("INSERT INTO testing (userID,endTime,source,controlScheme,level) VALUES('{0}',{1},'{2}','{3}','{4}')", userID, endTime, sourceOfEnd, control.getCurrentControlScheme(), Application.loadedLevelName);
         save(query);
     }
 
@@ -107,12 +119,21 @@ public class UnityAnalytics : MonoBehaviour {
 
     public void CloseDB()
     {
-        reader.Close();
-        reader = null;
-        dbcmd.Dispose();
-        dbcmd = null;
-        databaseConnection.Close();
-        databaseConnection = null;
+        if (reader != null)
+        {
+            reader.Close();
+            reader = null;
+        }
+        if (dbcmd != null)
+        {
+            dbcmd.Dispose();
+            dbcmd = null;
+        }
+        if (databaseConnection != null)
+        {
+            databaseConnection.Close();
+            databaseConnection = null;
+        }
     }
 
     IDataReader BasicQuery(string query)
