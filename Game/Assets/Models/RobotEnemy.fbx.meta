@@ -81,6 +81,7 @@ ModelImporter:
     4300022: pCube13
     4300024: pCube12
     7400000: Take 001
+    7400002: Take 0010
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -101,7 +102,131 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 8
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arm1
+        weight: 1
+      - path: Arm1/pCube6
+        weight: 1
+      - path: Arm1/pCube8
+        weight: 1
+      - path: Arm2
+        weight: 1
+      - path: Arm2/pCube6 1
+        weight: 1
+      - path: Arm2/pCube8 1
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Body/pCylinder1
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: Head/NEck
+        weight: 1
+      - path: Head/pCube7
+        weight: 1
+      - path: Head/pCube7/nurbsSphere1
+        weight: 1
+      - path: Head/pCube9
+        weight: 1
+      - path: Head/pCube9/nurbsSphere2
+        weight: 1
+      - path: robot_Feet1
+        weight: 1
+      - path: robot_Feet1/pCube12
+        weight: 1
+      - path: robot_Feet1/pCube13
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Take 0010
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 8
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arm1
+        weight: 1
+      - path: Arm1/pCube6
+        weight: 1
+      - path: Arm1/pCube8
+        weight: 1
+      - path: Arm2
+        weight: 1
+      - path: Arm2/pCube6 1
+        weight: 1
+      - path: Arm2/pCube8 1
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Body/pCylinder1
+        weight: 1
+      - path: Head
+        weight: 1
+      - path: Head/NEck
+        weight: 1
+      - path: Head/pCube7
+        weight: 1
+      - path: Head/pCube7/nurbsSphere1
+        weight: 1
+      - path: Head/pCube9
+        weight: 1
+      - path: Head/pCube9/nurbsSphere2
+        weight: 1
+      - path: robot_Feet1
+        weight: 1
+      - path: robot_Feet1/pCube12
+        weight: 1
+      - path: robot_Feet1/pCube13
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []

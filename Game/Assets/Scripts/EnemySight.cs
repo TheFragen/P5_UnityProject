@@ -11,11 +11,12 @@ public class EnemySight : MonoBehaviour {
     private SphereCollider col;
     private GameObject player;
     private Vector3 previousSighting;
+    public Animator anim;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
+    // Use this for initialization
+    void Start () {
+        anim = this.transform.GetChild(0).GetComponent<Animator>();
+    }
 
     void Awake()
     {
@@ -36,7 +37,7 @@ public class EnemySight : MonoBehaviour {
             hasSight = false;
             Vector3 direction = other.transform.position - transform.position;
             float angle = Vector3.Angle(direction, transform.forward);
-
+            
             if (angle <= fovAngle)
             {
                 RaycastHit hit;
@@ -48,6 +49,7 @@ public class EnemySight : MonoBehaviour {
                         hasSight = true;
                         lastSighting = player.transform.position;
                         Debug.Log("player sighted");
+                        anim.SetBool("Detect", true);
                     }
                     //Check if player is really close to enemy, and mark that as sight
                     else if (hit.distance < 1.5f && hit.collider.gameObject == player)
@@ -63,7 +65,9 @@ public class EnemySight : MonoBehaviour {
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject == player)
+        { 
             hasSight = false;
+            anim.SetBool("Detect", false);
+        }
     }
-
 }

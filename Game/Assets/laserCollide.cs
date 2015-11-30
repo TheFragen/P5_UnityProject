@@ -2,14 +2,14 @@
 using System.Collections;
 
 public class laserCollide : MonoBehaviour {
-
 	// Use this for initialization
 	void Start () {
-	
 	}
 
     void OnTriggerEnter(Collider other)
     {
+      
+
         if (other.tag == "laserChild")
         {
                     Debug.Log("shit");
@@ -20,6 +20,12 @@ public class laserCollide : MonoBehaviour {
             Debug.Log("shit");
             GameObject.Find("LevelEnd").GetComponent<LevelEnd>().setEndCondition("Det var endnu mere dumt.");
         }
+       if (other.tag == "lavaCollider")
+        {
+            Debug.Log("shit");
+            GameObject.Find("LevelEnd").GetComponent<LevelEnd>().setEndCondition("jesus");
+        }
+
 }
         
         
