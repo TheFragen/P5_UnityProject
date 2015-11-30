@@ -5,13 +5,5 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Joystick.unity
-  - enabled: 0
-    path: Assets/Scenes/PointAndClick.unity
-  - enabled: 0
-    path: Assets/Scenes/Vuforia test_V2.unity
-  - enabled: 0
-    path: Assets/Scenes/Vuforia test.unity
   - enabled: 1
-    path: Assets/Scenes/LevelOne.unity
+    path: Assets/Scenes/Level 2.unity

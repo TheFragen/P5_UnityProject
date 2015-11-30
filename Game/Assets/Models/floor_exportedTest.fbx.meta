@@ -1,20 +1,42 @@
 fileFormatVersion: 2
-guid: be5cd5991d71e104bbb92f3015b0e5f6
-timeCreated: 1448361637
+guid: a8fe7db2bb53d154a863d9f82fae97ec
+timeCreated: 1448880513
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Floor
-    400000: //RootNode
-    400002: Floor
-    2300000: //RootNode
-    2300002: Floor
-    3300000: //RootNode
-    3300002: Floor
-    4300000: ground
-    4300002: Floor
+    100000: Floor
+    100002: //RootNode
+    100004: Floor 1
+    100006: polySurface106
+    100008: polySurface107
+    100010: polySurface108
+    100012: polySurface109
+    100014: polySurface35
+    100016: the_Level
+    100018: transform104
+    100020: transform105
+    100022: transform106
+    100024: transform107
+    100026: transform108
+    400000: Floor
+    400002: //RootNode
+    400004: Floor 1
+    400006: polySurface106
+    400008: polySurface107
+    400010: polySurface108
+    400012: polySurface109
+    400014: polySurface35
+    400016: the_Level
+    400018: transform104
+    400020: transform105
+    400022: transform106
+    400024: transform107
+    400026: transform108
+    2300000: Floor
+    3300000: Floor
+    4300000: Floor
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -73,7 +95,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

@@ -16,6 +16,7 @@ TagManager:
   - indoorLaser
   - laserChild
   - rotatingLaser
+  - lavaCollider
   layers:
   - Default
   - TransparentFX
