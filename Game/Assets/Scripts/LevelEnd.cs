@@ -7,14 +7,15 @@ public class LevelEnd : MonoBehaviour {
 
 	public bool end = false;
     System.Diagnostics.Stopwatch playedTime;
-
 	public bool restart = false;
-	private bool vicoryScreen = false;
+    public string nextLevel;
+
+    private bool vicoryScreen = false;
 
 	private GameObject canvas;
-
 	private GameObject restartButton;
-	private GameObject victoryScreenText;
+    private GameObject nextButton;
+    private GameObject victoryScreenText;
 	private GameObject yourTimeText;
 	private GameObject victoryWindow;
     private UnityAnalytics analytics;
@@ -29,6 +30,7 @@ public class LevelEnd : MonoBehaviour {
 	{
         playedTime = new System.Diagnostics.Stopwatch();
         canvas = GameObject.Find ("Canvas");
+        if (string.IsNullOrEmpty(nextLevel)) nextLevel = Application.loadedLevelName;
     }
 	
 	// Update is called once per frame
@@ -73,7 +75,11 @@ public class LevelEnd : MonoBehaviour {
 				restartButton.transform.SetParent(canvas.transform, false);
 				restartButton.GetComponent<Button>().onClick.AddListener(() => { setRestart (true);});
 
-				vicoryScreen = true;
+                nextButton = Instantiate(Resources.Load("NextLevelButton")) as GameObject;
+                nextButton.transform.SetParent(canvas.transform, false);
+                nextButton.GetComponent<Button>().onClick.AddListener(() => { Application.LoadLevel(nextLevel); });
+
+                vicoryScreen = true;
                 analytics.createAnalyticsEntry(endTime, "Victory");
 			}
 

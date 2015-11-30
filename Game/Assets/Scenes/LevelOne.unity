@@ -8916,6 +8916,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.29520035
       objectReference: {fileID: 0}
+    - target: {fileID: 11459216, guid: 10be6431ce2c59b48a4b0b3c41a6d4e3, type: 2}
+      propertyPath: nextLevel
+      value: Level 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2330140, guid: 10be6431ce2c59b48a4b0b3c41a6d4e3, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 10be6431ce2c59b48a4b0b3c41a6d4e3, type: 2}
@@ -10452,11 +10456,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 19565890, guid: 880df42dc39fb504492e74ffc3d5232e, type: 2}
       propertyPath: m_BaseOffset
-      value: -.0299999993
+      value: -.0599999987
       objectReference: {fileID: 0}
     - target: {fileID: 6506582, guid: 880df42dc39fb504492e74ffc3d5232e, type: 2}
       propertyPath: m_Center.y
-      value: 1.99000001
+      value: 2.05999994
       objectReference: {fileID: 0}
     - target: {fileID: 11491634, guid: 880df42dc39fb504492e74ffc3d5232e, type: 2}
       propertyPath: goJoystick
@@ -10477,6 +10481,38 @@ Prefab:
     - target: {fileID: 19565890, guid: 880df42dc39fb504492e74ffc3d5232e, type: 2}
       propertyPath: m_AutoRepath
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2309532, guid: 880df42dc39fb504492e74ffc3d5232e, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2327104, guid: 880df42dc39fb504492e74ffc3d5232e, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321562, guid: 880df42dc39fb504492e74ffc3d5232e, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2397794, guid: 880df42dc39fb504492e74ffc3d5232e, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 411844, guid: 880df42dc39fb504492e74ffc3d5232e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .0610000007
+      objectReference: {fileID: 0}
+    - target: {fileID: 426716, guid: 880df42dc39fb504492e74ffc3d5232e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .0610000007
+      objectReference: {fileID: 0}
+    - target: {fileID: 409666, guid: 880df42dc39fb504492e74ffc3d5232e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .0610000007
+      objectReference: {fileID: 0}
+    - target: {fileID: 406038, guid: 880df42dc39fb504492e74ffc3d5232e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .0610000007
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 880df42dc39fb504492e74ffc3d5232e, type: 2}
