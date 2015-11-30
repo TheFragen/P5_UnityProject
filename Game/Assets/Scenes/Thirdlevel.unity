@@ -1173,12 +1173,13 @@ GameObject:
   - 33: {fileID: 604887879}
   - 23: {fileID: 604887878}
   - 65: {fileID: 604887880}
+  - 208: {fileID: 604887881}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 3
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &604887877
 Transform:
@@ -1237,6 +1238,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .0114059802, y: .00999999885, z: .00999999978}
   m_Center: {x: -.000702950929, y: 0, z: 2.0064832e-09}
+--- !u!208 &604887881
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 604887876}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: .00500000035, y: .00500000035, z: .00500000035}
+  m_MoveThreshold: .100000001
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: .5
 --- !u!1 &697138823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,6 +1263,7 @@ GameObject:
   - 4: {fileID: 697138824}
   - 33: {fileID: 697138826}
   - 23: {fileID: 697138825}
+  - 208: {fileID: 697138827}
   m_Layer: 0
   m_Name: pCube31
   m_TagString: Untagged
@@ -1299,6 +1316,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 697138823}
   m_Mesh: {fileID: 4300014, guid: ae5abef472be3bd42badf4c9439b2bc6, type: 3}
+--- !u!208 &697138827
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 697138823}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: .00500000035, y: .00500000035, z: .00500000035}
+  m_MoveThreshold: .100000001
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: .5
 --- !u!1 &703822870
 GameObject:
   m_ObjectHideFlags: 0
@@ -2612,6 +2644,32 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cfd434c0ae842064cbcb462550ebda21, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1165276842 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 145866, guid: 880df42dc39fb504492e74ffc3d5232e, type: 2}
+  m_PrefabInternal: {fileID: 273161863}
+--- !u!114 &1165276843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1165276842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d0ffef1a4703647a57a96c7bf19497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1165276855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1165276842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 321852d5adc6dc641a81e05776f51737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1278514364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2936,6 +2994,7 @@ GameObject:
   - 4: {fileID: 1542847589}
   - 33: {fileID: 1542847591}
   - 23: {fileID: 1542847590}
+  - 208: {fileID: 1542847592}
   m_Layer: 0
   m_Name: pCube16
   m_TagString: Untagged
@@ -2988,6 +3047,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1542847588}
   m_Mesh: {fileID: 4300010, guid: ae5abef472be3bd42badf4c9439b2bc6, type: 3}
+--- !u!208 &1542847592
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1542847588}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: .00500000035, y: .00500000035, z: .00500000035}
+  m_MoveThreshold: .100000001
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: .5
 --- !u!1 &1550155812
 GameObject:
   m_ObjectHideFlags: 0
@@ -3261,6 +3335,10 @@ Prefab:
     - target: {fileID: 421328, guid: 1b73fdc4356675c458f7241352d6e0a7, type: 2}
       propertyPath: m_RootOrder
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 111532, guid: 1b73fdc4356675c458f7241352d6e0a7, type: 2}
+      propertyPath: m_Name
+      value: ColerCodeManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1b73fdc4356675c458f7241352d6e0a7, type: 2}
