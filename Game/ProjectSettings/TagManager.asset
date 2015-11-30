@@ -13,6 +13,9 @@ TagManager:
   - Enemy
   - SoundEmitter
   - Analytics
+  - indoorLaser
+  - laserChild
+  - rotatingLaser
   layers:
   - Default
   - TransparentFX

@@ -21,15 +21,18 @@ public class playerAnimationState : MonoBehaviour {
 
         if(agent.hasPath)
         {
+            isMoving = true;
             anim.SetBool("IsWalking", true);
             anim.SetFloat("Speed", agent.desiredVelocity.magnitude);
         } else if(Vector3.Distance(rb.velocity, Vector3.zero) > threshold)
         {
+            isMoving = true;
             anim.SetBool("IsWalking", true);
             anim.SetFloat("Speed", Vector3.Magnitude(rb.velocity - Vector3.zero));
         }
         else
         {
+            isMoving = false;
             anim.SetBool("IsWalking", false);
         }
 

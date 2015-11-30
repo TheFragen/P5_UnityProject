@@ -3,24 +3,26 @@ using System.Collections;
 
 public class laser_visible : MonoBehaviour
 {
+    private Transform player;
+    private Transform[] laserChild;
     private GameObject Laser;
     private float gameTime;
     private bool on;
     // Use this for initialization
     void Start()
     {
+        player = GameObject.Find("Player/Robart").transform;
         gameTime = 0;
         on = false;
         Laser = GameObject.Find("Lasers");
+        laserChild = this.GetComponentsInChildren<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        print(Time.time);
-        if (Time.time - gameTime > 5)
+            if (Time.time - gameTime > 5)
         {
-            print(Time.time - gameTime + "difference " );
             if (on == false)
             {
                 gameTime = Time.time;
