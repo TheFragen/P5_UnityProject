@@ -22,7 +22,7 @@ public class UnityAnalytics : MonoBehaviour {
 
     void Awake()
     {
-        if(instance == null)
+  /*      if(instance == null)
         {
             instance = this;
             DontDestroyOnLoad(transform.gameObject);
@@ -34,25 +34,30 @@ public class UnityAnalytics : MonoBehaviour {
             GameObject.Find("UserID").GetComponent<UnityEngine.UI.Text>().text = userID;
             GameObject.Find("InputField").SetActive(false);
             Destroy(this.gameObject);
-        }
+        }*/
         
     }
 
     // Use this for initialization
-    void Start () {       
-            OpenDB();
+    void Start()
+    {
+        control = GameObject.Find("Control Cycler").GetComponent<cycleControls>();
+        player = GameObject.Find("Player").transform;
+        playerPositions.Add(player.localPosition);
 
-            string[] col = { "id", "userID", "endTime", "source", "controlScheme", "level" };
-            string[] colType = { "integer primary key autoincrement", "text", "integer", "text", "text", "text" };
+        OpenDB();
 
-            if (!CreateTable("testing", col, colType))
-                Debug.Log("Error creating table");
-            CloseDB();
-        
+        string[] col = { "id", "userID", "endTime", "source", "controlScheme", "level" };
+        string[] colType = { "integer primary key autoincrement", "text", "integer", "text", "text", "text" };
+
+        if (!CreateTable("testing", col, colType))
+            Debug.Log("Error creating table");
+        CloseDB();
+
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 	
 	}
 
