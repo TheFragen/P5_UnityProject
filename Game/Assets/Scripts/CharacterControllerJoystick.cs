@@ -162,7 +162,7 @@ public class CharacterControllerJoystick : MonoBehaviour {
             agent.destination = this.transform.position + movement * Time.deltaTime;
         //    rBody.velocity = direction;
 
-      //      Debug.Log("direction" + direction.normalized);
+             Debug.Log("direction" + direction.normalized);
 
         }
         else
