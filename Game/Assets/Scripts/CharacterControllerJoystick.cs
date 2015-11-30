@@ -114,7 +114,7 @@ public class CharacterControllerJoystick : MonoBehaviour {
             //    if (setImageOnce)
             //     {
             setImageOnce = false;
-               // goJoystick.GetComponentsInChildren<Transform>()[1].GetComponent<Image>().sprite = colorCodedJoystick;
+                goJoystick.transform.GetChild(0).GetComponent<Image>().sprite = colorCodedJoystick;
          //   }
         }
 
@@ -157,17 +157,19 @@ public class CharacterControllerJoystick : MonoBehaviour {
                 Vector3 Xdirection = GameObject.Find("Reference Cube").transform.right * moveVec.x * forwardVel;
                 direction = ydirection + Xdirection;
             }
-            Vector3 movement = direction.normalized;
-            movement *= 86;
-            agent.destination = this.transform.position + movement * Time.deltaTime;
+            Vector3 movement = direction;
+            agent.speed = movement.magnitude * 1.25f;
+     //       movement *= 86;
+            agent.destination = this.transform.position + movement;
         //    rBody.velocity = direction;
 
-             Debug.Log("direction" + direction.normalized);
+             Debug.Log("direction" + direction);
 
         }
         else
-        { 
-            StartCoroutine(Delay());
+        {
+            agent.destination = this.transform.position;
+          //  StartCoroutine(Delay());
         }
     }
 
