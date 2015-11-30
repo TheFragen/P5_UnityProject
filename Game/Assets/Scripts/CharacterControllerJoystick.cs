@@ -157,18 +157,21 @@ public class CharacterControllerJoystick : MonoBehaviour {
                 Vector3 Xdirection = GameObject.Find("Reference Cube").transform.right * moveVec.x * forwardVel;
                 direction = ydirection + Xdirection;
             }
-            Vector3 movement = direction;
-            agent.speed = movement.magnitude * 1.25f;
-     //       movement *= 86;
-            agent.destination = this.transform.position + movement;
+
+            Vector3 movement = direction.normalized;
+        //    movement *= direction.magnitude;
+            agent.speed = direction.magnitude;
+
+            agent.destination = this.transform.position + movement * Time.deltaTime;
         //    rBody.velocity = direction;
 
-             Debug.Log("direction" + direction);
+             Debug.Log("direction: " + direction.magnitude);
 
         }
         else
         {
             agent.destination = this.transform.position;
+            agent.ResetPath();
           //  StartCoroutine(Delay());
         }
     }

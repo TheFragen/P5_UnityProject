@@ -36,7 +36,7 @@ public class LevelEnd : MonoBehaviour {
 	{
 		if (restart) 
 		{
-			Debug.Log ("We must go back");
+            Debug.Log ("We must go back");
 			Application.LoadLevel(Application.loadedLevel);
 			restart = false;
 
