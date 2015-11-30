@@ -114,7 +114,7 @@ public class CharacterControllerJoystick : MonoBehaviour {
             //    if (setImageOnce)
             //     {
             setImageOnce = false;
-                goJoystick.GetComponentsInChildren<Transform>()[1].GetComponent<Image>().sprite = colorCodedJoystick;
+               // goJoystick.GetComponentsInChildren<Transform>()[1].GetComponent<Image>().sprite = colorCodedJoystick;
          //   }
         }
 

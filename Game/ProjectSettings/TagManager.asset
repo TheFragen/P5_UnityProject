@@ -13,9 +13,10 @@ TagManager:
   - Enemy
   - SoundEmitter
   - Analytics
-  - indoorLaser
-  - laserChild
-  - rotatingLaser
+  - RedPlate
+  - YellowPlate
+  - BluePlate
+  - GreenPlate
   layers:
   - Default
   - TransparentFX
