@@ -3,27 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Ground
-  - ImageTarget
-  - EnemyWaypoint
-  - Laser
-  - Gate
-  - Joystick
-  - Enemy
-  - SoundEmitter
-  - Analytics
-<<<<<<< HEAD
-  - indoorLaser
-  - laserChild
-  - rotatingLaser
-  - lavaCollider
-=======
-  - RedPlate
-  - YellowPlate
-  - BluePlate
-  - GreenPlate
->>>>>>> c8b6072a81e0d8cd985554688c173d2a447a36e3
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -33,7 +13,7 @@ TagManager:
   - UI
   - 
   - 
-  - Laser
+  - 
   - 
   - 
   - 
