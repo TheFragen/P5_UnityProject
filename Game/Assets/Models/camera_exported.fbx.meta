@@ -7,11 +7,24 @@ ModelImporter:
   fileIDToRecycleName:
     100000: Camera
     100002: //RootNode
+    100004: CCTV
+    100006: pCube32
+    100008: pCylinder27
+    100010: transform7
+    100012: transform8
     400000: Camera
     400002: //RootNode
+    400004: CCTV
+    400006: pCube32
+    400008: pCylinder27
+    400010: transform7
+    400012: transform8
     2300000: Camera
+    2300002: CCTV
     3300000: Camera
+    3300002: CCTV
     4300000: Camera
+    4300002: CCTV
     9500000: //RootNode
   materials:
     importMaterials: 1

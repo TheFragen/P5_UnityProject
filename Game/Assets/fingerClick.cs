@@ -56,14 +56,14 @@ public class fingerClick : MonoBehaviour
         if (wayPoints.Count > 0)
         {
             navMeshAgent.destination = wayPoints[0].transform.position;
-
-            /*         //Draw path to next waypoint
+/*
+                     //Draw path to next waypoint
                      this.transform.GetComponent<LineRenderer>().SetVertexCount(navMeshAgent.path.corners.Length);
                      this.transform.GetComponent<LineRenderer>().SetPosition(0, this.transform.position);
                      for (int i = 1; i < navMeshAgent.path.corners.Length; i++)
                      {
                          this.transform.GetComponent<LineRenderer>().SetPosition(i, navMeshAgent.path.corners[i] + transform.up/6);
-                     }*/
+                     }
 
 
             //Detect if NavMeshAgent is hitting an obstacle
@@ -85,17 +85,18 @@ public class fingerClick : MonoBehaviour
           //              obstaclePoint = true;
                     }
                 }
-            }
+            }*/
 
             if (distance == 0) distance = 0.5f;
-
+            
             if (Vector3.Distance(this.transform.position, wayPoints[0].transform.position) < distance)
             {
                 Destroy(wayPoints[0]);
                 wayPoints.RemoveAt(0);
                 distance = 0;
                 navMeshAgent.speed = 15;
-       //         obstaclePoint = false;
+                navMeshAgent.destination = this.transform.position;
+                //         obstaclePoint = false;
 
                 if (wayPoints.Count == 0)
                 {

@@ -22,15 +22,20 @@ public class EnemyMovementNavAgent : MonoBehaviour
 
     private float chaseTimer;                               // A timer for the chaseWaitTime.
     private float patrolTimer;                              // A timer for the patrolWaitTime.
-    private int pathPointIndex;
+    public int pathPointIndex;
 
     private bool recheck = false;
     private Quaternion target;
     public bool obstaclePoint;
-    private float distance = 1.1f;
+    public float distance = 1.1f;
+    private float initialDistance;
+    private float initialPatrolSpeed;
+    private Vector3 soundAlertPosition;
 
     // Use this for initialization
     void Start() {
+        initialPatrolSpeed = patrolSpeed;
+        initialDistance = distance;
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = 1.0f;
 
@@ -70,7 +75,7 @@ public class EnemyMovementNavAgent : MonoBehaviour
         }
 
         //Enemy has found the enemy
-        if (Vector3.Distance(this.transform.position, player.transform.position) < 2.5f)
+        if (Vector3.Distance(this.transform.position, player.transform.position) < distance)
         {
             GameObject.Find("LevelEnd").GetComponent<LevelEnd>().setEndCondition("The vicious enemies has cought you.");
         }
@@ -78,16 +83,29 @@ public class EnemyMovementNavAgent : MonoBehaviour
 
     }
 
-    public void setSoundAlerted(Vector3 sourcePosition) {
+    public void setSoundAlerted(Vector3 sourcePosition)
+    {
         soundAlerted = true;
         agent.destination = sourcePosition;
         agent.speed = chaseSpeed;
+        this.soundAlertPosition = sourcePosition;
+    }
+
+    public void resetSoundAlerted()
+    {
+        NavMeshPath path = new NavMeshPath();
+        agent.CalculatePath(soundAlertPosition, path);
+        if (path.status == NavMeshPathStatus.PathComplete)
+        {
+            soundAlerted = false;
+            agent.speed = patrolSpeed;
+            agent.ResetPath();
+            soundAlertPosition = new Vector3();
+        }
     }
 
     void sound() {
-
-
-        if (Vector3.Distance(this.transform.position, agent.destination) < 1.1f) {
+        if (Vector3.Distance(this.transform.position, agent.destination) < distance) {
             // Incerement timer
             chaseTimer += Time.deltaTime;
 
@@ -96,14 +114,15 @@ public class EnemyMovementNavAgent : MonoBehaviour
                 recheck = true;
 
                 //Wait a bit before resetting
-                if (chaseTimer >= chaseWaitTime + 3f) {
+                if (chaseTimer >= chaseWaitTime + 2f) {
                     Debug.Log("Resetting");
                     soundAlerted = false;
                     chaseTimer = 0f;
                     recheck = false;
-                   /* if(waypoint.Length > 0) {
+                    if(waypoint.Length > 0) {
                         agent.destination = waypoint[pathPointIndex].transform.position;
-                    }*/
+                    }
+                    patrolSpeed = chaseSpeed;
                 }
             }
         } else {
@@ -118,7 +137,7 @@ public class EnemyMovementNavAgent : MonoBehaviour
         agent.destination = enemySight.lastSighting;
 
         // If near the last personal sighting...
-        if (Vector3.Distance(this.transform.position, agent.destination) < 1.1f) {
+        if (Vector3.Distance(this.transform.position, agent.destination) < distance) {
             // Incerement timer
             chaseTimer += Time.deltaTime;
 
@@ -127,7 +146,7 @@ public class EnemyMovementNavAgent : MonoBehaviour
                 recheck = true;
 
                 //Wait a bit before resetting
-                if (chaseTimer >= chaseWaitTime + 3f) {
+                if (chaseTimer >= chaseWaitTime + 1f) {
                     Debug.Log("Resetting");
                     enemySight.lastSighting = enemySight.resetSight;
                     agent.destination = waypoint[pathPointIndex].transform.position;
@@ -168,10 +187,11 @@ public class EnemyMovementNavAgent : MonoBehaviour
 
         // If near the next waypoint or there is no destination...
         if (Vector3.Distance(this.transform.position, agent.destination) <= distance) {
+            patrolSpeed = initialPatrolSpeed;
             // ... increment the timer.
             patrolTimer += Time.deltaTime;
             obstaclePoint = false;
-            distance = 1.1f;
+            distance = initialDistance;
 
             // If the timer exceeds the wait time...
             if (patrolTimer >= patrolWaitTime) {

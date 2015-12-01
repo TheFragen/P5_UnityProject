@@ -21,14 +21,24 @@ public class fpsCounter : MonoBehaviour {
         accum += Time.timeScale / Time.deltaTime;
         ++frames;
         
-
-        // Interval ended - update GUI text and start new interval
         if (timeleft <= 0.0)
         {
-            // display two fractional digits (f2 format)
             float fps = accum / frames;
             string format = System.String.Format("{0:F2} FPS", fps);
             this.GetComponent<Text>().text = format;
+
+            if (fps >= 1 && fps <= 10)
+            {
+                this.GetComponent<Text>().color = Color.red;
+            }
+            else if (fps >= 11 && fps <= 23)
+            {
+                this.GetComponent<Text>().color = Color.yellow;
+            }
+            else
+            {
+                this.GetComponent<Text>().color = Color.green;
+            }
 
             timeleft = updateInterval;
             accum = 0.0F;

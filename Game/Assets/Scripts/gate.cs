@@ -13,6 +13,12 @@ public class gate : MonoBehaviour
     Vector3 currentAngle;
     NavMeshObstacle obstacle;
 
+    void Awake()
+    {
+        GetComponent<BoxCollider>().isTrigger = true;
+        this.gameObject.layer = 2;
+    }
+
     // Use this for initialization
     void Start()
     {

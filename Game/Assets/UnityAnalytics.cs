@@ -19,23 +19,11 @@ public class UnityAnalytics : MonoBehaviour {
     private StringBuilder builder;
     public bool isDebug;
     public static UnityAnalytics instance = null;
+    public string databaseName;
 
     void Awake()
     {
-  /*      if(instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(transform.gameObject);
-            control = GameObject.Find("Control Cycler").GetComponent<cycleControls>();
-            player = GameObject.Find("Player").transform;
-            playerPositions.Add(player.localPosition);
-        } else
-        {
-            GameObject.Find("UserID").GetComponent<UnityEngine.UI.Text>().text = userID;
-            GameObject.Find("InputField").SetActive(false);
-            Destroy(this.gameObject);
-        }*/
-        
+        if (string.IsNullOrEmpty(databaseName)) databaseName = "testing";
     }
 
     // Use this for initialization
@@ -50,7 +38,7 @@ public class UnityAnalytics : MonoBehaviour {
         string[] col = { "id", "userID", "endTime", "source", "controlScheme", "level" };
         string[] colType = { "integer primary key autoincrement", "text", "integer", "text", "text", "text" };
 
-        if (!CreateTable("testing", col, colType))
+        if (!CreateTable(databaseName, col, colType))
             Debug.Log("Error creating table");
         CloseDB();
 
@@ -80,7 +68,7 @@ public class UnityAnalytics : MonoBehaviour {
             {"playerPositions", playerPositions.ToArray() }
         });*/
 
-        string query = string.Format("INSERT INTO testing (userID,endTime,source,controlScheme,level) VALUES('{0}',{1},'{2}','{3}','{4}')", userID, endTime, sourceOfEnd, control.getCurrentControlScheme(), Application.loadedLevelName);
+        string query = string.Format("INSERT INTO "+ databaseName +" (userID,endTime,source,controlScheme,level) VALUES('{0}',{1},{2},'{3}','{4}')", userID, endTime, sourceOfEnd, control.getCurrentControlScheme(), Application.loadedLevelName);
         save(query);
     }
 

@@ -13,6 +13,11 @@ public class EnemySight : MonoBehaviour {
     private Vector3 previousSighting;
     public Animator anim;
 
+    public float angle;
+    private bool stopOnce = true;
+    public float radiusScalar = 0f;
+    public LayerMask layers;
+
     // Use this for initialization
     void Start () {
         anim = this.transform.GetChild(0).GetComponent<Animator>();
@@ -36,16 +41,21 @@ public class EnemySight : MonoBehaviour {
         {
             hasSight = false;
             Vector3 direction = other.transform.position - transform.position;
-            float angle = Vector3.Angle(direction, transform.forward);
+            angle = Vector3.Angle(direction, transform.forward);
             
             if (angle <= fovAngle)
             {
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, col.radius))
+         //       if (layers == null) layers = 0 << 7;
+                if (Physics.Raycast(transform.position, direction, out hit, col.radius * radiusScalar, layers))
                 {
-                    Debug.DrawLine(transform.position, hit.point, Color.red);
                     if (hit.collider.gameObject == player)
                     {
+                        if (stopOnce)
+                        {
+                            GetComponent<EnemyMovementNavAgent>().resetSoundAlerted();
+                            stopOnce = false;
+                        }
                         hasSight = true;
                         lastSighting = player.transform.position;
                         Debug.Log("player sighted");
@@ -54,6 +64,12 @@ public class EnemySight : MonoBehaviour {
                     //Check if player is really close to enemy, and mark that as sight
                     else if (hit.distance < 1.5f && hit.collider.gameObject == player)
                     {
+                        if (stopOnce)
+                        {
+                            GetComponent<EnemyMovementNavAgent>().resetSoundAlerted();
+                            stopOnce = false;
+                        }
+
                         hasSight = true;
                         lastSighting = player.transform.position;
                         Debug.Log("player sighted");
@@ -68,6 +84,7 @@ public class EnemySight : MonoBehaviour {
         { 
             hasSight = false;
             anim.SetBool("Detect", false);
+            stopOnce = true;
         }
     }
 }

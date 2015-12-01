@@ -3,9 +3,6 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD
-  tags: []
-=======
   tags:
   - ImageTarget
   - Ground
@@ -24,7 +21,6 @@ TagManager:
   - Gate
   - EnemyWaypoint
   - Laser
->>>>>>> a8bf2d8e7f19ed72fd000aabbadddabea16027f8
   layers:
   - Default
   - TransparentFX
@@ -34,7 +30,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Ground
   - 
   - 
   - 

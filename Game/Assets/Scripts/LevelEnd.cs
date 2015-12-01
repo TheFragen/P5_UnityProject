@@ -20,8 +20,12 @@ public class LevelEnd : MonoBehaviour {
 	private GameObject victoryWindow;
     private UnityAnalytics analytics;
 
+    private System.TimeSpan lastEnd = new System.TimeSpan(0, 0, 0);
+    int totalErrors;
+
     void Awake()
     {
+        totalErrors = 0;
         analytics = GameObject.FindGameObjectWithTag("Analytics").transform.GetComponent<UnityAnalytics>();
     }
 
@@ -53,34 +57,40 @@ public class LevelEnd : MonoBehaviour {
 		if (other.gameObject.tag == "Player") 
 		{
 			end = true;
-			if (vicoryScreen == false)
-			{
+            if (vicoryScreen == false)
+            {
                 playedTime.Stop();
                 System.TimeSpan ts = playedTime.Elapsed;
-                int endTime = (int) ts.TotalSeconds;
+                int endTime = (int)ts.TotalSeconds;
 
                 victoryWindow = Instantiate(Resources.Load("VictoryScreenPanel")) as GameObject;
-				victoryWindow.transform.SetParent(canvas.transform, false);
-				
-				victoryScreenText = Instantiate(Resources.Load("VictoryText")) as GameObject;
-				victoryScreenText.transform.SetParent(canvas.transform, false);
-				
-				yourTimeText = Instantiate(Resources.Load("YourTimeText")) as GameObject;
-				yourTimeText.transform.SetParent(canvas.transform, false);
+                victoryWindow.transform.SetParent(canvas.transform, false);
 
-                
-				yourTimeText.GetComponent<Text>().text = "Your Time: " + endTime;
-				
-				restartButton = Instantiate(Resources.Load("RestartButton")) as GameObject;
-				restartButton.transform.SetParent(canvas.transform, false);
-				restartButton.GetComponent<Button>().onClick.AddListener(() => { setRestart (true);});
+                victoryScreenText = Instantiate(Resources.Load("VictoryText")) as GameObject;
+                victoryScreenText.transform.SetParent(canvas.transform, false);
+
+                yourTimeText = Instantiate(Resources.Load("YourTimeText")) as GameObject;
+                yourTimeText.transform.SetParent(canvas.transform, false);
+
+
+                yourTimeText.GetComponent<Text>().text = "Your Time: " + endTime;
+
+                restartButton = Instantiate(Resources.Load("RestartButton")) as GameObject;
+                restartButton.transform.SetParent(canvas.transform, false);
+                restartButton.GetComponent<Button>().onClick.AddListener(() => { setRestart(true); });
 
                 nextButton = Instantiate(Resources.Load("NextLevelButton")) as GameObject;
                 nextButton.transform.SetParent(canvas.transform, false);
                 nextButton.GetComponent<Button>().onClick.AddListener(() => { Application.LoadLevel(nextLevel); });
 
                 vicoryScreen = true;
-                analytics.createAnalyticsEntry(endTime, "Victory");
+                if (Application.loadedLevelName != "Level 2") { 
+                    analytics.createAnalyticsEntry(endTime, "Victory");
+                }
+                else
+                {
+                    analytics.createAnalyticsEntry(endTime, GameObject.Find("ErrorsPoints").GetComponent<Text>().text);
+                }
 			}
 
 		}
@@ -93,30 +103,52 @@ public class LevelEnd : MonoBehaviour {
 
     public void setEndCondition(string endText)
     {
-        end = true;
-        if (vicoryScreen == false)
+        if(Application.loadedLevelName != "Level 2")
         {
-            playedTime.Stop();
-            System.TimeSpan ts = playedTime.Elapsed;
-            int endTime = (int)ts.TotalSeconds;
+            end = true;
+            if (vicoryScreen == false)
+            {
+                playedTime.Stop();
+                System.TimeSpan ts = playedTime.Elapsed;
+                int endTime = (int)ts.TotalSeconds;
 
-            victoryWindow = Instantiate(Resources.Load("VictoryScreenPanel")) as GameObject;
-            victoryWindow.transform.SetParent(canvas.transform, false);
+                victoryWindow = Instantiate(Resources.Load("VictoryScreenPanel")) as GameObject;
+                victoryWindow.transform.SetParent(canvas.transform, false);
 
-            victoryScreenText = Instantiate(Resources.Load("VictoryText")) as GameObject;
-            victoryScreenText.GetComponent<Text>().text = endText;
-            victoryScreenText.transform.SetParent(canvas.transform, false);
+                victoryScreenText = Instantiate(Resources.Load("VictoryText")) as GameObject;
+                victoryScreenText.GetComponent<Text>().text = endText;
+                victoryScreenText.transform.SetParent(canvas.transform, false);
 
-            yourTimeText = Instantiate(Resources.Load("YourTimeText")) as GameObject;
-            yourTimeText.transform.SetParent(canvas.transform, false);
-            yourTimeText.GetComponent<Text>().text = "Your Time: " + endTime;
+                yourTimeText = Instantiate(Resources.Load("YourTimeText")) as GameObject;
+                yourTimeText.transform.SetParent(canvas.transform, false);
+                yourTimeText.GetComponent<Text>().text = "Your Time: " + endTime;
 
-            restartButton = Instantiate(Resources.Load("RestartButton")) as GameObject;
-            restartButton.transform.SetParent(canvas.transform, false);
-            restartButton.GetComponent<Button>().onClick.AddListener(() => { setRestart(true); });
+                restartButton = Instantiate(Resources.Load("RestartButton")) as GameObject;
+                restartButton.transform.SetParent(canvas.transform, false);
+                restartButton.GetComponent<Button>().onClick.AddListener(() => { setRestart(true); });
 
-            vicoryScreen = true;
-            analytics.createAnalyticsEntry(endTime, "Enemy");
+                vicoryScreen = true;
+                analytics.createAnalyticsEntry(endTime, "Enemy");
+            }
+        } else
+        {
+            double currentTime = playedTime.Elapsed.TotalSeconds;
+            if (currentTime >= lastEnd.TotalSeconds + 1)
+            {
+                incrementErrors();
+            }
+            Debug.Log("Current time: " + currentTime.ToString() + " Last End: " + lastEnd.TotalSeconds.ToString());
+
+            if (victoryWindow == null && victoryScreenText == null)
+            {
+                StartCoroutine(hideWindow());
+                victoryWindow = Instantiate(Resources.Load("VictoryScreenPanel")) as GameObject;
+                victoryWindow.transform.SetParent(canvas.transform, false);
+
+                victoryScreenText = Instantiate(Resources.Load("VictoryText")) as GameObject;
+                victoryScreenText.GetComponent<Text>().text = "Watch out!";
+                victoryScreenText.transform.SetParent(canvas.transform, false);
+            }
         }
     }
 
@@ -125,7 +157,20 @@ public class LevelEnd : MonoBehaviour {
         if(!playedTime.IsRunning) playedTime.Start();
     }
 
+    IEnumerator hideWindow()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(victoryWindow);
+        Destroy(victoryScreenText);
+        victoryWindow = null;
+        victoryScreenText = null;
+    }
 
+    public void incrementErrors()
+    {
+        ++totalErrors;
+        GameObject.Find("ErrorsPoints").GetComponent<Text>().text = totalErrors.ToString();
+    }
 }
 
 
