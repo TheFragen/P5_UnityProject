@@ -111,6 +111,7 @@ public class cycleControls : MonoBehaviour {
         }
 
         player.GetComponent<CharacterControllerJoystick>().enabled = false;
+        player.GetComponent<NavMeshAgent>().speed = 15;
         player.GetComponent<NavMeshAgent>().enabled = false;
         player.GetComponent<PointAndClick>().enabled = false;
         player.GetComponent<tileMovement>().enabled = false;
