@@ -26,6 +26,11 @@ namespace Vuforia
 
         #region UNTIY_MONOBEHAVIOUR_METHODS
 
+        void Awake()
+        {
+            Screen.SetResolution(640, 480, true);
+        }
+
         void Start()
         {
             settingsButton = GameObject.Find("Canvas/Settings");
@@ -101,7 +106,7 @@ namespace Vuforia
                 component.enabled = true;
             }
 
-            Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
+      //      Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
 
             trackerFound = true;
             settingsButton.GetComponent<UnityEngine.UI.Image>().enabled = true;
@@ -126,7 +131,7 @@ namespace Vuforia
                 component.enabled = false;
             }
 
-            Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
+     //       Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
 
             trackerFound = false;
             settingsButton.GetComponent<UnityEngine.UI.Image>().enabled = false;

@@ -11,8 +11,19 @@ public class vuforiaOrientation : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Vector3 _tmp = referenceCube.localEulerAngles;
-        _tmp.y = this.transform.localEulerAngles.y;
-        referenceCube.localEulerAngles = _tmp;
+        if(Application.loadedLevel > 0)
+        {
+            if (referenceCube == null) referenceCube = GameObject.Find("Reference Cube").transform;
+            Vector3 _tmp = referenceCube.localEulerAngles;
+            _tmp.y = this.transform.localEulerAngles.y;
+            referenceCube.localEulerAngles = _tmp;
+        }   
     }
+
+    void OnLevelWasLoaded()
+    {
+        referenceCube = null;
+    }
+
+
 }

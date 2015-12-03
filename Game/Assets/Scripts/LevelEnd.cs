@@ -43,9 +43,9 @@ public class LevelEnd : MonoBehaviour {
 		if (restart) 
 		{
             Debug.Log ("We must go back");
+        //    if(Application.loadedLevel== 0) Destroy(GameObject.FindGameObjectWithTag("ARCamera"));
 			Application.LoadLevel(Application.loadedLevel);
 			restart = false;
-
 		}
 	
 	}
@@ -71,8 +71,10 @@ public class LevelEnd : MonoBehaviour {
 
                 yourTimeText = Instantiate(Resources.Load("YourTimeText")) as GameObject;
                 yourTimeText.transform.SetParent(canvas.transform, false);
-
-
+                if (endTime > 100)
+                {
+                    yourTimeText.GetComponent<Text>().fontSize = 40;
+                }
                 yourTimeText.GetComponent<Text>().text = "Your Time: " + endTime;
 
                 restartButton = Instantiate(Resources.Load("RestartButton")) as GameObject;
@@ -84,7 +86,7 @@ public class LevelEnd : MonoBehaviour {
                 nextButton.GetComponent<Button>().onClick.AddListener(() => { Application.LoadLevel(nextLevel); });
 
                 vicoryScreen = true;
-                if (Application.loadedLevelName != "Level 2") { 
+                if (Application.loadedLevel != 2) { 
                     analytics.createAnalyticsEntry(endTime, "Victory");
                 }
                 else
@@ -103,7 +105,7 @@ public class LevelEnd : MonoBehaviour {
 
     public void setEndCondition(string endText)
     {
-        if(Application.loadedLevelName != "Level 2")
+        if(Application.loadedLevel != 2)
         {
             end = true;
             if (vicoryScreen == false)
@@ -111,6 +113,7 @@ public class LevelEnd : MonoBehaviour {
                 playedTime.Stop();
                 System.TimeSpan ts = playedTime.Elapsed;
                 int endTime = (int)ts.TotalSeconds;
+                
 
                 victoryWindow = Instantiate(Resources.Load("VictoryScreenPanel")) as GameObject;
                 victoryWindow.transform.SetParent(canvas.transform, false);
@@ -121,6 +124,10 @@ public class LevelEnd : MonoBehaviour {
 
                 yourTimeText = Instantiate(Resources.Load("YourTimeText")) as GameObject;
                 yourTimeText.transform.SetParent(canvas.transform, false);
+                if (endTime > 100)
+                {
+                    yourTimeText.GetComponent<Text>().fontSize = 30;
+                }
                 yourTimeText.GetComponent<Text>().text = "Your Time: " + endTime;
 
                 restartButton = Instantiate(Resources.Load("RestartButton")) as GameObject;
@@ -137,7 +144,6 @@ public class LevelEnd : MonoBehaviour {
             {
                 incrementErrors();
             }
-            Debug.Log("Current time: " + currentTime.ToString() + " Last End: " + lastEnd.TotalSeconds.ToString());
 
             if (victoryWindow == null && victoryScreenText == null)
             {
@@ -159,7 +165,7 @@ public class LevelEnd : MonoBehaviour {
 
     IEnumerator hideWindow()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         Destroy(victoryWindow);
         Destroy(victoryScreenText);
         victoryWindow = null;

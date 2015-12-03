@@ -33,15 +33,27 @@ public class UnityAnalytics : MonoBehaviour {
         player = GameObject.Find("Player").transform;
         playerPositions.Add(player.localPosition);
 
-        OpenDB();
+        string path;
+        if (Application.platform == RuntimePlatform.WindowsEditor)
+        {
+            path = Application.dataPath + "/testingData.s3db";
+        }
+        else
+        {
+            path = Application.persistentDataPath + "/testingData.s3db";
+        }
 
-        string[] col = { "id", "userID", "endTime", "source", "controlScheme", "level" };
-        string[] colType = { "integer primary key autoincrement", "text", "integer", "text", "text", "text" };
+        if (!File.Exists(path))
+        {
+            OpenDB();
 
-        if (!CreateTable(databaseName, col, colType))
-            Debug.Log("Error creating table");
-        CloseDB();
+            string[] col = { "id", "userID", "endTime", "source", "controlScheme", "level" };
+            string[] colType = { "integer primary key autoincrement", "text", "integer", "text", "text", "text" };
 
+            if (!CreateTable(databaseName, col, colType))
+                Debug.Log("Error creating table");
+            CloseDB();
+        }
     }
 
     // Update is called once per frame
@@ -51,9 +63,12 @@ public class UnityAnalytics : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if(player.localPosition != playerPositions[playerPositions.Count - 1])
+        if(player != null)
         {
-            playerPositions.Add(player.localPosition);
+            if (player.localPosition != playerPositions[playerPositions.Count - 1])
+            {
+                playerPositions.Add(player.localPosition);
+            }
         }
     }
 
@@ -68,13 +83,15 @@ public class UnityAnalytics : MonoBehaviour {
             {"playerPositions", playerPositions.ToArray() }
         });*/
 
-        string query = string.Format("INSERT INTO "+ databaseName +" (userID,endTime,source,controlScheme,level) VALUES('{0}',{1},{2},'{3}','{4}')", userID, endTime, sourceOfEnd, control.getCurrentControlScheme(), Application.loadedLevelName);
+        string query = string.Format("INSERT INTO "+ databaseName +" (userID,endTime,source,controlScheme,level) VALUES('{0}',{1},'{2}','{3}','{4}')", userID, endTime, sourceOfEnd, control.getCurrentControlScheme(), Application.loadedLevelName);
+        
         save(query);
     }
 
     public void setUserID(string userID)
     {
         this.userID = userID;
+        GameObject.Find("UserID").GetComponent<UnityEngine.UI.Text>().text = userID;
         GameObject.Find("LevelEnd").GetComponent<LevelEnd>().startTimer();
         Debug.Log("Timer started");
     }

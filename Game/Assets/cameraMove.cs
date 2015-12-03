@@ -23,7 +23,6 @@ public class cameraMove : MonoBehaviour
     long lastDebounceTime = 0;
     long debounceDelay = 150;
 
-
     // Use this for initialization
     void Start()
     {

@@ -19,6 +19,7 @@ public class cycleControls : MonoBehaviour {
     Color32 disableColor = new Color32(114, 16, 16, 255);
     Color32 enabledColor = new Color32(19, 144, 19, 255);
     public Transform showUpGoddammitJoystick;
+    bool fireonce = true;
 
     // Use this for initialization
     void Start () {
@@ -28,6 +29,8 @@ public class cycleControls : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (enableTilebasedMovement) {
+
+            
             enableJoystick = false;
             enablePointAndClick = false;
             enableFingerClick = false;
@@ -41,6 +44,17 @@ public class cycleControls : MonoBehaviour {
             player.GetComponent<tileMovement>().enabled = true;
             player.GetComponent<Rigidbody>().isKinematic = true;
             tilebasedButton.GetComponent<Image>().color = enabledColor;
+            player.GetComponent<NavMeshAgent>().autoBraking = false;
+            
+      /*      
+            //DEBUG
+            if (fireonce)
+            {
+                Application.LoadLevel(Application.loadedLevel + 1);
+                fireonce = false;
+            }
+           */
+        
         } else if (enableJoystick) {
             enablePointAndClick = false;
             enableTilebasedMovement = false;
@@ -55,7 +69,7 @@ public class cycleControls : MonoBehaviour {
             player.GetComponent<CharacterControllerJoystick>().enabled = true;
    //         player.GetComponent<Rigidbody>().isKinematic = false;
             joystickButton.GetComponent<Image>().color = enabledColor;
-            
+            player.GetComponent<NavMeshAgent>().autoBraking = false;
 
         } else if (enablePointAndClick) {
             enableJoystick = false;
@@ -66,6 +80,7 @@ public class cycleControls : MonoBehaviour {
             player.GetComponent<Rigidbody>().isKinematic = true;
             GameObject.Find("Canvas/redicule").GetComponent<Image>().enabled = true;
             pointAndClickButton.GetComponent<Image>().color = enabledColor;
+            player.GetComponent<NavMeshAgent>().autoBraking = true;
 
             foreach (Transform child in pointAndClick)
             {
@@ -79,7 +94,7 @@ public class cycleControls : MonoBehaviour {
             player.GetComponent<Rigidbody>().isKinematic = true;
             player.GetComponent<fingerClick>().enabled = true;
             fingerClickButton.GetComponent<Image>().color = enabledColor;
-
+            player.GetComponent<NavMeshAgent>().autoBraking = true;
         }
         else {
         //    resetAll();
@@ -88,7 +103,8 @@ public class cycleControls : MonoBehaviour {
 
     public void resetAll()
     {
-        Debug.Log("Reset");
+    //    Debug.Log("Reset");
+        fireonce = true;
         enableFingerClick = false;
         enableJoystick = false;
         enableTilebasedMovement = false;
@@ -109,7 +125,7 @@ public class cycleControls : MonoBehaviour {
         {
             child.gameObject.SetActive(false);
         }
-
+        player.GetComponent<NavMeshAgent>().autoBraking = false;
         player.GetComponent<CharacterControllerJoystick>().enabled = false;
         player.GetComponent<NavMeshAgent>().speed = 15;
         player.GetComponent<NavMeshAgent>().enabled = false;

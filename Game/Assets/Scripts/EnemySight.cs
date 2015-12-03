@@ -72,7 +72,7 @@ public class EnemySight : MonoBehaviour {
 
                         hasSight = true;
                         lastSighting = player.transform.position;
-                        Debug.Log("player sighted");
+                        anim.SetBool("Detect", true);
                     }
                 }                
             }            

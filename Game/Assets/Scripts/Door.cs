@@ -46,7 +46,7 @@ public class Door : MonoBehaviour
                     Debug.Log("You did it");
                     openDoor = true;
                     GameObject Door = GameObject.Find("Door");
-                    Door.transform.position = new Vector3(-2, 0, 0);
+                    Door.transform.position = new Vector3(-10, 0, 0);
                     Door.GetComponent<BoxCollider>().enabled = false;
                     same = 0;
                 }

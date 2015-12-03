@@ -19,7 +19,10 @@ public class CCTV : MonoBehaviour {
 
     public Material foundMat;
     public Material normalMat;
+    public LayerMask layerMask;
 
+    public float lineYFix = 0f;
+    private bool setEndOnce = true;
 
     void Awake(){
 		player = GameObject.Find("Player/Robart");
@@ -30,6 +33,11 @@ public class CCTV : MonoBehaviour {
 
         this.GetComponent<Rigidbody>().isKinematic = true;
         this.GetComponent<SphereCollider>().isTrigger = true;
+        if (lineYFix == 0f)
+        {
+            lineYFix = 1.97f;
+        }
+            
     }
 	void OnTriggerStay(Collider other){
 		if(other.gameObject == player){
@@ -45,20 +53,28 @@ public class CCTV : MonoBehaviour {
             
 			if(angle < (fovAngle/2) - 5)
             {
-                Debug.DrawRay(new Vector3(transform.parent.position.x, 1.97f, transform.parent.position.z), direction + Vector3.up, Color.blue);
-                Debug.DrawRay(new Vector3(transform.parent.position.x, 1.97f, transform.parent.position.z), fixedVector, Color.green);
+                Debug.DrawRay(new Vector3(transform.parent.position.x, lineYFix, transform.parent.position.z), direction + Vector3.up, Color.blue);
+                Debug.DrawRay(new Vector3(transform.parent.position.x, lineYFix, transform.parent.position.z), fixedVector, Color.green);
 
                 //Makes sure there is nothing in the way of the camera (such as POTPLANT)
                 RaycastHit hit;
-				if(Physics.Raycast(new Vector3(transform.parent.position.x, 1.97f, transform.parent.position.z), direction + Vector3.up, out hit))
+				if(Physics.Raycast(new Vector3(transform.parent.position.x, lineYFix, transform.parent.position.z), direction + Vector3.up, out hit))
 				{
+                    Debug.Log(hit.collider.gameObject.name);
+
                     if (hit.collider.gameObject == player)
                     {
                         inSight = true;
                         lastSighting = player.transform.position;
                         Debug.Log("In sight");
+                        
                         this.transform.parent.Find("soundSystem").GetComponent<soundSystem>().setSound();
                         this.GetComponent<LineRenderer>().material = foundMat;
+                        if (Application.loadedLevel == 2 && setEndOnce)
+                        {
+                            setEndOnce = false;
+                            GameObject.Find("LevelEnd").GetComponent<LevelEnd>().setEndCondition("");
+                        }
                     }
                 }
 			}
@@ -72,13 +88,22 @@ public class CCTV : MonoBehaviour {
             inSight = false;
             this.transform.parent.Find("soundSystem").GetComponent<soundSystem>().setReasonToPlay();
             this.GetComponent<LineRenderer>().material = normalMat;
+            setEndOnce = true;
+            StartCoroutine(resetEnemies());
         }
 			
 		angle = 0f;
 	}
 
-	// Use this for initialization
-	void Start () {
+    IEnumerator resetEnemies()
+    {
+        yield return new WaitForSeconds(1f);
+        AudioSource asource = this.transform.parent.Find("soundSystem").GetComponent<AudioSource>();
+        if (asource.isPlaying) asource.Stop();
+    }
+
+    // Use this for initialization
+    void Start () {
 
 	}
 	

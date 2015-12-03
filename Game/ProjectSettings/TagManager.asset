@@ -21,6 +21,8 @@ TagManager:
   - Gate
   - EnemyWaypoint
   - Laser
+  - rotatingLaser
+  - ARCamera
   layers:
   - Default
   - TransparentFX
@@ -31,7 +33,7 @@ TagManager:
   - 
   - 
   - Ground
-  - 
+  - Factory
   - 
   - 
   - 

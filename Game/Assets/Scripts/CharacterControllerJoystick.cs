@@ -96,7 +96,7 @@ public class CharacterControllerJoystick : MonoBehaviour {
             // if (!setImageOnce)
             //  {
             setImageOnce = true;
-                goJoystick.GetComponentsInChildren<Transform>()[1].GetComponent<Image>().sprite = blackJoystick;
+              //  goJoystick.GetComponentsInChildren<Transform>()[1].GetComponent<Image>().sprite = blackJoystick;
          //   }
 
         } else
@@ -165,7 +165,7 @@ public class CharacterControllerJoystick : MonoBehaviour {
             agent.destination = this.transform.position + movement * Time.deltaTime;
         //    rBody.velocity = direction;
 
-             Debug.Log("direction: " + direction.magnitude);
+        //     Debug.Log("direction: " + direction.magnitude);
 
         }
         else

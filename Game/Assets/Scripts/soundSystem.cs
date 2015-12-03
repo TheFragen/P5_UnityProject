@@ -38,24 +38,25 @@ public class soundSystem : MonoBehaviour {
         currentTime = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
 
         if (createSound) {
-            if(!soundHasPlayed) {
-                if(audioSource.clip != null) audioSource.Play();
+            if (!audioSource.isPlaying)
+            {
+                if (audioSource.clip != null) audioSource.Play();
                 soundHasPlayed = true;
                 timeSincePlay = currentTime;
             }
             if(soundWave.radius < loudnessScalar * loudness) {
                 soundWave.radius += sphereRadiusScalar;
             }
+
+            if (timeSincePlay + (1000 * loudness) < currentTime)
+            {
+                if (audioSource.clip != null) audioSource.Stop();
+                createSound = false;
+                soundHasPlayed = false;
+            }
         } else {
             soundWave.radius = sphereRadiusScalar;
             StartCoroutine(resetEnemies());
-        }
-
-        if(timeSincePlay + (1000 * loudness) < currentTime && !reasonToPlay) {
-            if (audioSource.clip != null) audioSource.Stop();
-            createSound = false;
-            soundHasPlayed = false;
-
         }
     }
 
@@ -64,7 +65,7 @@ public class soundSystem : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         foreach (Transform elem in enemiesTriggered)
         {
-            elem.GetComponent<EnemyMovementNavAgent>().resetSoundAlerted();
+            if (!elem.GetComponent<EnemyMovementNavAgent>().getIsChasing()) elem.GetComponent<EnemyMovementNavAgent>().resetSoundAlerted();
         }
         enemiesTriggered.Clear();
     }
@@ -79,8 +80,7 @@ public class soundSystem : MonoBehaviour {
 
             RaycastHit hit;
             if (Physics.Raycast(transform.position, direction.normalized, out hit, soundWave.radius * 100 * 2)) {
-
-                //      if(Vector3.Distance(this.transform.position, hit.transform.position) < loudnessScalar * loudness && createSound) {
+          //      if(Vector3.Distance(this.transform.position, hit.transform.position) < loudnessScalar * loudness && createSound) {
                     Debug.DrawLine(this.transform.position, hit.point, Color.red);
                     if (!enemiesTriggered.Contains(other.transform)) {
                         enemiesTriggered.Add(other.transform);

@@ -31,6 +31,7 @@ public class EnemyMovementNavAgent : MonoBehaviour
     private float initialDistance;
     private float initialPatrolSpeed;
     private Vector3 soundAlertPosition;
+    private bool isChasing;
 
     // Use this for initialization
     void Start() {
@@ -105,6 +106,7 @@ public class EnemyMovementNavAgent : MonoBehaviour
     }
 
     void sound() {
+        
         if (Vector3.Distance(this.transform.position, agent.destination) < distance) {
             // Incerement timer
             chaseTimer += Time.deltaTime;
@@ -132,6 +134,7 @@ public class EnemyMovementNavAgent : MonoBehaviour
     }
 
     void chase() {
+        isChasing = true;
         if (!GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Play();
         agent.speed = chaseSpeed;
         agent.destination = enemySight.lastSighting;
@@ -148,6 +151,7 @@ public class EnemyMovementNavAgent : MonoBehaviour
                 //Wait a bit before resetting
                 if (chaseTimer >= chaseWaitTime + 1f) {
                     Debug.Log("Resetting");
+                    isChasing = false;
                     enemySight.lastSighting = enemySight.resetSight;
                     agent.destination = waypoint[pathPointIndex].transform.position;
                     chaseTimer = 0f;
@@ -214,5 +218,10 @@ public class EnemyMovementNavAgent : MonoBehaviour
             // If not near a destination, reset the timer.
             patrolTimer = 0;
         }
+    }
+
+    public bool getIsChasing()
+    {
+        return isChasing;
     }
 }
